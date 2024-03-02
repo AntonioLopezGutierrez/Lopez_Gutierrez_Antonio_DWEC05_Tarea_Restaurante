@@ -1,7 +1,26 @@
-.header__logo {
-    text-align: center;
+/*!----------------------------------- Cuepo del documento -------------------------------*/
+/*? Body*/
+body {
+    grid-template-areas:
+        "header__logo header__logo"
+        "header__nav header__nav";
+    height: 100vh;
+    background-color: aquamarine;
+
 }
 
-h1{
-    font-size: 5px;
+/*!----------------------------------------- header -------------------------------------*/
+/*? Logo de la pagina*/
+.header__logo {
+    grid-area: header__logo;
+    background-color: aqua;
+}
+/*? Barra de navegacion*/
+.header__nav {
+    grid-area: header__nav;
+    background-color: blue;
+}
+
+p{
+    text-align: center;
 }
