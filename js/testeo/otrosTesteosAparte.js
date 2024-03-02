@@ -50,3 +50,27 @@ window.addEventListener("load", function () {
 });
 
 /////////////////////////////////////////////////////
+/*!----------------------------------- Cuepo del documento -------------------------------*/
+/*? Body*/
+body {
+    grid-template-areas:
+        "header__logo header__logo"
+        "header__nav header__nav";
+    height: 100vh;
+
+}
+
+/*!----------------------------------------- header -------------------------------------*/
+/*? Logo de la pagina*/
+.header__logo {
+    grid-area: header__logo;
+    background-color: aqua;
+}
+/*? Barra de navegacion*/
+.header__nav {
+    grid-area: header__nav;
+    background-color: blue;
+}
+
+
+
