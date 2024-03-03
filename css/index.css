@@ -1,0 +1,323 @@
+/*!----------------------------------- Cuepo del documento -------------------------------*/
+/*? Body*/
+body {
+    /* Definimos una cuadricula*/
+    display: grid;
+    /* Definimos la s areas de la cuadricula*/
+    grid-template-areas:
+        "header--logo"
+        "header__nav--lista"
+        "main"
+        "aside"
+        "footer";
+
+    /* Establecemos el tamaño de las filas */
+    grid-template-rows: 15% 2.5% 52.5% 22% 15%;
+    /*Establecemos un pequeño espacion entre las filas*/
+    row-gap: 1.5em;
+    /*Estabelcemos el alto al 100vh*/
+    height: 100em;
+}
+
+/*!----------------------------------------- header -------------------------------------*/
+/*? Logo de la pagina*/
+/* Contenedor principal del logo*/
+.header--logo {
+    /* Asignamos el area del grid*/
+    grid-area: header--logo;
+    /* Modificamos la altura*/
+    height: 100%;
+}
+/* Imagen del logo*/
+.header--logo img {
+    /* Modificamos la altura*/
+    height: 100%;
+    /* Modificamos el ancho*/
+    width: 100%;
+}
+/*? Barra de navegacion*/
+/* Lista de la barra de navegacion*/
+.header__nav--lista {
+    /*Asignamos el area del grid*/
+    grid-area: header__nav--lista;
+    /* Modificamos el display a contenedor flex*/
+    display: flex;
+    /* Quitamos los estilos de la lista*/
+    list-style: none;
+    /* Centramos el conenido*/
+    justify-content: space-around;
+    /* Modificamos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+}
+/*? Enlaces de la barra de navegacion*/
+.header__nav--lista a {
+    /* Cambiamos el color del primer plano*/
+    color: aliceblue;
+    /* Quitamos la decracion de los textos*/
+    text-decoration: none;
+    font-size: 1.5em;
+}
+/*? Elementos de la lista de la barra de navegacion*/
+.header__nav--lista li {
+    /* Establecemos un relleno*/
+    padding: 10px;
+}
+/*!----------------------------------------- main -------------------------------------*/
+/*? Cuerpo principal de la pagina*/
+/* Contenedor padre main*/
+.main {
+    /* Asignamos el area al grid del body*/
+    grid-area: main;
+    /* Hacemos un nuevo grid en el main */
+    display: grid;
+    /* Establecemos las areas de la cuadricula*/
+    grid-template-areas: "main--listado main--contenido";
+    /* Definimos las columnas*/
+    grid-template-columns: 15% 85%;
+    /*  Definimos las filas */
+    grid-template-rows: 100%;
+    /* Establecemos la altura del contenedor*/
+    height: 100%;
+}
+
+/** Listado de elementos*/
+/* Contenedor padre listado*/
+.main--listado {
+    /* Asinamos el area al main*/
+    grid-area: main--listado;
+    /* Creamos unnuevo grid para mostrar los elemento*/
+    display: grid;
+    /* Establecemos la asignacion de las areas*/
+    grid-template-areas:
+        "main__listado--primerElemento"
+        "main__listado--segundoElemento"
+        "main__listado--tercerElemento"
+        "main__listado--cuartoElemento";
+    /* Definimos el tamaño de las filas*/
+    grid-template-rows: 25% 25% 25% 25%;
+    /* Establecemos la altura del contenedor*/
+    height: 100%;
+    /* Establecemos el espacion entre los elementos*/
+    gap: 0.1em;
+}
+
+/*----- Primer elemento del listado*/
+.main__listado--primerElemento {
+    /* Asignamos el area al listado*/
+    grid-area: main__listado--primerElemento;
+    /* Hacemos un contenedor flex*/
+    display: flex;
+    /* le daremos la direccion como columna*/
+    flex-direction: column;
+    /*  Centramos todo en el contenedor*/
+    justify-content: center;
+    /*  Alineamos horizontalmente */
+    align-items: center;
+    /*Establecemos el borde inferior*/
+    border-bottom: 0.7em solid white;
+    /* Asignamos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+}
+/* Imagenes del primer elemento*/
+.main__listado--primerElemento img {
+    /* Establecemos la altura*/
+    height: 70%;
+    /* Establecemos la anchura*/
+    width: 70%;
+}
+/* Enlaces primer elemento*/
+.main__listado--primerElemento a {
+    /* Establecemos el color del primer plano*/
+    color: aliceblue;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.3em;
+}
+
+/*------ Segundo elemento del listado */
+.main__listado--segundoElemento {
+    /* Establecemos el area en el listado*/
+    grid-area: main__listado--segundoElemento;
+    /* Hacemo un contenedor flex*/
+    display: flex;
+    /* Establecemos la direccio de los elemento*/
+    flex-direction: column;
+    /* Centramos en el contenedor verticalmente*/
+    justify-content: center;
+    /* Aliniamos los elementos horizontaamente*/
+    align-items: center;
+    /*Establecemos el borde inferior*/
+    border-bottom: 0.7em solid white;
+    /* Asignamos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+}
+/* Imagenes del segundo elemento */
+.main__listado--segundoElemento img {
+    /* Establecemos la altura*/
+    height: 70%;
+    /* Establecemos la anchura*/
+    width: 70%;
+}
+/* Enlaces del segundo elemento */
+.main__listado--segundoElemento a {
+    /* Establecemos el color del primer plano*/
+    color: aliceblue;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.3em;
+}
+
+/*------- Tercer elemento del listado */
+.main__listado--tercerElemento {
+    /* Establecemos el area en el listado*/
+    grid-area: main__listado--tercerElemento;
+    /* Hacemos un contenedor flexible*/
+    display: flex;
+    /* Asignamos la direccion de los elementos*/
+    flex-direction: column;
+    /* Alineamosm los elementos al centro*/
+    justify-content: center;
+    /* Alinamos los contnidos al centro*/
+    align-items: center;
+    /*Establecemos el borde inferior*/
+    border-bottom: 0.7em solid white;
+    /* Asignamos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+}
+/* Imagenes del tercer elemento */
+.main__listado--tercerElemento img {
+    height: 70%;
+    width: 70%;
+}
+/* Enlaces del tercer elemento */
+.main__listado--tercerElemento a {
+    /* Establecemos el color del primer plano*/
+    color: aliceblue;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.3em;
+}
+
+/*------- Cuarto elemento del listado*/
+.main__listado--cuartoElemento {
+    /* Establecemos el area que ocupara en el listado*/
+    grid-area: main__listado--cuartoElemento;
+    /* Hacemos un contenedor flexible*/
+    display: flex;
+    /* Etablecemos la direccion de los elementos*/
+    flex-direction: column;
+    /* Justificamos los contenidos para que esten centrados verticalmente*/
+    justify-content: center;
+    /* Alineamos los contenidos horizontalmetne*/
+    align-items: center;
+    /* Establecemos el borde inferior*/
+    border-bottom: 0.4em solid white;
+    /* Asignamos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+}
+/* Imagenes del cuarto elemento */
+.main__listado--cuartoElemento img {
+    /* Establecemos la altura*/
+    height: 70%;
+    /* Establecemos el ancho*/
+    width: 70%;
+    /* Establecemos un margen inferior*/
+    margin-bottom: 1.6em;
+}
+/* Enlaces del cuarto elemento */
+.main__listado--cuartoElemento a {
+    /* Establecemos el color del primer plano*/
+    color: aliceblue;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.3em;
+}
+
+/** Contenido mostrado*/
+/* Contenido que mostraremos en la pagina*/
+.main--contenido {
+    /* establecemos el area que ocupara en el main*/
+    grid-area: main--contenido;
+    /* Hacemos un contenedor flexible*/
+    display: flex;
+    /* Justificamos los contenidos para que esten centrados verticalmente*/
+    justify-content: center;
+    /* Alineamos los contenidos horizontalmetne*/
+    align-items: center;
+    /* Establecemos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+    /* establecemos el margen derecho*/
+    margin-left: 1em;
+}
+/* Imagen inicial para mostrar el contenido*/
+.main--contenido img {
+    height: 95%;
+    width: 95%;
+}
+
+/*!----------------------------------------- aside -------------------------------------*/
+/*? Cuerpo secundario de la pagina*/
+.aside {
+    /* Asignamos el area en el main*/
+    grid-area: aside;
+    /* Establecemos como contenedor flex*/
+    display: flex;
+    /* Establecemos la direccion*/
+    flex-direction: row;
+    /* Alineamos los elementos al centro*/
+    align-items: center;
+    justify-content: space-around;
+    /* Establecemos la altura del contenedor*/
+    height: 100%;
+    /* Asignamos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+}
+/*? Imagenes del aside*/
+.aside img {
+    /* Establecemos el ancho*/
+    width: 46%;
+    /* Establecemos el alto*/
+    height: 88%;
+    /* Establecemos el margen*/
+    margin: 1em;
+
+}
+
+/*!----------------------------------------- footer ------------------------------------*/
+/*? Pie de pagina*/
+.footer {
+    /* Establecemos el area en el main*/
+    grid-area: footer;
+    /* Establecemos una nueva cuadricula*/
+    display: grid;
+    /* Asignamos la areas*/
+    grid-template-areas: "footer--contacto footer--social";
+    /* Establecemos el tamaño de las columnas*/
+    grid-template-columns: 50% 50%;
+    /* Establecemos la altura*/
+    height: 100%;
+    /* Establecemos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+    /* Establecemos el color del primer plano*/
+    color: aliceblue;
+}
+
+/*? Contactos del pie de pagina*/
+.footer--contacto {
+    /* Establecemos el area en el pie de pagina*/
+    grid-area: footer--contacto;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+}
+
+/*? Iconos del pie de pagina*/
+.footer--social {
+    /* Establecemos el area en el pie de pagina*/
+    grid-area: footer--social;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+}
+
+/*? imagenes iconos pie de pagina*/
+.footer--social img {
+    /* establecemos el alto*/
+    height: 7%;
+    /* Establecemos el ancho*/
+    width: 5%;
+}
