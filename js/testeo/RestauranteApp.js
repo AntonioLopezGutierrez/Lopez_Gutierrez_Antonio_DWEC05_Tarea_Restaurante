@@ -1,0 +1,275 @@
+//!////////////////////////RESTAURANTE APP///////////////////////////////
+//?/////////////////////////IMPORTACIONES///////////////////////////////
+// Importacion del manager
+import { Coordinate } from "../clases/Coordinate.js";
+import { RestaurantsManager } from "../clases/RestaurantsManager.js";
+
+//?/////////////////MANAGER PARA INTRUCIR LOS DATOS//////////////////////
+console.log("//////////////DATOS DE NUESTRA APLICACION////////////////");
+console.log("");
+
+//**********Creacion del manager al le introduciremos los datos*********
+let restauranteModelo = new RestaurantsManager();
+
+//*****************Creacion y agregacion de las categorias**************
+//+ Creacion de las categorias
+// Creacion de la primera categoria
+let categoria1 = restauranteModelo.createCategory(
+    "Entrantes",
+    "Son pequeñas porciones para abrir el apetito"
+);
+// Creacion de la segunda categoria
+let categoria2 = restauranteModelo.createCategory(
+    "Primer plato",
+    "Es mas ligero que el plato principal"
+);
+// Creacion de la tercera categoria
+let categoria3 = restauranteModelo.createCategory(
+    "Segundo plato",
+    "Es el plato principal de la comida"
+);
+//+ Agregar las categorias
+// Añadimos la primerra categoria
+restauranteModelo.addCategory(categoria1);
+// Añadimos la segunda categoria
+restauranteModelo.addCategory(categoria2);
+// Añadimos la tercera categoria
+restauranteModelo.addCategory(categoria3);
+
+//*************Creacion de platos y asignado a las categorias************
+//+ Creacion de los platos
+// Creacion del plato 1
+let plato1 = restauranteModelo.createDish(
+    "Paella",
+    "Es un plato tipico de arroz de Valencia",
+    ["Arroz, Caldo de pescado, calamares, gambas"],
+    "/imagenes/imagenePlatos/imagenPaella.png"
+);
+// Creacion del plato 2
+let plato2 = restauranteModelo.createDish(
+    "Salmon",
+    "Es un plato se salmon a la plancha",
+    ["Salmon, cebolla, berenjena, piminto, sal"],
+    "/imagenes/imagenePlatos/imagenSalmon.png"
+);
+// Creacion del plato 3
+let plato3 = restauranteModelo.createDish(
+    "Lasaña",
+    "Es un plato de pasta de la cocina italiana",
+    ["Carne, oregano, salsa de tomate, laminas de pasta, queso"],
+    "/imagenes/imagenePlatos/imagenLasaña.png"
+);
+// Creacio del plato 4
+let plato4 = restauranteModelo.createDish(
+    "Ensalada",
+    "Es un plato muy refrescante y bajo en calorias",
+    ["Lechuga, tomate, maiz, nueces, atun"],
+    "/imagenes/imagenePlatos/imagenEnsalada.png"
+);
+
+// Creacion del plato 5
+let plato5 = restauranteModelo.createDish(
+    "Hamburguesa",
+    "Hamburguesa de ternera completa",
+    ["Lechuga, tomate, carne picada, queso, huevo, cebolla"],
+    "/imagenes/imagenePlatos/imagenHamburguesa.png"
+);
+// Creacion del plato 6
+let plato6 = restauranteModelo.createDish(
+    "Risotto de gambas",
+    "Es un plato italiano de arroz meloso",
+    ["Arroz, gambas, queso parmesano, nata, cebolla"],
+    "/imagenes/imagenePlatos/imagenRisotto.png"
+);
+// Creacion del plato 7
+let plato7 = restauranteModelo.createDish(
+    "Albondigas",
+    "Es un plato de albondigas de tenrnera con salsa de tomate",
+    ["Carne de ternera, tomate, cebolla, caldo de verdura, queso parmesano"],
+    "/imagenes/imagenePlatos/imagenAlbondigas.png"
+);
+// Creacion del plato 8
+let plato8 = restauranteModelo.createDish(
+    "Tortilla española",
+    "Plato tipico español",
+    ["Huevo, patatas, aceite, sal"],
+    "/imagenes/imagenePlatos/imagenTortilla.png"
+);
+// Creacion del plato 9
+let plato9 = restauranteModelo.createDish(
+    "Sushi",
+    "Laminas de pescado crudo con arroz cocido",
+    ["Arroz, atun, salmon, merluza, algas"],
+    "/imagenes/imagenePlatos/imagenSushi.png"
+);
+// Creacion del plato 10
+let plato10 = restauranteModelo.createDish(
+    "Fajitas de pollo",
+    "Pechuga de pollo a la plancha con sofrito de verduras",
+    ["Pollo, tomate, cebolla, pimiento, totitas de harina"],
+    "/imagenes/imagenePlatos/imagenFajitas.png"
+);
+// Creacion del plato 11
+let plato11 = restauranteModelo.createDish(
+    "Ratatouille",
+    "Es un plato tipico frances de verduras",
+    ["Berenjena, calabacin, tomate, hiervas Aromaticas"],
+    "/imagenes/imagenePlatos/imagenRatatouille.png"
+);
+// Creacion del plato 12
+let plato12 = restauranteModelo.createDish(
+    "Macarrones",
+    "Es un plato italiano de pasta",
+    ["Macarrones, salsa de tomate, carne de ternera, queso, oregano"],
+    "/imagenes/imagenePlatos/imagenMacarrones.png"
+);
+//+ Asignamos los platos a las categorias
+// Añadimos los platos de la categoria 1
+restauranteModelo.assignCategoryToDish(categoria1, plato1);
+restauranteModelo.assignCategoryToDish(categoria1, plato3);
+restauranteModelo.assignCategoryToDish(categoria1, plato5);
+restauranteModelo.assignCategoryToDish(categoria1, plato7);
+// Añadimos los platos de la categoria 2
+restauranteModelo.assignCategoryToDish(categoria2, plato2);
+restauranteModelo.assignCategoryToDish(categoria2, plato4);
+restauranteModelo.assignCategoryToDish(categoria2, plato6);
+restauranteModelo.assignCategoryToDish(categoria2, plato8);
+// Añadimos los platos de la categoria 3
+restauranteModelo.assignCategoryToDish(categoria3, plato9);
+restauranteModelo.assignCategoryToDish(categoria3, plato10);
+restauranteModelo.assignCategoryToDish(categoria3, plato11);
+restauranteModelo.assignCategoryToDish(categoria3, plato12);
+
+//***********Creacion de alergenos y asignacion a las platos*************
+//+ Creacion de alergenos
+// Creamos el primer alergeno
+let alergeno1 = restauranteModelo.createAllergen(
+    "Lacteos",
+    "Son alergenos derivados de la leche de la vaca"
+);
+// Creamos el segundo alergeno
+let alergeno2 = restauranteModelo.createAllergen(
+    "Frutos secos",
+    "Son alergenos derivados de los frutos secos"
+);
+// Creamos el tercer alergeno
+let alergeno3 = restauranteModelo.createAllergen(
+    "Pescado",
+    "Son alergenos derivados de los pescados y mariscos"
+);
+// Creamos el cuarto alergeno
+let alergeno4 = restauranteModelo.createAllergen(
+    "Proteinas del pescado",
+    "Son alergenos derivados de las proteinas de algunos pescados"
+);
+// Creamos el quinto alergeno
+let alergeno5 = restauranteModelo.createAllergen(
+    "Gluten",
+    "Son alergenos derivados del trigo, cebada, centeno y deribados"
+);
+// Creamos el sexto alergeno
+let alergeno6 = restauranteModelo.createAllergen(
+    "Verduras",
+    "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines"
+);
+
+//+ Agregacion de los alegenos a los platos
+// Agregacion del alergeno 3 al plato 1
+restauranteModelo.assignAllergenToDish(plato1, alergeno3);
+// Agregacion del alergeno 4 al plato 2
+restauranteModelo.assignAllergenToDish(plato2, alergeno4);
+// Agregacion del alergeno 1 al plato 3
+restauranteModelo.assignAllergenToDish(plato3, alergeno1);
+// Agregacion del alergeno 2 al plato 4
+restauranteModelo.assignAllergenToDish(plato4, alergeno2);
+// Agregacion del alergeno 5 al plato 5
+restauranteModelo.assignAllergenToDish(plato5, alergeno5);
+// Agregacion del alergeno 4 al plato 6
+restauranteModelo.assignAllergenToDish(plato6, alergeno4);
+// Agregacion del alergeno 1 al plato 7
+restauranteModelo.assignAllergenToDish(plato7, alergeno1);
+// Agregacion del alergeno 1 al plato 8
+restauranteModelo.assignAllergenToDish(plato8, alergeno1);
+// Agregacion del alergeno 3 al plato 9
+restauranteModelo.assignAllergenToDish(plato9, alergeno3);
+// Agregacion del alergeno 5 al plato 10
+restauranteModelo.assignAllergenToDish(plato10, alergeno5);
+// Agregacion del alergeno 6 al plato 11
+restauranteModelo.assignAllergenToDish(plato11, alergeno6);
+// Agregacion del alergeno 1 al plato 12
+restauranteModelo.assignAllergenToDish(plato12, alergeno1);
+
+//*******Creacion de menus y de platos y asignacion a las platos*********
+//+ Creacion de los menus
+// Creacion del primer menu
+let menu1 = restauranteModelo.createMenu(
+    "Menu de la casa",
+    "Menus de elaborado con platos de la casa"
+);
+// Creacion del segundo menu
+let menu2 = restauranteModelo.createMenu(
+    "Menu de la casa especial",
+    "Menus degustacion de platos especiales"
+);
+// Creacion del tercer menu
+let menu3 = restauranteModelo.createMenu(
+    "Menu de fin de semana",
+    "Menus para fines de semana y festivos"
+);
+//+ Asignado de platos al menu
+// Asignamos los platos al menu 1
+restauranteModelo.assignDishToMenu(menu1, plato1);
+restauranteModelo.assignDishToMenu(menu1, plato3);
+restauranteModelo.assignDishToMenu(menu1, plato5);
+// Asignamos los platos al menu 2
+restauranteModelo.assignDishToMenu(menu2, plato2);
+restauranteModelo.assignDishToMenu(menu2, plato4);
+restauranteModelo.assignDishToMenu(menu2, plato6);
+// Asignamos los platos al menu 3
+restauranteModelo.assignDishToMenu(menu3, plato7);
+restauranteModelo.assignDishToMenu(menu3, plato9);
+restauranteModelo.assignDishToMenu(menu3, plato11);
+
+
+//******************Creacion de restaurantes*****************************
+//+ Creacion de las coordenadas para el restaurante
+// Creacion de la primera coordenada
+let coordenada1 = new Coordinate(20, 15);
+// Creacion de la segunda coordenada
+let coordenada2 = new Coordinate(50, 70);
+// Creacion de la tercera coordenada
+let coordenada3 = new Coordinate(50, 70);
+//+ Creacion de los restaurantes
+// Creacion del pprimer restaurante
+let restaurante1 = restauranteModelo.createRestaurant(
+    "Meson Antonio",
+    "Restaurante especialista en carnes",
+    coordenada1
+);
+// Creacion del segundo restaurante
+let restaurante2 = restauranteModelo.createRestaurant(
+    "Buffet libre Xin Chan",
+    "Restaurante especializado en comida china",
+    coordenada2
+);
+// Creacion del tercer restaurante
+let restaurante3 = restauranteModelo.createRestaurant(
+    "Arroceria El Tayo",
+    "Restaurante especializado en paellas y otros arroces",
+    coordenada3
+);
+//+ Agregacion de los restaurantes
+// Agregacion del primer restaurante
+restauranteModelo.addRestaurant(restaurante1);
+// Agregacion del segundo restaurante
+restauranteModelo.addRestaurant(restaurante2);
+// Agregacion del tercero restaurante
+restauranteModelo.addRestaurant(restaurante3);
+
+//*****************Mostrado del manager por la consola*******************
+console.log(restauranteModelo.toString());
+
+
+
+//?///////////////////////////EXPORTACIONES//////////////////////////////
+export { restauranteModelo };

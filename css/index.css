@@ -48,6 +48,12 @@ body {
     justify-content: space-around;
     /* Modificamos el color de fondo*/
     background-color: rgb(66, 66, 66);
+    /* Redondea mos el borde*/
+    border-radius: 10em;
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /*? Enlaces de la barra de navegacion*/
 .header__nav--lista a {
@@ -96,9 +102,11 @@ body {
     /* Definimos el tamaño de las filas*/
     grid-template-rows: 25% 25% 25% 25%;
     /* Establecemos la altura del contenedor*/
-    height: 100%;
+    height: 98%;
     /* Establecemos el espacion entre los elementos*/
-    gap: 0.1em;
+    gap: 0.4em;
+    /* Redondeamos los bordes de la barra de navegacion*/
+    border-radius: 10em;
 }
 
 /*----- Primer elemento del listado*/
@@ -113,10 +121,12 @@ body {
     justify-content: center;
     /*  Alineamos horizontalmente */
     align-items: center;
-    /*Establecemos el borde inferior*/
-    border-bottom: 0.7em solid white;
     /* Asignamos el color de fondo*/
     background-color: rgb(66, 66, 66);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /* Imagenes del primer elemento*/
 .main__listado--primerElemento img {
@@ -149,6 +159,10 @@ body {
     border-bottom: 0.7em solid white;
     /* Asignamos el color de fondo*/
     background-color: rgb(66, 66, 66);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /* Imagenes del segundo elemento */
 .main__listado--segundoElemento img {
@@ -181,6 +195,10 @@ body {
     border-bottom: 0.7em solid white;
     /* Asignamos el color de fondo*/
     background-color: rgb(66, 66, 66);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /* Imagenes del tercer elemento */
 .main__listado--tercerElemento img {
@@ -211,6 +229,12 @@ body {
     border-bottom: 0.4em solid white;
     /* Asignamos el color de fondo*/
     background-color: rgb(66, 66, 66);
+    /* Establecemos el relleno superior*/
+    padding-top: 0.5em;
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /* Imagenes del cuarto elemento */
 .main__listado--cuartoElemento img {
@@ -219,7 +243,7 @@ body {
     /* Establecemos el ancho*/
     width: 70%;
     /* Establecemos un margen inferior*/
-    margin-bottom: 1.6em;
+    margin-bottom: 1.5em;
 }
 /* Enlaces del cuarto elemento */
 .main__listado--cuartoElemento a {
@@ -244,11 +268,15 @@ body {
     background-color: rgb(66, 66, 66);
     /* establecemos el margen derecho*/
     margin-left: 1em;
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /* Imagen inicial para mostrar el contenido*/
 .main--contenido img {
-    height: 95%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
 }
 
 /*!----------------------------------------- aside -------------------------------------*/
@@ -262,11 +290,16 @@ body {
     flex-direction: row;
     /* Alineamos los elementos al centro*/
     align-items: center;
+    /* justificamos el cont4nido al centro*/
     justify-content: space-around;
     /* Establecemos la altura del contenedor*/
     height: 100%;
     /* Asignamos el color de fondo*/
     background-color: rgb(66, 66, 66);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 /*? Imagenes del aside*/
 .aside img {
@@ -276,7 +309,6 @@ body {
     height: 88%;
     /* Establecemos el margen*/
     margin: 1em;
-
 }
 
 /*!----------------------------------------- footer ------------------------------------*/
@@ -296,6 +328,10 @@ body {
     background-color: rgb(66, 66, 66);
     /* Establecemos el color del primer plano*/
     color: aliceblue;
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
 }
 
 /*? Contactos del pie de pagina*/
@@ -314,10 +350,10 @@ body {
     text-align: center;
 }
 
-/*? imagenes iconos pie de pagina*/
+/*? Imagenes iconos pie de pagina*/
 .footer--social img {
     /* establecemos el alto*/
-    height: 7%;
+    height: 11%;
     /* Establecemos el ancho*/
-    width: 5%;
+    width: 7%;
 }

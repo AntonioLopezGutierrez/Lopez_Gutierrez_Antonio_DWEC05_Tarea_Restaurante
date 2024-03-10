@@ -1,23 +1,18 @@
+//!/////////////////////////////CLASE COORDINATE/////////////////////////
 //Activamos el modo estricto
-"use strict"
+"use strict";
 
-//////////////////////////////////////////////////IMPORTACIONES DE LA CLASE///////////////////////////////////////////////
-import {
-    LatitudObligatorio,
-    LongitudObligatorio
-} from "../excepciones/ExcepcionesCoordinate.js";
+//?///////////////////////IMPORTACIONES DE LA CLASE//////////////////////
+import { LatitudObligatorio, LongitudObligatorio } from "../excepciones/ExcepcionesCoordinate.js";
 
-/**
- * ///////////////////////////////////////////////CLASE COORDINATE/////////////////////////////////////////////////////
- */
 class Coordinate {
-    /////////////////////////////////////DECLARACION DE LAS PROPIEDADES PRIVADAS///////////////////////////////////////
+    //?///////////////DECLARACION DE LAS PROPIEDADES PRIVADAS////////////
     #latitude;
     #longitude;
 
-    /////////////////////////////////////////CONSTRUCTOR DE LA CLASE/////////////////////////////////////////////////
+    //?//////////////////////CONSTRUCTOR DE LA CLASE/////////////////////
     constructor(latitude, longitude) {
-        //Excepciones de las propiedades 
+        //Excepciones de las propiedades
         if (latitude === undefined || isNaN(latitude)) {
             throw new LatitudObligatorio();
         }
@@ -41,7 +36,7 @@ class Coordinate {
     getLatitude() {
         return this.#latitude;
     }
-    
+
     //Setter para la longitud
     setLongitude(longitude) {
         //Comprobacion de que no esta vacio el campo y que es un numero
@@ -55,15 +50,11 @@ class Coordinate {
         return this.#longitude;
     }
 
-
     ////////////////////////////////////////////////////////METODOS//////////////////////////////////////////////
     toString() {
-        return ("La latitud es: " + this.#latitude + " y la longitud es: " + this.#longitude)
+        return "La latitud es: " + this.#latitude + " y la longitud es: " + this.#longitude;
     }
-
 }
 
 ////////////////////////////////////////////////EXPORTACION DE LA CLASE//////////////////////////////////////////////
-export {
-    Coordinate
-};
+export { Coordinate };
