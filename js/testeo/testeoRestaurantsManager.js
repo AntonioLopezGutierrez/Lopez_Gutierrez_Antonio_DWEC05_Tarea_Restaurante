@@ -1,9 +1,8 @@
 //!/////////////TESTEO DE LA CLASE RESTAURANT MANAGER////////////////////
 //?////////////////////IMPORTACIONES DE CLASES///////////////////////////
 
-import { RestaurantsManager } from "../clases/RestaurantsManager.js";
+import { RestaurantsManager } from "../manager/RestauranteModelo.js";
 import { Coordinate } from "../clases/Coordinate.js";
-import { Category } from "../clases/Category.js";
 
 //?//////////FUNCION QUE COMPRUEBA LA INSTANCIACION DEL OBJETO///////////
 function testeoInstanciacion() {
@@ -1163,6 +1162,7 @@ function testeoPlato() {
 
 
 //!///////////CARGADO DE LAS FUNCIONES AL INICIAR LA PAGINA///////////////
+
 window.addEventListener("load", function () {
     testeoInstanciacion();
     testeoCategoria();

@@ -26,62 +26,31 @@
 
     <body>
         <!--?----------------- Cabecera de la pagina-------------------->
-        <header class="header">
+        <header class="header" id="header">
             <!--*--------------- Logotipo de la empresa----------------->
             <div class="header--logo">
-                <a href="#"><img src="imagenes/imagenLogo.png" alt="Logotipo" /></a>
+                <img src="imagenes/imagenLogo.png" alt="Logotipo" />
             </div>
             <!--*---------------- Barra de navegacion ------------------>
-            <nav class="header--nav">
-                <!-- Menu de navegacion -->
-                <ul class="header__nav--lista">
-                    <li></li>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/">Inicio</a></li>
-                </ul>
-            </nav>
+            <div class="header--nav" id="header--nav">
+                <!-- Aqui ira los elementos de la barra de navegacion-->
+            </div>
         </header>
         <!--?----------------- Cuerpo principal de la pagina ----------->
         <main class="main">
             <!--*---------------- Listado de elementos------------------>
-            <div class="main--listado">
-                <div class="main__listado--primerElemento">
-                    <a href="/">Inicio</a>
-                    <br />
-                    <img src="imagenes/imagenePlatos/fotoTorrijas.png" alt="Foto Torrijas" />
-                </div>
-                <!-- Segundo elemento de la lista-->
-                <div class="main__listado--segundoElemento">
-                    <a href="/">Inicio</a>
-                    <br />
-                    <img src="imagenes/imagenePlatos/fotoTorrijas.png" alt="Foto Torrijas" />
-                </div>
-                <!-- Tercer elemento de la lista-->
-                <div class="main__listado--tercerElemento">
-                    <a href="/">Inicio</a>
-                    <br />
-                    <img src="imagenes/imagenePlatos/fotoTorrijas.png" alt="Foto Torrijas" />
-                </div>
-                <!-- Cuarto elemento de la lista-->
-                <div class="main__listado--cuartoElemento">
-                    <a href="/">Inicio</a>
-                    <br />
-                    <img src="imagenes/imagenePlatos/fotoTorrijas.png" alt="Foto Torrijas" />
-                </div>
+            <div class="main--listado" id="main--listado">
+                <!--Aqui tendremos el listado lateral-->
             </div>
             <!--*------------------ Contenido a mostrar------------------>
-            <div class="main--contenido">
-                <!--Mostrado de una imagen al iniciar-->
-                <img src="imagenes/imagenFondo.png" alt="Imagen de fondo" />
+            <div class="main--contenido" id="main--contenido">
+                <!-- Aqui ira todo el contenido principal de la pagina -->
             </div>
         </main>
 
         <!--?------------- Cuerpo secundarion de la pagina -------------->
-        <aside class="aside">
-            <img src="imagenes/imagenAside.png" alt="Imagen de aside" />
-            <img src="imagenes/imagenAside1.png" alt="Imagen de aside" />
+        <aside class="aside"  id="aside">
+            <!-- Aqui iran la imagenes de los platos-->
         </aside>
 
         <!--?-----------------------Pie de pagina ---------------------->
@@ -128,19 +97,24 @@
         <!--Importacion del testeo de la clase-->
         <!-- <script type="module" src="/js/testeo/testeoCoordinate.js"></script>-->
 
-        <!--********************Clase RestaurantsManager**************-->
-        <!--Importacion de la clase de RestaurantsManager-->
-        <script type="module" src="/js/clases/RestaurantsManager.js"></script>
+        <!--********************Clase RestauranteModelo**************-->
+        <!--Importacion de la clase de RestauranteModelo-->
+        <!--<script type="module" src="/js/clases/RestauranteModelo.js"></script>-->
         <!--Importacion del testeo de la clase-->
         <!--<script type="module" src="/js/testeo/testeoRestaurantsManager.js"></script>-->
 
-        <!--***********************RestauranteApp********************-->
-        <!-- Importacion del modulo principal de la aplicacion -->
-        <script type="module" src="/js/testeo/RestauranteApp.js"></script>
+
+        <!--****************************Manager***********************-->
+        <!--Importacion del modulo de manager de la pagina-->
+        <!--<script type="module" src="/js/manager/RestauranteModelo.js"></script>-->
+        <!--<script type="module" src="/js/manager/RestauranteVista.js"></script>-->
+        <!--<script type="module" src="/js/manager/RestauranteControlador.js"></script>-->
+        <!--<script type="module" src="/js/manager/restauranteApp.js"></script>-->
+        <!--+ Modulo para el cambio de estados de la pagina-->
+        <script type="module" src="/js/manager/restaurante.js"></script>
 
         <!--***********************Clase otrosTesteos*****************-->
         <!--Importacion del testeo de la clase-->
-        <!--
-    <script type="module" src="../../js/testeo/otrosTesteosAparte.js"></script>-->
+        <!--<script type="module" src="../../js/testeo/otrosTesteosAparte.js"></script>-->
     </body>
 </html>

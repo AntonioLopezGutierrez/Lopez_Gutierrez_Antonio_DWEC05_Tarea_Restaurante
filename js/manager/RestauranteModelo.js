@@ -1,7 +1,8 @@
+//!/////////////////////CLASE RESTAURANTEMODELO////////////////////////
 // Activamos el modo estricto
 "use strict";
 
-//!////////////////////////IMPORTACIONES DE LA CLASE/////////////////////
+//?////////////////////////IMPORTACIONES DE LA CLASE/////////////////////
 import {
     // Excepcion de la clase
     InstanciaNoPremitida,
@@ -30,19 +31,18 @@ import {
     InstanciarPlato,
     ExistePlato,
     NoExistePlato,
-} from "../../js/excepciones/ExcepcionesRestaurantsManager.js";
+} from "../excepciones/ExcepcionesRestaurantsManager.js";
 import { Category } from "../clases/Category.js";
 import { Menu } from "../clases/Menu.js";
 import { Allergen } from "../clases/Allergen.js";
 import { Restaurant } from "../clases/Restaurant.js";
 import { Dish } from "../clases/Dish.js";
 
-//!/////////////////////CLASE RESTAURANT MANAGER////////////////////////
 // Variable en la que almacenaremos la instancia de la clase (singleton)
 let instance;
 
-class RestaurantsManager {
-    //!/////////////DECLARACION DE LAS PROPIEDADES PRIVADAS//////////////
+class RestauranteModelo {
+    //?/////////////DECLARACION DE LAS PROPIEDADES PRIVADAS//////////////
     #nombre;
     #categories;
     #allergens;
@@ -50,11 +50,11 @@ class RestaurantsManager {
     #menus;
     #restaurants;
 
-    //!/////////////////////CONSTRUCTOR DE LA CLASE///////////////////////
+    //?/////////////////////CONSTRUCTOR DE LA CLASE///////////////////////
 
     constructor() {
         // Comprobacion de que no se pueden crear mas de una instancia
-        if (RestaurantsManager.instance) {
+        if (instance) {
             throw new InstanciaNoPremitida();
         }
         // Asignacion de valores a las propiedades del objeto
@@ -65,22 +65,22 @@ class RestaurantsManager {
         this.#menus = [];
         this.#restaurants = [];
         // Almacenamos la instancia en la variable para el sigleton
-        RestaurantsManager.instance = this;
+        instance = this;
     }
-    //!/////////////////METODO PARA INSTANCIAR OBJETOS///////////////////
+    //?/////////////////METODO PARA INSTANCIAR OBJETOS///////////////////
     // Metodo que devuelve la instancia del objeto
-    static getInstance() {
+    getInstance() {
         // Si la clase no tiene instancia instanciamos una nueva
-        if (!RestaurantsManager.instance) {
-            RestaurantsManager.instance = new RestaurantsManager();
+        if (!instance) {
+            instance = new RestaurantsManager();
         }
         // Devolvemos la instancia de la clase
-        return RestaurantsManager.instance;
+        return instance;
     }
 
-    //!/////////////////////////METODOS/////////////////////////////////
-    //? ***************METODOS PARA LA CATEGORIA ***********************
-    //*Metodo para crearla categoria
+    //?/////////////////////////METODOS/////////////////////////////////
+    //****************METODOS PARA LA CATEGORIA ***********************
+    //+Metodo para crearla categoria
     createCategory(name, description) {
         //Buscamos el nombre de la categoria para ver si existe y lo almacenamos
         let categoriasEncontradas = this.#categories.filter(
@@ -103,7 +103,7 @@ class RestaurantsManager {
             return categoriaPlatoObj;
         }
     }
-    //*Metodo para añadir la categoria
+    //+Metodo para añadir la categoria
     addCategory(...categorias) {
         //Iteramos sobre las categorias entradas por parametros
         for (const categoria of categorias) {
@@ -116,7 +116,7 @@ class RestaurantsManager {
                 throw new CategoryNoNull();
             }
 
-            //Utilizamos el metodo filter para encontrar la categoria con el nombre dado
+            //Metodo filter para encontrar la categoria con el nombre dado
             let categoriasEncontradas = this.#categories.filter(
                 (categorias) => categorias.categoria.getName() === categoria.categoria.getName()
             );
@@ -132,7 +132,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //*Metodo para obtener un iteraror de las categorias
+    //+Metodo para obtener un iteraror de las categorias
     getCategories() {
         //Referencia para habilitar el closure en el objeto
         let categoriesArray = this.#categories;
@@ -155,7 +155,7 @@ class RestaurantsManager {
         };
     }
 
-    //*Metodo para borrar la categoria
+    //+Metodo para borrar la categoria
     removeCategory(...categorias) {
         //Iteramos sobre las categorias entradas por parametros
         for (const categoria of categorias) {
@@ -163,7 +163,7 @@ class RestaurantsManager {
             if (!(categoria.categoria instanceof Category)) {
                 throw new InstanciaCategoria(categoria.categoria);
             }
-            //Utilizamos el metodo filter para encontrar la categoria con el nombre dado
+            //Metodo filter para encontrar la categoria con el nombre dado
             let categoriasRestantes = this.#categories.filter(
                 (categorias) => categorias.categoria.getName() !== categoria.categoria.getName()
             );
@@ -179,7 +179,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //*Metodo que asigna un plato a una categoria
+    //+Metodo que asigna un plato a una categoria
     assignCategoryToDish(...dishesAndCategories) {
         //Creamos dos arrays para almacenar los platos y las categorias entrantes
         let categoriasEntrante = [];
@@ -256,7 +256,7 @@ class RestaurantsManager {
         //Devolvemos la instancia del metodo para que se pueda encadenar
         return this;
     }
-    //* Metodo para desasignar un plato de una categoria
+    //+ Metodo para desasignar un plato de una categoria
     deassignCategoryToDish(category, dish) {
         //Si la categoria no es una instancia de Category
         if (!category.categoria instanceof Category) {
@@ -304,7 +304,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //*Metodo para obtener un iterador de los platos en una categoria
+    //+ Metodo para obtener un iterador de los platos en una categoria
     getDishesInCategory(category, funcionOrdenado) {
         //Si la categoria es una instancia de Category
         if (!(category.categoria instanceof Category)) {
@@ -352,8 +352,8 @@ class RestaurantsManager {
         };
     }
 
-    //? ********************** METODOS PARA EL MENU *********************
-    //* Metodo para crear el menu
+    //* ********************** METODOS PARA EL MENU *********************
+    //+ Metodo para crear el menu
     createMenu(name, description) {
         //Buscamos el nombre del menu para ver si existe y lo almacenamos
         let menusEncontrados = this.#menus.filter((menus) => menus.menus.getName() == name);
@@ -372,7 +372,7 @@ class RestaurantsManager {
             return menuPlatoObj;
         }
     }
-    //* Metodo para añadir el menu
+    //+ Metodo para añadir el menu
     addMenu(...menus) {
         //Iteramos sobre los menus entradas por parametros
         for (const menu of menus) {
@@ -401,7 +401,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para obtener las categorias
+    //+ Metodo para obtener las categorias
     getMenu() {
         //Referencia para habilitar el closure en el objeto
         let menusArray = this.#menus;
@@ -424,7 +424,7 @@ class RestaurantsManager {
         };
     }
 
-    //* Metodo para borrar el menu
+    //+ Metodo para borrar el menu
     removeMenu(...menus) {
         //Iteramos sobre los menus entrados por parametros
         for (const menu of menus) {
@@ -448,7 +448,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo que asigna un plato a un menu
+    //+ Metodo que asigna un plato a un menu
     assignDishToMenu(...dishesAndMenu) {
         //Creamos dos arrays para almacenar los platos y los menus entrantes
         let menusEntrante = [];
@@ -524,7 +524,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para desasignar un plato de un menu
+    //+ Metodo para desasignar un plato de un menu
     deassignDishToMenu(menu, dish) {
         //Si el menu no es una instancia de Menu
         if (!menu.menus instanceof Menu) {
@@ -571,7 +571,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para cambiar de posicion los platos
+    //+ Metodo para cambiar de posicion los platos
     changeDishesPositionsInMenu(menu, dish1, dish2) {
         //Si el menu es una instancia de menu
         if (!(menu.menus instanceof Menu)) {
@@ -637,8 +637,8 @@ class RestaurantsManager {
         return this;
     }
 
-    //? ******************* METODOS PARA EL ALLERGEN ********************
-    //* Metodo para crear un alergeno
+    //* ******************* METODOS PARA EL ALLERGEN ********************
+    //+ Metodo para crear un alergeno
     createAllergen(name, description) {
         //Buscamos el nombre del alergeno para ver si existe y lo almacenamos
         let alergenosEncontrados = this.#allergens.filter(
@@ -655,7 +655,7 @@ class RestaurantsManager {
         }
     }
 
-    //* Metodo para añadir el allergen
+    //+ Metodo para añadir el allergen
     addAllergen(...allergens) {
         //Iteramos sobre los alergenos entrados por parametros
         for (const allergen of allergens) {
@@ -683,7 +683,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para obtener los alergenos
+    //+ Metodo para obtener los alergenos
     getAllergen() {
         //Referencia para habilitar el closure en el objeto
         let allergenArray = this.#allergens;
@@ -706,7 +706,7 @@ class RestaurantsManager {
         };
     }
 
-    //* Metodo para borrar el alergeno
+    //+ Metodo para borrar el alergeno
     removeAllergen(...allergens) {
         //Iteramos sobre los alergenos entrados por parametros
         for (const allergen of allergens) {
@@ -731,7 +731,7 @@ class RestaurantsManager {
     }
 
     //? **************** METODOS PARA EL RESTAURANTE ********************
-    //* Metodo para crear un restaurante
+    //+ Metodo para crear un restaurante
     createRestaurant(name, description, location) {
         //Buscamos el nombre del restaurante para ver si existe y lo almacenamos
         let restaurantesEncontrados = this.#restaurants.filter(
@@ -747,7 +747,7 @@ class RestaurantsManager {
             return restaurant;
         }
     }
-    //* Metodo para añadir el restaurante
+    //+ Metodo para añadir el restaurante
     addRestaurant(...restaurants) {
         //Iteramos sobre los restaurantes entrados por parametros
         for (const restaurant of restaurants) {
@@ -775,7 +775,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para obtener los restaurantes
+    //+ Metodo para obtener los restaurantes
     getRestaurant() {
         //Obtenemos los restaurantes de la lista
         let restaurantsArray = this.#restaurants;
@@ -798,7 +798,7 @@ class RestaurantsManager {
         };
     }
 
-    //* Metodo para borrar el restaurante
+    //+ Metodo para borrar el restaurante
     removeRestaurant(...restaurants) {
         //Iteramos sobre los restaurantes entrados por parametros
         for (const restaurant of restaurants) {
@@ -822,8 +822,8 @@ class RestaurantsManager {
         return this;
     }
 
-    //? ********************** METODOS PARA EL PLATO ********************
-    //* Metodo para crear el plato
+    //* ********************** METODOS PARA EL PLATO ********************
+    //+ Metodo para crear el plato
     createDish(name, description, ingredients, image) {
         //Buscamos el nombre del plato para ver si existe y lo almacenamos
         let dishEncontrados = this.#dishes.filter((dishes) => dishes.platos.getName() == name);
@@ -845,7 +845,7 @@ class RestaurantsManager {
         }
     }
 
-    //* Metodo para añadir el plato
+    //+ Metodo para añadir el plato
     addDish(...dishes) {
         //Iteramos sobre los platos entrados por parametros
         for (const dish of dishes) {
@@ -873,7 +873,30 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para borrar el plato
+    //+ Metodo para obtener el un iterador con los platos
+    getDishes() {
+        //Referencia para habilitar el closure en el objeto
+        let platosArray = this.#dishes;
+        return {
+            [Symbol.iterator]() {
+                //Inicializacion del indice para cada iterador
+                let nextIndex = 0;
+                return {
+                    //Metodo next del iterador
+                    next: function () {
+                        //Si el indice es menor que los elementos de los platos
+                        return nextIndex < platosArray.length
+                            ? //Devolvemos los platos que esta en el indice
+                              { value: platosArray[nextIndex++], done: false }
+                            : //Si no paramos el iterador
+                              { done: true };
+                    },
+                };
+            },
+        };
+    }
+
+    //+ Metodo para borrar el plato
     removeDish(...dishes) {
         //Iteramos sobre los platos proporcionados como parametros
         for (const dish of dishes) {
@@ -930,7 +953,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para asignar un alergeno a un plato
+    //+ Metodo para asignar un alergeno a un plato
     assignAllergenToDish(...dishesAndAllergen) {
         //Creamos dos arrays para almacenar los platos y los alergenos
         let alergenosEntrante = [];
@@ -1003,7 +1026,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para desasignar un plato de una categoria
+    //+ Metodo para desasignar un plato de una categoria
     deassignAllergenToDish(dish, allergen) {
         //Si el plato no es una instancia de Dish
         if (!dish.platos instanceof Dish) {
@@ -1050,7 +1073,7 @@ class RestaurantsManager {
         return this;
     }
 
-    //* Metodo para obtener un iterador de los platos que contienen el alergeno
+    //+ Metodo para obtener un iterador de los platos que contienen el alergeno
     getDishesWithAllergen(allergen, funcionOrdenado) {
         //Si el alergeno es una instancia de Allergen
         if (!(allergen instanceof Allergen)) {
@@ -1099,7 +1122,8 @@ class RestaurantsManager {
             },
         };
     }
-    //* Metodo que nos devolvera con una funcion de callback los menus a los que pertenece un plato
+
+    //+ Metodo que nos devolvera con una funcion de callback los menus a los que pertenece un plato
     findDishes(dish, callback, funcionOrdenadoMenus) {
         //Si el plato no es una instancia de Dish
         if (!dish.platos instanceof Dish) {
@@ -1145,17 +1169,17 @@ class RestaurantsManager {
         };
     }
 
-    //? ************************ OTROS METODOS **************************
-    //* Metodo para mostrar elementos de los arrays
+    //* ************************ OTROS METODOS **************************
+    //+ Metodo para mostrar elementos de los arrays
     mostrarArrays(elementoArray) {
         elementoArray.forEach((element) => {
             console.log("El elemento del array es: " + element);
         });
     }
 
-    //* Metodo toString que nos mostrara todas las propiedades de la clase
+    //+ Metodo toString que nos mostrara todas las propiedades de la clase
     toString() {
-        //+ Desglose del array de categorias
+        // Desglose del array de categorias
         let categorias = this.#categories
             .map(function (categoriaPlato) {
                 //Obtenemos el nombre de la categoria
@@ -1181,7 +1205,7 @@ class RestaurantsManager {
             })
             .join("");
 
-        //+ Desglose del array de platos
+        // Desglose del array de platos
         let platos = this.#dishes
             .map(function (platoAlergeno) {
                 //Obtenemos el nombre del plato
@@ -1197,12 +1221,16 @@ class RestaurantsManager {
 
                 //Devolovemos el nombre del plato obtenidos y la informacion de los alergenos
                 return (
-                    "Plato: " + platosAsignados + "\nAlergenos asignados:\n" + alergenosAsignados + "\n"
+                    "Plato: " +
+                    platosAsignados +
+                    "\nAlergenos asignados:\n" +
+                    alergenosAsignados +
+                    "\n"
                 );
             })
             .join("\n");
 
-        //+ Desglose del array de menus
+        // Desglose del array de menus
         let menus = this.#menus
             .map(function (menuPlato) {
                 //Obtenemos el nombre del menu
@@ -1216,14 +1244,14 @@ class RestaurantsManager {
                     .join("\n");
 
                 //Devolovemos el nombre de la menu obtenidos y la informacion de los platos
-                return "Menu: " + menuAsignados + "\nPlatos asignados:\n" + platosAsignados+ ".\n";
+                return "Menu: " + menuAsignados + "\nPlatos asignados:\n" + platosAsignados + ".\n";
             })
             .join("\n");
 
         let alergenos = this.#allergens.join("\n\n");
         let restaurantes = this.#restaurants.join("\n\n");
 
-        //+ String que devuelve el metodo
+        // String que devuelve el metodo
         return (
             "********************NOMBRE DEL SISTEMA**********************\n" +
             this.#nombre +
@@ -1252,4 +1280,4 @@ class RestaurantsManager {
 }
 
 ////////////////////////////////////////////////EXPORTACION DE LA CLASE//////////////////////////////////////////////
-export { RestaurantsManager };
+export { RestauranteModelo };

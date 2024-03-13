@@ -1,16 +1,20 @@
 //!////////////////////////RESTAURANTE APP///////////////////////////////
 //?/////////////////////////IMPORTACIONES///////////////////////////////
-// Importacion del manager
+// Importacion del objeto coordenada
 import { Coordinate } from "../clases/Coordinate.js";
-import { RestaurantsManager } from "../clases/RestaurantsManager.js";
+// Importacion del modelo
+import { RestauranteModelo } from "../manager/RestauranteModelo.js";
+// Importacion de la vista
+import { RestauranteVista } from "../manager/RestauranteVista.js";
+// Importacion del controlador
+import { RestauranteControlador } from "../manager/RestauranteControlador.js";
 
-//?/////////////////MANAGER PARA INTRUCIR LOS DATOS//////////////////////
+//*********Creacion del manager al que le introduciremos los datos*******
+let restauranteModelo = new RestauranteModelo();
+
+//?////////////////INTRODUCIR LOS DATOS EN EL MODELO//////////////////////
 console.log("//////////////DATOS DE NUESTRA APLICACION////////////////");
 console.log("");
-
-//**********Creacion del manager al le introduciremos los datos*********
-let restauranteModelo = new RestaurantsManager();
-
 //*****************Creacion y agregacion de las categorias**************
 //+ Creacion de las categorias
 // Creacion de la primera categoria
@@ -20,13 +24,18 @@ let categoria1 = restauranteModelo.createCategory(
 );
 // Creacion de la segunda categoria
 let categoria2 = restauranteModelo.createCategory(
-    "Primer plato",
+    "Primeros",
     "Es mas ligero que el plato principal"
 );
 // Creacion de la tercera categoria
 let categoria3 = restauranteModelo.createCategory(
-    "Segundo plato",
+    "Segundos",
     "Es el plato principal de la comida"
+);
+// Creacion de la tercera categoria
+let categoria4 = restauranteModelo.createCategory(
+    "Postre",
+    "Es el ultimo plato de la comida"
 );
 //+ Agregar las categorias
 // Añadimos la primerra categoria
@@ -35,6 +44,8 @@ restauranteModelo.addCategory(categoria1);
 restauranteModelo.addCategory(categoria2);
 // Añadimos la tercera categoria
 restauranteModelo.addCategory(categoria3);
+// Añadimos la cuarta categoria
+restauranteModelo.addCategory(categoria4);
 
 //*************Creacion de platos y asignado a las categorias************
 //+ Creacion de los platos
@@ -76,7 +87,7 @@ let plato5 = restauranteModelo.createDish(
 );
 // Creacion del plato 6
 let plato6 = restauranteModelo.createDish(
-    "Risotto de gambas",
+    "Risotto",
     "Es un plato italiano de arroz meloso",
     ["Arroz, gambas, queso parmesano, nata, cebolla"],
     "/imagenes/imagenePlatos/imagenRisotto.png"
@@ -90,7 +101,7 @@ let plato7 = restauranteModelo.createDish(
 );
 // Creacion del plato 8
 let plato8 = restauranteModelo.createDish(
-    "Tortilla española",
+    "Tortilla",
     "Plato tipico español",
     ["Huevo, patatas, aceite, sal"],
     "/imagenes/imagenePlatos/imagenTortilla.png"
@@ -104,7 +115,7 @@ let plato9 = restauranteModelo.createDish(
 );
 // Creacion del plato 10
 let plato10 = restauranteModelo.createDish(
-    "Fajitas de pollo",
+    "Fajitas",
     "Pechuga de pollo a la plancha con sofrito de verduras",
     ["Pollo, tomate, cebolla, pimiento, totitas de harina"],
     "/imagenes/imagenePlatos/imagenFajitas.png"
@@ -230,7 +241,6 @@ restauranteModelo.assignDishToMenu(menu3, plato7);
 restauranteModelo.assignDishToMenu(menu3, plato9);
 restauranteModelo.assignDishToMenu(menu3, plato11);
 
-
 //******************Creacion de restaurantes*****************************
 //+ Creacion de las coordenadas para el restaurante
 // Creacion de la primera coordenada
@@ -267,9 +277,14 @@ restauranteModelo.addRestaurant(restaurante2);
 restauranteModelo.addRestaurant(restaurante3);
 
 //*****************Mostrado del manager por la consola*******************
-console.log(restauranteModelo.toString());
+//console.log(restauranteModelo.toString());
 
-
+//?/////////////////////INSTANCIACION DEL CONTROLADOR///////////////////
+// Instanciamos un controlador con los argumentos el modelo y la vista
+let miControlador = new RestauranteControlador(
+    restauranteModelo.getInstance(),
+    new RestauranteVista()
+);
 
 //?///////////////////////////EXPORTACIONES//////////////////////////////
-export { restauranteModelo };
+export { miControlador };
