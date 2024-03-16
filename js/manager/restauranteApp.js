@@ -28,15 +28,9 @@ let categoria2 = restauranteModelo.createCategory(
     "Es mas ligero que el plato principal"
 );
 // Creacion de la tercera categoria
-let categoria3 = restauranteModelo.createCategory(
-    "Segundos",
-    "Es el plato principal de la comida"
-);
+let categoria3 = restauranteModelo.createCategory("Segundos", "Es el plato principal de la comida");
 // Creacion de la tercera categoria
-let categoria4 = restauranteModelo.createCategory(
-    "Postre",
-    "Es el ultimo plato de la comida"
-);
+let categoria4 = restauranteModelo.createCategory("Postre", "Es el ultimo plato de la comida");
 //+ Agregar las categorias
 // Añadimos la primerra categoria
 restauranteModelo.addCategory(categoria1);
@@ -51,10 +45,10 @@ restauranteModelo.addCategory(categoria4);
 //+ Creacion de los platos
 // Creacion del plato 1
 let plato1 = restauranteModelo.createDish(
-    "Paella",
-    "Es un plato tipico de arroz de Valencia",
-    ["Arroz, Caldo de pescado, calamares, gambas"],
-    "/imagenes/imagenePlatos/imagenPaella.png"
+    "Sepia",
+    "Es un plato de depia a la plancha",
+    ["Sepia, esparragos, peregil, aceite"],
+    "/imagenes/imagenePlatos/imagenSepia.png"
 );
 // Creacion del plato 2
 let plato2 = restauranteModelo.createDish(
@@ -65,10 +59,10 @@ let plato2 = restauranteModelo.createDish(
 );
 // Creacion del plato 3
 let plato3 = restauranteModelo.createDish(
-    "Lasaña",
+    "Salmorejo",
     "Es un plato de pasta de la cocina italiana",
-    ["Carne, oregano, salsa de tomate, laminas de pasta, queso"],
-    "/imagenes/imagenePlatos/imagenLasaña.png"
+    ["Pimiento, tomate, cebolla, jamon, huevo"],
+    "/imagenes/imagenePlatos/imagenSalmorejo.png"
 );
 // Creacio del plato 4
 let plato4 = restauranteModelo.createDish(
@@ -77,13 +71,12 @@ let plato4 = restauranteModelo.createDish(
     ["Lechuga, tomate, maiz, nueces, atun"],
     "/imagenes/imagenePlatos/imagenEnsalada.png"
 );
-
 // Creacion del plato 5
 let plato5 = restauranteModelo.createDish(
-    "Hamburguesa",
-    "Hamburguesa de ternera completa",
-    ["Lechuga, tomate, carne picada, queso, huevo, cebolla"],
-    "/imagenes/imagenePlatos/imagenHamburguesa.png"
+    "Pimientos",
+    "Pimientos del padron rellenos de merluza",
+    ["Pimiento, sal, aceite, pan rallado, merluza"],
+    "/imagenes/imagenePlatos/imagenPimientos.png"
 );
 // Creacion del plato 6
 let plato6 = restauranteModelo.createDish(
@@ -134,22 +127,56 @@ let plato12 = restauranteModelo.createDish(
     ["Macarrones, salsa de tomate, carne de ternera, queso, oregano"],
     "/imagenes/imagenePlatos/imagenMacarrones.png"
 );
+// Creacion del plato 13
+let plato13 = restauranteModelo.createDish(
+    "Bizcocho",
+    "Es un bizcocho de chocolate",
+    ["Harina, huevos, lebadura, chocolate"],
+    "/imagenes/imagenePlatos/imagenBizcocho.png"
+);
+// Creacion del plato 14
+let plato14 = restauranteModelo.createDish(
+    "Tarta",
+    "Es una tarta de frutas",
+    ["Fresas, hojaldre, crema, uvas, ciruelas"],
+    "/imagenes/imagenePlatos/imagenTarta.png"
+);
+// Creacion del plato 15
+let plato15 = restauranteModelo.createDish(
+    "Flan",
+    "Es un flan de huevo con frambuesas",
+    ["Huevos, azucar, frambuesa"],
+    "/imagenes/imagenePlatos/imagenFlan.png"
+);
+// Creacion del plato 16
+let plato16 = restauranteModelo.createDish(
+    "Frutas",
+    "Es un baquillo de de frutas silvestres",
+    ["Fresas, ciruelas, frambuesas, moras"],
+    "/imagenes/imagenePlatos/imagenFrutas.png"
+);
+
 //+ Asignamos los platos a las categorias
 // Añadimos los platos de la categoria 1
 restauranteModelo.assignCategoryToDish(categoria1, plato1);
 restauranteModelo.assignCategoryToDish(categoria1, plato3);
 restauranteModelo.assignCategoryToDish(categoria1, plato5);
-restauranteModelo.assignCategoryToDish(categoria1, plato7);
+restauranteModelo.assignCategoryToDish(categoria1, plato8);
 // Añadimos los platos de la categoria 2
 restauranteModelo.assignCategoryToDish(categoria2, plato2);
 restauranteModelo.assignCategoryToDish(categoria2, plato4);
 restauranteModelo.assignCategoryToDish(categoria2, plato6);
-restauranteModelo.assignCategoryToDish(categoria2, plato8);
+restauranteModelo.assignCategoryToDish(categoria2, plato7);
 // Añadimos los platos de la categoria 3
 restauranteModelo.assignCategoryToDish(categoria3, plato9);
 restauranteModelo.assignCategoryToDish(categoria3, plato10);
 restauranteModelo.assignCategoryToDish(categoria3, plato11);
 restauranteModelo.assignCategoryToDish(categoria3, plato12);
+// Añadimos los platos de la categoria 3
+restauranteModelo.assignCategoryToDish(categoria4, plato13);
+restauranteModelo.assignCategoryToDish(categoria4, plato14);
+restauranteModelo.assignCategoryToDish(categoria4, plato15);
+restauranteModelo.assignCategoryToDish(categoria4, plato16);
 
 //***********Creacion de alergenos y asignacion a las platos*************
 //+ Creacion de alergenos
@@ -170,8 +197,8 @@ let alergeno3 = restauranteModelo.createAllergen(
 );
 // Creamos el cuarto alergeno
 let alergeno4 = restauranteModelo.createAllergen(
-    "Proteinas del pescado",
-    "Son alergenos derivados de las proteinas de algunos pescados"
+    "Proteinas",
+    "Son alergenos derivados de las proteinas de algunos productos"
 );
 // Creamos el quinto alergeno
 let alergeno5 = restauranteModelo.createAllergen(
@@ -209,6 +236,14 @@ restauranteModelo.assignAllergenToDish(plato10, alergeno5);
 restauranteModelo.assignAllergenToDish(plato11, alergeno6);
 // Agregacion del alergeno 1 al plato 12
 restauranteModelo.assignAllergenToDish(plato12, alergeno1);
+// Agregacion del alergeno 1 al plato 13
+restauranteModelo.assignAllergenToDish(plato13, alergeno2);
+// Agregacion del alergeno 1 al plato 14
+restauranteModelo.assignAllergenToDish(plato14, alergeno5);
+// Agregacion del alergeno 1 al plato 15
+restauranteModelo.assignAllergenToDish(plato15, alergeno1);
+// Agregacion del alergeno 1 al plato 16
+restauranteModelo.assignAllergenToDish(plato16, alergeno5);
 
 //*******Creacion de menus y de platos y asignacion a las platos*********
 //+ Creacion de los menus
@@ -252,19 +287,19 @@ let coordenada3 = new Coordinate(50, 70);
 //+ Creacion de los restaurantes
 // Creacion del pprimer restaurante
 let restaurante1 = restauranteModelo.createRestaurant(
-    "Meson Antonio",
+    "Meson Pepe",
     "Restaurante especialista en carnes",
     coordenada1
 );
 // Creacion del segundo restaurante
 let restaurante2 = restauranteModelo.createRestaurant(
-    "Buffet libre Xin Chan",
+    "Xin Chan",
     "Restaurante especializado en comida china",
     coordenada2
 );
 // Creacion del tercer restaurante
 let restaurante3 = restauranteModelo.createRestaurant(
-    "Arroceria El Tayo",
+    "El Tayo",
     "Restaurante especializado en paellas y otros arroces",
     coordenada3
 );
