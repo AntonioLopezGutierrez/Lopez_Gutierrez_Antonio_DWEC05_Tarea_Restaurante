@@ -83,14 +83,33 @@ class RestauranteControlador {
 
     //?//////////////METODOS DE SEGUNDAS INTERACCIONES////////////////////
     //* Metodo que muestra los platos de una categoria en particular
-    OnCategoriasPlatos = () =>{
+    onCategoriasPlatos = () => {
         // Llamada al metodo de la vista que muetra los platos de una categoria
-        this[VISTA].categoriasPlatos(); 
-    }
+        this[VISTA].categoriasPlatos();
+    };
+    //* Metodo que muestra la descriopcion de los platos
+    onDescripcionPlatos = () => {
+        // Llamada al metodo de la vista que muestra la descripcion de los platos
+        this[VISTA].descripcionPlatos();
+    };
 
+    //* Metodo que muestra los platos que tiene un alergeno
+    onAlergenosPlatos = () => {
+        // Llamada al metodo de la vista que muestra los platos que tiene el alergeno
+        this[VISTA].alergenosPlatos();
+    };
 
-
-
+    //* Metodo que muestra los platos que contiene un menu
+    onMenuMostrarPlatos = () => {
+        // Llamada al metodo de la vista que muestra los platos que tiene un menu
+        this[VISTA].menuMostrarPlatos();
+    };
+    
+    //* Metodo que muestra la descripcion de los restauranetes
+    onRestauranteDescripcion = () => {
+        // Llamada al metodo de la vista que muestra la descripcion de los restaurantes
+        this[VISTA].restauranteDescripcion();
+    };
 
     //?///////////////OBTENCION DE METODOS PARA DEL MODELO////////////////
     //* Metodo para obtener los platos en una categorIa del modelo y pasarlo a la vista
@@ -99,8 +118,20 @@ class RestauranteControlador {
         try {
             return this[MODELO].getDishesInCategory(categoria, funcionOrdenado);
         } catch (error) {
-            // Manejo de errores si es necesario
+            // Mostrado de errores si ocurre al obtener los platos
             console.error("Error al obtener platos en la categoría:", error);
+            return null;
+        }
+    }
+
+    //* Metodo para obtener los platos que tiene un alergeno y pasarlo a la vista
+    onObtenerPlatosEnAlergenos(alergeno, funcionOrdenado) {
+        // Llama al método getDishesWithAllergen del modelo
+        try {
+            return this[MODELO].getDishesWithAllergen(alergeno, funcionOrdenado);
+        } catch (error) {
+            // Mostrado de errores si ocurre al obtener los platos
+            console.error("Error al obtener los platos de los alergenos:", error);
             return null;
         }
     }

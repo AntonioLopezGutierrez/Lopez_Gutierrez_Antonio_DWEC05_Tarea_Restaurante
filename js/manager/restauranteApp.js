@@ -46,7 +46,7 @@ restauranteModelo.addCategory(categoria4);
 // Creacion del plato 1
 let plato1 = restauranteModelo.createDish(
     "Sepia",
-    "Es un plato de depia a la plancha",
+    "Es un plato de sepia a la plancha",
     ["Sepia, esparragos, peregil, aceite"],
     "/imagenes/imagenePlatos/imagenSepia.png"
 );
@@ -54,13 +54,13 @@ let plato1 = restauranteModelo.createDish(
 let plato2 = restauranteModelo.createDish(
     "Salmon",
     "Es un plato se salmon a la plancha",
-    ["Salmon, cebolla, berenjena, piminto, sal"],
+    ["Salmon, cebolla, esparragos, sal, romero"],
     "/imagenes/imagenePlatos/imagenSalmon.png"
 );
 // Creacion del plato 3
 let plato3 = restauranteModelo.createDish(
     "Salmorejo",
-    "Es un plato de pasta de la cocina italiana",
+    "Es un plato de tipico Cordobes",
     ["Pimiento, tomate, cebolla, jamon, huevo"],
     "/imagenes/imagenePlatos/imagenSalmorejo.png"
 );
@@ -88,7 +88,7 @@ let plato6 = restauranteModelo.createDish(
 // Creacion del plato 7
 let plato7 = restauranteModelo.createDish(
     "Albondigas",
-    "Es un plato de albondigas de tenrnera con salsa de tomate",
+    "Es un plato de albondigas de ternera con salsa de tomate",
     ["Carne de ternera, tomate, cebolla, caldo de verdura, queso parmesano"],
     "/imagenes/imagenePlatos/imagenAlbondigas.png"
 );

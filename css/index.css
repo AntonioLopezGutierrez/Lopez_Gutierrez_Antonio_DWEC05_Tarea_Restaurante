@@ -281,57 +281,128 @@ body {
 }
 
 /*? Contenedor para mostrar los alergenos desde la barra de navegacion*/
-.contenedorAlergenos {
-    /* Establecemos el ancho*/
-    width: 100%;
-    /* Establecemos el margen*/
-    margin-left: 3em;
+.contenedorAlergenos ul {
+    /* Establecemos un contenedor vlexile*/
+    display: flex;
+    /* Establecemo la direccion del contenedor*/
+    flex-direction: column;
+    /* Establecemos el espacion entre los elementos*/
+    gap: 4em;
 }
 
 /*? Fila que muestra los alergenos*/
 .filaAlergeno {
-    /* Establecemos el relleno*/
-    padding: 1em;
     /* Establecemos el color*/
     color: white;
     /* Establecemos el tamaño*/
     font-size: 2em;
+    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
+    cursor: pointer;
+}
+
+.contenedorPlatosAlergenos ul {
+    /* Establecemos un contenedor vlexile*/
+    display: flex;
+    /* Establecemo la direccion del contenedor*/
+    flex-direction: column;
+    /* Establecemos el espacion entre los elementos*/
+    gap: 4em;
+}
+
+.filaPlatosAlergenos {
+    /* Establecemos el color*/
+    color: white;
+    /* Establecemos el tamaño*/
+    font-size: 2em;
+    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
+    cursor: pointer;
 }
 
 /*? Contenedor para mostra los menus desde la barra de navegacin*/
-.contenedorMenus {
-    /* Establecemos el ancho*/
-    width: 100%;
-    /* Establecemos el margen*/
-    margin-left: 3em;
+.contenedorMenus ul{
+    /* Establecemos un contenedor vlexile*/
+    display: flex;
+    /* Establecemo la direccion del contenedor*/
+    flex-direction: column;
+    /* Establecemos el espacion entre los elementos*/
+    gap: 4em;
 }
+
 /*? Filas de los menus*/
 .filaMenu {
-    /* Establecemos el relleno*/
-    padding: 1em;
     /* Establecemos el color*/
     color: white;
     /* Establecemos el tamaño*/
     font-size: 2em;
+    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
+    cursor: pointer;
 }
 
 /*? Contenedor para mostra los platos desde la barra de navegacion*/
-.contenedorPlatos ul{
-    /* Establecemos un contenedor flexilble*/
-    display: flex;
+.contenedorPlatos ul {
+    /* Establecemos una cuadricula*/
+    display: grid;
     /* Establecemos la direcion de los elementos*/
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
     /* Establecemos el espacio de los elementos*/
-    gap: 4em;
+    gap: 4.5em;
 }
+
 /*? Filas de los platos*/
 .filaPlatos {
-        /* Establecemos el color*/
+    /* Establecemos el color*/
+    color: white;
+    /* Establecemos el tamaño*/
+    font-size: 2em;
+    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
+    cursor: pointer;
+}
+
+/*? Contenedor que incluira la descripcion de los platos*/
+.contenedorDescripcion {
+    /* Establecemos la altura*/
+    height: 100%;
+    /* Establecemos la anchura*/
+    width: 100%;
+    /* Hacemos un contenedor flexible*/
+    display: flex;
+    /* Establecem0os la direccion de los elementos*/
+    flex-direction: column;
+    /* Justificamos los elementos al centro*/
+    justify-content: center;
+    /* Alineamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño del la fuente*/
+    font-size: 1.5em;
+}
+/*? Imagenes del contenedor co la descripcion*/
+.contenedorDescripcion img {
+    /* Establecemo la altura*/
+    height: 70%;
+    /* Establecemos la anchura*/
+    width: 50%;
+}
+
+/*? Mostrado de la descripcion de los restaurantes*/
+.contenedorDescripcionReataurante{
+        /* Establecemos la altura*/
+        height: 100%;
+        /* Establecemos la anchura*/
+        width: 100%;
+        /* Hacemos un contenedor flexible*/
+        display: flex;
+        /* Establecem0os la direccion de los elementos*/
+        flex-direction: column;
+        /* Justificamos los elementos al centro*/
+        justify-content: center;
+        /* Alineamos los elementos al centro*/
+        align-items: center;
+        /* Establecemos el color del primer plano*/
         color: white;
-        /* Establecemos el tamaño*/
-        font-size: 2em;
-        /* Cambiamos el cursor para que parezca el contnedor un enlade*/
-        cursor: pointer;
+        /* Establecemos el tamaño del la fuente*/
+        font-size: 1.5em;
 }
 
 /*!--------------------------- aside ----------------------------------*/

@@ -1,7 +1,5 @@
 //!//////////////////////////CLASE RESTAURANTEVISTA//////////////////////
 "use strict";
-
-import { RestauranteControlador } from "./RestauranteControlador.js";
 import { miControlador } from "./restauranteApp.js";
 
 // Enlaces a las imagenes que mostraremos de las categorias
@@ -32,8 +30,16 @@ class RestauranteVista {
         this.mostradoDesplegable = false;
         // Propiedad en la que almacenaremos las migas de pan
         this.migaDePanActual = "Estamos en la pagina: Inicio";
-        // Propiedad para almacenar la categoria de los platos que vamos a mostra desde la categorias de la bara
+        // Propiedad para almacenar la categoria de los platos que vamos a mostrar
         this.platosCategoriasNavagacion;
+        // Propiedad para almacenar el plato de la categoria que vamos a mostrar
+        this.platosCategoriasSeleccionado;
+        // Propiedad para almacenar el alergeno de los platos que vamos a mostrar
+        this.platosAlergenoSeleccionado;
+        // Propiedad en la que almacanaremos el menu para mostrar los platos
+        this.menuMostrarPlatosSeleccionado;
+        // Propieedad en la que almacenaremos el restaurante para mostrar la descripcion
+        this.opcionRestauranteSeleccionado;
     }
 
     //?//////////METODO PRIVADOS DE LA CLASE MOSTRADO DE LA CLASE////////
@@ -54,7 +60,7 @@ class RestauranteVista {
         // Asignamos el texto al elemento de inicio
         divInicio.innerText = "Inicio";
         // Asignamos una escucha si pulsamos el elemento de inicio
-        this.escuchaNavegacionInicion(divInicio, categorias);
+        this.escuchaNavegacionInicion(divInicio, categorias, platos);
 
         //* Elemento categorias
         // Creamos un nuevo elemento div para las categorias
@@ -109,6 +115,8 @@ class RestauranteVista {
         let opcionRestaurante = document.createElement("option");
         // Asignamos el texto al elemento
         opcionRestaurante.innerText = "Restaurantes";
+        // Desactivamos la opcion inicial para que nos sea una opcion
+        opcionRestaurante.disabled = true;
         // Seleccionamos esta opcion por defecto
         opcionRestaurante.selected = true;
         // Agregamos el option al select
@@ -179,13 +187,15 @@ class RestauranteVista {
             contenedor.appendChild(span);
             // Agregar el contenedor al main contenido
             this.mainContenido.appendChild(contenedor);
+            // Llamamos para que muestre los platos de la categoria
+            this.escuchaCategoriaSeleccionada(contenedor, categoria);
         }
     }
 
     //* Metodo para el mostrado de las categorias de la barra lateral
     #mostradoMenuLateral(categorias) {
         // Limpiamos el contenido del main contenido
-        this.mainContenido.innerHTML = "";
+        this.mainContenidoListado.innerHTML = "";
         // Creamos un nuevo elemento de lista
         let lista = document.createElement("ul");
         // Asignamos una clase a la fila
@@ -200,6 +210,32 @@ class RestauranteVista {
             listaFila.innerText = categoria.categoria.getName();
             // Agregamos la fila de la lista a la lista
             lista.appendChild(listaFila);
+            // Llamamos para que muestre los platos de la categoria
+            this.escuchaCategoriaSeleccionada(listaFila, categoria);
+        }
+        // Agregamos el contenedor al main listado
+        this.mainContenidoListado.appendChild(lista);
+    }
+    //* Metodo para el mostrado de los platos de la barra lateral
+    #mostradoMenuLateralPlatos(platos) {
+        // Limpiamos el contenido del main contenido
+        this.mainContenidoListado.innerHTML = "";
+        // Creamos un nuevo elemento de lista
+        let lista = document.createElement("ul");
+        // Asignamos una clase a la fila
+        lista.classList.add("ulLateralCategoria");
+        // Iteramos sobre el iterador de de platos segun la categoria
+        for (const plato of platos) {
+            // Creamos un nuevo elemento de lista
+            let listaFila = document.createElement("li");
+            // Asignamos una clase a la fila
+            listaFila.classList.add("liLateralCategoria");
+            // Agregamos el texto con el nombre de losm platos
+            listaFila.innerText = plato.platos.getName();
+            // Agregamos la fila de la lista a la lista
+            lista.appendChild(listaFila);
+            // Llamamos al metodo que nos mostrara la descripcion de los platos
+            this.escuchaPlatosDescripcion(listaFila, plato);
         }
         // Agregamos el contenedor al main listado
         this.mainContenidoListado.appendChild(lista);
@@ -267,7 +303,7 @@ class RestauranteVista {
             listaFila.innerText = categoria.categoria.getName();
             // Agregamos la fila de la lista a la lista
             lista.appendChild(listaFila);
-            // Llamamos para que muestre los platos de la categoria
+            // Llamamos a la escucha para que muestre los platos de la categoria
             this.escuchaCategoriaSeleccionada(listaFila, categoria);
         }
         // Agregamos el contenedor al main
@@ -296,6 +332,37 @@ class RestauranteVista {
             listaFila.innerText = alergeno.getName();
             // Agregamos la fila de la lista a la lista
             lista.appendChild(listaFila);
+            // Llamamos a la excucha para que muestre los platos que contiene el alergeno
+            this.escuchaCaAlergenosPlatos(listaFila, alergeno);
+        }
+        // Agregamos el contenedor al main
+        this.mainContenido.appendChild(contenedor);
+    }
+
+    //* Metodo que nos mostrara los platos que contiene un alergeno
+    #alergenosPlatos(platos) {
+        // Limpiamos el contenido del main contenido
+        this.mainContenido.innerHTML = "";
+        // Creamos un nuevo contenedor
+        let contenedor = document.createElement("div");
+        // Asignamos una clase al contenedor
+        contenedor.classList.add("contenedorPlatosAlergenos");
+        // Creamos un nuevo elemento de lista
+        let lista = document.createElement("ul");
+        // Agregamos el la lista al contenedor
+        contenedor.appendChild(lista);
+        // Iteramos sobre el iterador dde platos que contiene el alergeno
+        for (const plato of platos) {
+            // Creamos un nuevo elemento de lista
+            let listaFila = document.createElement("li");
+            // Asignamos una clase a la fila
+            listaFila.classList.add("filaPlatosAlergenos");
+            // Agregamos el texto con el nombre del palto que contiene el alergeno
+            listaFila.innerText = plato.platos.getName();
+            // Agregamos la fila de la lista a la lista
+            lista.appendChild(listaFila);
+            // Llamamos al metodo que nos mostrara la descripcion de los platos
+            this.escuchaPlatosDescripcion(listaFila, plato);
         }
         // Agregamos el contenedor al main
         this.mainContenido.appendChild(contenedor);
@@ -323,6 +390,37 @@ class RestauranteVista {
             listaFila.innerText = menu.menus.getName();
             // Agregamos la fila de la lista a la lista
             lista.appendChild(listaFila);
+            // Llamamos al metodo que nos mostrara los platos que contiene un menu
+            this.escuchaMenuPlatos(listaFila, menu);
+        }
+        // Agregamos el contenedor al main
+        this.mainContenido.appendChild(contenedor);
+    }
+
+    //* Metodo para mostrar los platos que tiene un menu
+    #menuMostrarPlatos(menu) {
+        // Limpiamos el contenido del main contenido
+        this.mainContenido.innerHTML = "";
+        // Creamos un nuevo contenedor
+        let contenedor = document.createElement("div");
+        // Asignamos una clase al contenedor
+        contenedor.classList.add("contenedorPlatos");
+        // Creamos un nuevo elemento de lista
+        let lista = document.createElement("ul");
+        // Agregamos el la lista al contenedor
+        contenedor.appendChild(lista);
+        // Iteramos sobre el array de platos
+        for (const plato of menu.platos) {
+            // Creamos un nuevo elemento de lista
+            let listaFila = document.createElement("li");
+            // Asignamos una clase a la fila
+            listaFila.classList.add("filaPlatos");
+            // Agregamos el texto con el nombre del plato a la fila de la lista
+            listaFila.innerText = plato.platos.getName();
+            // Agregamos la fila de la lista a la lista
+            lista.appendChild(listaFila);
+            // Llamamos al metodo que nos mostrara la descripcion de los platos
+            this.escuchaPlatosDescripcion(listaFila, plato);
         }
         // Agregamos el contenedor al main
         this.mainContenido.appendChild(contenedor);
@@ -350,13 +448,53 @@ class RestauranteVista {
             listaFila.innerText = plato.platos.getName();
             // Agregamos la fila de la lista a la lista
             lista.appendChild(listaFila);
+            // Llamamos al metodo que nos mostrara la descripcion de los platos
+            this.escuchaPlatosDescripcion(listaFila, plato);
         }
         // Agregamos el contenedor al main
         this.mainContenido.appendChild(contenedor);
     }
 
+    //*Metodo para mostrar la descripcion de los platos
+    #descripcionPlatos(plato) {
+        // Limpiamos el contenido del main contenido
+        this.mainContenido.innerHTML = "";
+        // Creamos un nuevo contenedor
+        let contenedorDescripcion = document.createElement("div");
+        // Asignamos una clase al contenedor
+        contenedorDescripcion.classList.add("contenedorDescripcion");
+        // Creamos un nuevo elemento de lista
+        let titulo = document.createElement("h1");
+        // Agregamos el texto con el nombre del plato al titulo
+        titulo.innerText = "El nombre del plato es: " + plato.platos.getName();
+        // Agregamos el titulo al contenedor
+        contenedorDescripcion.appendChild(titulo);
+        // Creamos un nuevo elemento de imagen
+        let imagen = document.createElement("img");
+        // Establecemos la ruta de la imagen
+        imagen.src = plato.platos.getImage();
+        // Agregamos el la imagen al contenedor
+        contenedorDescripcion.appendChild(imagen);
+        // Creamos un nuevo elemento de parrafo
+        let descripcionPlato = document.createElement("p");
+        // Agregamos el texto al parrafo con la descripcion del plato
+        descripcionPlato.innerText =
+            "La descripcion del plato es: " + plato.platos.getDescription();
+        // Agregamos el parrafo al contenedor
+        contenedorDescripcion.appendChild(descripcionPlato);
+        // Creamos un nuevo elemento de parrafo
+        let ingredientesPlato = document.createElement("p");
+        // Agregamos el texto con los ingredientes del plato
+        ingredientesPlato.innerText =
+            "Los ingredientes del plato son: " + plato.platos.getIngredients().join(", ");
+        // Agregamos el parrafo al contenedor
+        contenedorDescripcion.appendChild(ingredientesPlato);
+        // Agregamos el contenedor al main del contenido
+        this.mainContenido.appendChild(contenedorDescripcion);
+    }
+
     //* Metodo para mostrar los restaurantes
-    #mostradoRestaurante(elementoRestaurante, restaurantes) {
+    #mostradoRestaurante(selectRestaurante, restaurantes) {
         // Comprobacion de que los elementos del restaurantes no estan creados
         if (!this.mostradoDesplegable) {
             // Iteramos sobre el array de restaurantes
@@ -366,23 +504,49 @@ class RestauranteVista {
                 // Agregamos el texto con el nombre del plato a la fila de la lista
                 optionRestaurante.innerText = restaurante.getName();
                 // Agregamos el contenedor al elemento de restaurante
-                elementoRestaurante.appendChild(optionRestaurante);
+                selectRestaurante.appendChild(optionRestaurante);
             }
+            // Llamamos a la escucha que nos mostrara la descripcion del restaurante
+            this.escuchaOpcionRestaurante(selectRestaurante, restaurantes);
             // Cambiamos el valor de la propiedad para que no see generen repetidos
             this.mostradoDesplegable = true;
         }
     }
 
-    //?////////////////METODOS QUE MANEJA EL CONTROLADOR/////////////////
-    //?//////////////////////////////////////////////////////////////////
-    //* Metodo para el mostrado cuando volvemos a la pagina de inicio
-    inicio(categorias, platos) {
-        // Llamada al metodo privado de mostrar las categorias
-        this.#mostradoCategoriasInicio(categorias);
-        // LLamada al metodo de mostrar platos random
-        this.#mostradosPlatosRandom(platos);
+    //* Metodo que mostrara la descripcion del restaurante
+    #restauranteDescripcion(restaurante) {
+        // Limpiamos el contenido del main contenido
+        this.mainContenido.innerHTML = "";
+        // Creamos un nuevo contenedor
+        let contenedorDescripcion = document.createElement("div");
+        // Asignamos una clase al contenedor
+        contenedorDescripcion.classList.add("contenedorDescripcionReataurante");
+        // Creamos un nuevo elemento de titulo
+        let titulo = document.createElement("h1");
+        // Agregamos el texto con el nombre del restaurante
+        titulo.innerText = "El nombre del restaurante es: " + restaurante.getName();
+        // Agregamos el titulo al contenedor
+        contenedorDescripcion.appendChild(titulo);
+        // Creamos un nuevo elemento de parrafo
+        let descripcionRestaurante = document.createElement("p");
+        // Agregamos el texto al parrafo con la descripcion del restaurante
+        descripcionRestaurante.innerText =
+            "La descripcion del restaurante es: " + restaurante.getDescription();
+        // Agregamos el parrafo al contenedor
+        contenedorDescripcion.appendChild(descripcionRestaurante);
+        // Creamos un nuevo elemento de parrafo
+        let localizacionRestaurante = document.createElement("p");
+        // Agregamos el texto con la localizacion del restaurante
+        localizacionRestaurante.innerText =
+            "La localizacion del restaurante es: " + restaurante.getLocation();
+        // Agregamos el parrafo al contenedor
+        contenedorDescripcion.appendChild(localizacionRestaurante);
+        // Agregamos el contenedor al main del contenido
+        this.mainContenido.appendChild(contenedorDescripcion);
     }
 
+    //?////////////////METODOS QUE MANEJA EL CONTROLADOR/////////////////
+    //?//////////////////////////////////////////////////////////////////
     //* Metodo que se carga justo al cargar la pagina
     carga(categorias, platos, alergenos, menus, restaurantes) {
         // Llamada al metodo privado de mostrar el menu lateral
@@ -395,10 +559,22 @@ class RestauranteVista {
         this.#barraNavegacion(categorias, platos, alergenos, menus, restaurantes);
     }
 
+    //* Metodo para el mostrado cuando volvemos a la pagina de inicio
+    inicio(categorias, platos) {
+        // Llamada al metodo privado de mostrar el menu lateral
+        this.#mostradoMenuLateral(categorias);
+        // Llamada al metodo privado de mostrar las categorias
+        this.#mostradoCategoriasInicio(categorias);
+        // LLamada al metodo de mostrar platos random
+        this.#mostradosPlatosRandom(platos);
+    }
+
     //* Metodo que mostrara las categorias
     categorias(categorias) {
         //Llamada al metodo de mostrado de categorias
         this.#mostradoCategoriasMenu(categorias);
+        // Llamada al metodo privado de mostrar el menu lateral
+        this.#mostradoMenuLateral(categorias);
     }
 
     //* Metodo que mostrara los alergenos
@@ -418,17 +594,34 @@ class RestauranteVista {
         this.#mostradoPlatos(platos);
     }
 
-    //* Metodo para el mostrado de los restaurantes
-    mostradoRestaurante(restaurantes) {
-        //this.#mostradoRestaurante(restaurantes);
-    }
-
     //?////METODOS QUE MANEJA EL CONTROLADOR SEGUNDAS INTERACIONES///////
     //?//////////////////////////////////////////////////////////////////
-    //* Metodo que muestr los platos que tiene una categoria
+    //* Metodo que muestra los platos que tiene una categoria
     categoriasPlatos() {
-        // Llamada al metodo para mostrar platos
+        // Llamada al metodo para mostrar platos en la parte central
         this.#mostradoPlatos(this.platosCategoriasNavagacion);
+        // LLamamos al metodo que muestra los platos de la categoria en el menu lateral
+        this.#mostradoMenuLateralPlatos(this.platosCategoriasNavagacion);
+    }
+    //* Metodo que muestra la descripcion de un plato selecionado
+    descripcionPlatos() {
+        // Llamada al metodo para mostrar la descripcion del plato
+        this.#descripcionPlatos(this.platosCategoriasSeleccionado);
+    }
+    //* Metodo que muestra los platos que contiene el alergeno
+    alergenosPlatos() {
+        // Llamada al metodo para mostrar el plato que tiene el alergeno
+        this.#alergenosPlatos(this.platosAlergenoSeleccionado);
+    }
+    //* Metodo que nos mostrara los platos que contiene un menu
+    menuMostrarPlatos() {
+        // Llamada al metodo para mostrar el plato que tiene el menu
+        this.#menuMostrarPlatos(this.menuMostrarPlatosSeleccionado);
+    }
+    //* Metodo que nos mostrara la descripcion de los restaurantes
+    restauranteDescripcion() {
+        // Llamada al metodo para mostrar la descripcion del restaurante
+        this.#restauranteDescripcion(this.opcionRestauranteSeleccionado);
     }
 
     //?//////////////////METODOS PARA EL CAMBIO DE ESTILOS///////////////
@@ -522,11 +715,11 @@ class RestauranteVista {
         });
     }
     //* Metodo para mostrar los restaurantes
-    escuchaNavegacionRestaurante(elementoRestaurante, restaurantes) {
+    escuchaNavegacionRestaurante(selectRestaurante, restaurantes) {
         // Hacemos la escucha de cuando hacemos click en un contenedor
-        elementoRestaurante.addEventListener("click", (event) => {
+        selectRestaurante.addEventListener("click", (event) => {
             // LLamada al metodo para mostrar los platos
-            this.#mostradoRestaurante(elementoRestaurante, restaurantes);
+            this.#mostradoRestaurante(selectRestaurante, restaurantes);
             // Prevenimos el comportamiento predeterminado
             event.preventDefault();
         });
@@ -550,7 +743,7 @@ class RestauranteVista {
 
     //?///////////////////SEGUNDOS METODOS DE ESCUCHA////////////////////
     //?//////////////////////////////////////////////////////////////////
-    //* Metodo para mostrar un mensaje por consola al hacer clic en una categoría
+    //* Metodo para mostrar los platos al hacer clic en una categoria desde el menu o lateral o contenido central
     escuchaCategoriaSeleccionada(listaFila, categoria) {
         // Hacemos la escucha de cuando hacemos click en una categoría
         listaFila.addEventListener("click", (event) => {
@@ -562,6 +755,80 @@ class RestauranteVista {
             this.actualizarMigasPan("Estamos en la pagina: CategoriasPlatos");
             // Apilamos una entrada en el historial con la accion mostrar platos
             history.pushState({ action: "categoriasPlatos" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+    //* Metodo para mostrar la descripcion de los platos al hacer clic
+    escuchaPlatosDescripcion(listaFila, plato) {
+        // Hacemos la escucha de cuando hacemos click en una categoría
+        listaFila.addEventListener("click", (event) => {
+            // Almacenado de los platos en la propiedad
+            this.platosCategoriasSeleccionado = plato;
+            // LLamada al metodo para mostrar mostrar los platos segun el plato
+            this.descripcionPlatos(plato);
+            // Llamada al metodo de actualizar migas de pan
+            this.actualizarMigasPan("Estamos en la pagina: DescripcionPlato");
+            // Apilamos una entrada en el historial con la accion mostrar platos
+            history.pushState({ action: "descripcionPlatos" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+
+    //* Metodo para mostrar los platos que contiene el alergeno
+    escuchaCaAlergenosPlatos(listaFila, alergenos) {
+        // Hacemos la escucha de cuando hacemos click en un alergeno
+        listaFila.addEventListener("click", (event) => {
+            // Almacenado del alergeno en la propiedad
+            this.platosAlergenoSeleccionado = miControlador.onObtenerPlatosEnAlergenos(alergenos);
+            // LLamada al metodo para mostrar los platos que corresponden al alergeno
+            this.alergenosPlatos();
+            // Llamada al metodo de actualizar migas de pan
+            this.actualizarMigasPan("Estamos en la pagina: AlergenosPlatos");
+            // Apilamos una entrada en el historial con la accion alergenos platos
+            history.pushState({ action: "alergenosPlatos" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+
+    //* Metodo que mostrara los platos que contiene un menu
+    escuchaMenuPlatos(listaFila, menu) {
+        // Hacemos la escucha de cuando hacemos click en un menu
+        listaFila.addEventListener("click", (event) => {
+            // Almacenado del menu en la propiedad
+            this.menuMostrarPlatosSeleccionado = menu;
+            // LLamada al metodo para mostrar los platos que corresponden al menu
+            this.menuMostrarPlatos();
+            // Llamada al metodo de actualizar migas de pan
+            this.actualizarMigasPan("Estamos en la pagina: MenuMostrarPlatos");
+            // Apilamos una entrada en el historial con la accion mostrar platos menu
+            history.pushState({ action: "menuMostrarPlatos" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+
+    //* Metodo que mostra la informacion del restaurante seleccionado
+    escuchaOpcionRestaurante(selectRestaurante, restaurantes) {
+        let arrayRestaurante = [...restaurantes];
+        // Hacemos la escucha de cuando hacemos click en un restaurante
+        selectRestaurante.addEventListener("click", (event) => {
+            // Obtenemos el evento que ha desencadenado el click
+            let restauranteSeleccionadoNombre = event.target.value;
+            // Buscamos el restaurante correspondiente en el array de restaurantes
+            let restauranteSeleccionado = arrayRestaurante.find(
+                (restaurante) => restaurante.getName() === restauranteSeleccionadoNombre
+            );
+            // Almacenado de el restaurante en la propiedad
+            this.opcionRestauranteSeleccionado = restauranteSeleccionado;
+            // LLamada al metodo para mostrar la dscripcion del restaurante
+            this.restauranteDescripcion();
+            // Llamada al metodo de actualizar migas de pan
+            this.actualizarMigasPan("Estamos en la pagina: RestauranteDescripcion");
+            // Apilamos una entrada en el historial con la accion mostrar platos menu
+            history.pushState({ action: "restauranteDescripcion" }, "", null);
             // Prevenimos el comportamiento predeterminado
             event.preventDefault();
         });
