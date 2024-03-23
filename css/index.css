@@ -174,9 +174,17 @@ body {
     height: 100%;
     /* Establecemos el sobreado*/
     box-shadow: 2px 2px 1em rgba(66, 66, 66, 0.5);
+    /* Justificamos el contenido al centro*/
+    justify-content: center;
 }
 
-/*? Contenedor del listado de elementos laterales*/
+/*? Listado de elementos de la barra lateral*/
+.main--listado ul{
+    /* Establecemos la altura*/
+    height: 30%;
+}
+
+/*? lineas del listado de elementos laterales*/
 .liLateralCategoria {
     /* Establecemos el margen superior*/
     margin-top: 1.5em;

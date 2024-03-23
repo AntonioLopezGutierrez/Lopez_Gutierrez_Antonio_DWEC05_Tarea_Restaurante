@@ -637,7 +637,7 @@ class RestauranteModelo {
         return this;
     }
 
-    //? ******************* METODOS PARA EL ALLERGEN ********************
+    //* ******************* METODOS PARA EL ALLERGEN ********************
     //+ Metodo para crear un alergeno
     createAllergen(name, description) {
         //Buscamos el nombre del alergeno para ver si existe y lo almacenamos
@@ -730,7 +730,7 @@ class RestauranteModelo {
         return this;
     }
 
-    //? **************** METODOS PARA EL RESTAURANTE ********************
+    //* **************** METODOS PARA EL RESTAURANTE ********************
     //+ Metodo para crear un restaurante
     createRestaurant(name, description, location) {
         //Buscamos el nombre del restaurante para ver si existe y lo almacenamos
@@ -822,7 +822,7 @@ class RestauranteModelo {
         return this;
     }
 
-    //? ********************** METODOS PARA EL PLATO ********************
+    //* ********************** METODOS PARA EL PLATO ********************
     //+ Metodo para crear el plato
     createDish(name, description, ingredients, image) {
         //Buscamos el nombre del plato para ver si existe y lo almacenamos
