@@ -81,7 +81,7 @@ class RestauranteModelo {
     //?/////////////////////////METODOS/////////////////////////////////
     //****************METODOS PARA LA CATEGORIA ***********************
     //+Metodo para crearla categoria
-    createCategory(name, description) {
+    createCategory(name, description, imageUrl) {
         //Buscamos el nombre de la categoria para ver si existe y lo almacenamos
         let categoriasEncontradas = this.#categories.filter(
             (categories) => categories.categoria.getName() == name
@@ -93,7 +93,7 @@ class RestauranteModelo {
         //Si no existe creamos un objeto con los argumentos pasados y lo devolvemos
         else {
             //Creamos un nuevo objeto categoria
-            let categoria = new Category(name, description);
+            let categoria = new Category(name, description, imageUrl);
             //Asignamos a ese objeto la categoria creada
             let categoriaPlatoObj = {
                 categoria: categoria,
@@ -354,7 +354,7 @@ class RestauranteModelo {
 
     //* ********************** METODOS PARA EL MENU *********************
     //+ Metodo para crear el menu
-    createMenu(name, description) {
+    createMenu(name, description, imageUrl) {
         //Buscamos el nombre del menu para ver si existe y lo almacenamos
         let menusEncontrados = this.#menus.filter((menus) => menus.menus.getName() == name);
         //Si existe el menu en la lista devolvemos el menu
@@ -363,7 +363,7 @@ class RestauranteModelo {
         }
         //Si no existe creamos uno con los argumentos pasados y lo devolvemos
         else {
-            let menu = new Menu(name, description);
+            let menu = new Menu(name, description, imageUrl);
             //Asignamos a ese objeto la categoria creada
             let menuPlatoObj = {
                 menus: menu,
@@ -639,7 +639,7 @@ class RestauranteModelo {
 
     //* ******************* METODOS PARA EL ALLERGEN ********************
     //+ Metodo para crear un alergeno
-    createAllergen(name, description) {
+    createAllergen(name, description, imageUrl) {
         //Buscamos el nombre del alergeno para ver si existe y lo almacenamos
         let alergenosEncontrados = this.#allergens.filter(
             (allergens) => allergens.getName() == name
@@ -650,7 +650,7 @@ class RestauranteModelo {
         }
         //Si no existe creamos uno con los argumentos pasados y lo devolvemos
         else {
-            let allergen = new Allergen(name, description);
+            let allergen = new Allergen(name, description, imageUrl);
             return allergen;
         }
     }

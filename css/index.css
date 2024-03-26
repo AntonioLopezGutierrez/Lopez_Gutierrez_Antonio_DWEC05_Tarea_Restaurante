@@ -5,42 +5,29 @@ body {
     display: grid;
     /* Definimos la s areas de la cuadricula*/
     grid-template-areas:
-        "header--logo"
-        "header--nav"
+        "header"
         "main"
         "aside"
         "footer";
     /* Establecemos el tamaño de las filas */
-    grid-template-rows: 14% 7% 44% 22% 17%;
-    /*Establecemos un pequeño espacion entre las filas*/
-    row-gap: 2.5em;
-    /*Estabelcemos el alto al 100vh*/
-    height: 120em;
-}
-
-/*!----------------------------- header -------------------------------*/
-/*************************** Logo de la pagina**************************/
-/*? Contenedor principal del logo*/
-.header--logo {
-    /* Asignamos el area del grid*/
-    grid-area: header--logo;
-    /* Modificamos la altura*/
+    grid-template-rows: 20.5em auto 25em 20em;
+    /* Establecemos un pequeño espacion entre las filas*/
+    row-gap: 2em;
+    /* Estabelcemos el alto*/
     height: 100%;
-}
-
-/*? Imagen del logo*/
-.header--logo img {
-    /* Modificamos la altura*/
-    height: 100%;
-    /* Modificamos el ancho*/
+    /* Establecemos el anvho*/
     width: 100%;
 }
 
-/************************Barra de navegacion****************************/
-/*? Contenedor principal de la barra de navegacion*/
-.header--nav {
-    /*Asignamos el area del grid*/
-    grid-area: header--nav;
+/*!----------------------------- header -------------------------------*/
+/*? Cabecera de la pagina*/
+header {
+    /* Establecemos el area que ocupara en la cuadricula principal*/
+    grid-area: header;
+    /* Establecemo un contenedor flexible*/
+    display: flex;
+    /* Estableemos la direccion de los elementos*/
+    flex-direction: column;
     /* Modificamos el color de fondo*/
     background-color: rgb(66, 66, 66);
     /* Establecemos el estilo del borde*/
@@ -49,9 +36,21 @@ body {
     border-width: 0.7em;
     /* Establecemos el sobreado*/
     box-shadow: 2px 2px 1em rgba(66, 66, 66, 0.5);
-    /* Establcemos la altura*/
-    height: 65%;
+    /* Establecemos la altura*/
+    height: 100%;
 }
+
+/*************************** Logo de la pagina**************************/
+
+/*? Imagen del logo*/
+.header--logo img {
+    /* Modificamos la altura*/
+    height: 10em;
+    /* Modificamos el ancho*/
+    width: 100%;
+}
+
+/************************Barra de navegacion****************************/
 
 /*? Contedor de elementos de menu y migas de pan de la barra de navegacion*/
 .divBarraNavegacion {
@@ -66,11 +65,11 @@ body {
     /* Cambiamos el color del primer plano*/
     color: white;
     /* Establecemos el tamaño de la fuente*/
-    font-size: 1.4em;
+    font-size: 1.2em;
     /* Establecemos la altura*/
-    height: 53%;
+    height: 100%;
     /* Establecemos el borde*/
-    border: 0.6em solid rgb(66, 66, 66);
+    border: 0.4em solid rgb(66, 66, 66);
     /* Establecemos el color de fondo*/
     background-color: white;
 }
@@ -95,6 +94,12 @@ body {
 
 /*? Elemento migas de pan de la barra de navegacion*/
 .elementoMigasPanBarraNavegacion {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Alineamos los elementos al centro*/
+    align-items: center;
+    /* Justificamos el contenido al centro*/
+    justify-content: center;
     /* Cambiamos el color del primer plano*/
     color: white;
     /* Establecemos el tamaño de la fuente*/
@@ -102,13 +107,7 @@ body {
     /* Establecemos el puntero para que cambien como enlace*/
     cursor: pointer;
     /* Establecemos la altura*/
-    height: 45%;
-    /* Establecemos el margen*/
-    margin: 0em;
-    /* Estblecemos el relleno superior*/
-    padding-top: 0.3em;
-    /* Establecemos el relleno de la izquierda*/
-    padding-left: 0.6em;
+    height: 2em;
 }
 
 /*? Estilos para el elemento select */
@@ -157,7 +156,7 @@ body {
     height: 100%;
 }
 
-/*********************Listado de elementos del menu**********************/
+/*********************Listado de elementos del lateral**********************/
 /*? Contenedor padre listado de elementos laterales*/
 .main--listado {
     /* Asinamos el area al main*/
@@ -176,30 +175,104 @@ body {
     box-shadow: 2px 2px 1em rgba(66, 66, 66, 0.5);
     /* Justificamos el contenido al centro*/
     justify-content: center;
+    /* Alineamos el contenido al centro*/
+    align-items: center;
 }
 
-/*? Listado de elementos de la barra lateral*/
-.main--listado ul{
-    /* Establecemos la altura*/
-    height: 30%;
-}
-
-/*? lineas del listado de elementos laterales*/
-.liLateralCategoria {
+/*? Elementos de la barra lateral que muestra la categoria*/
+.pLateralCategoria {
+    /* Establecemos el relleno del elemento*/
+    padding: 0.5em;
     /* Establecemos el margen superior*/
-    margin-top: 1.5em;
-    /* Establecemos el margen izquierdo*/
-    margin-left: 0.3em;
+    margin-top: 20%;
     /* Establecemos el tamaño de la fuente*/
-    font-size: 1.4em;
+    font-size: 100%;
     /* Establecemos el ancho en negrita*/
     font-weight: bold;
     /* Establecemos el color del primer plano*/
     color: white;
-    /* Modidicamos el estilo de la lista*/
-    list-style: square;
-    /* Establecemos el puntero como s fuera un enlace*/
+    /* Establecemos el puntero como si fuera un enlace*/
     cursor: pointer;
+    /* Establecemos el color de fondo*/
+    background-color: rgba(66, 66, 66, 0.5);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Centramos el texto*/
+    text-align: center;
+}
+
+/*? Listado de la barra lateral que muestra los platos*/
+.pPlatosDescripcionLateral {
+    /* Establecemos el relleno del elemento*/
+    padding: 0.5em;
+    /* Establecemos el margen superior*/
+    margin-top: 20%;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 100%;
+    /* Establecemos el ancho en negrita*/
+    font-weight: bold;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el puntero como si fuera un enlace*/
+    cursor: pointer;
+    /* Establecemos el color de fondo*/
+    background-color: rgba(66, 66, 66, 0.5);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Centramos el texto*/
+    text-align: center;
+}
+
+/*? Listado de la barra lateral que mostrara los menus del restaurante*/
+.pMenuLateralMenus{
+    /* Establecemos el relleno del elemento*/
+    padding: 0.5em;
+    /* Establecemos el margen superior*/
+    margin-top: 20%;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 100%;
+    /* Establecemos el ancho en negrita*/
+    font-weight: bold;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el puntero como si fuera un enlace*/
+    cursor: pointer;
+    /* Establecemos el color de fondo*/
+    background-color: rgba(66, 66, 66, 0.5);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Centramos el texto*/
+    text-align: center;
+}
+
+/*? Listado de la barra lateral que muestra los alergenos*/
+.pAlegenosPlatosLateral {
+    /* Establecemos el relleno del elemento*/
+    padding: 0.5em;
+    /* Establecemos el margen superior*/
+    margin-top: 20%;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 100%;
+    /* Establecemos el ancho en negrita*/
+    font-weight: bold;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el puntero como si fuera un enlace*/
+    cursor: pointer;
+    /* Establecemos el color de fondo*/
+    background-color: rgba(66, 66, 66, 0.5);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Centramos el texto*/
+    text-align: center;
 }
 
 /********************** Contenido central mostrado**********************/
@@ -210,7 +283,7 @@ body {
     /* Hacemos un contenedor flexible*/
     display: flex;
     /* Justificamos los contenidos para que esten centrados verticalmente*/
-    justify-content: space-around;
+    justify-content: center;
     /* Alineamos los contenidos horizontalmetne*/
     align-items: center;
     /* Establecemos el color de fondo*/
@@ -227,12 +300,55 @@ body {
     box-shadow: 2px 2px 1em rgba(66, 66, 66, 0.5);
 }
 
-/*? Parrafos del contenido mostrado*/
-.main--contenido span {
+/*? Contenedor para el mostrado de las categorias al cargar la pagina*/
+.contenedorCategorias {
+    /* Establecemos un contenedor flex*/
+    display: grid;
+    /* Establecemos una plantilla para las columnas*/
+    grid-template-columns: 25% 25% 25% 25%;
+    /* Establecemos el tamaño de laj fuente*/
+    font-size: 1.5em;
+    /* Alineamos los contenidos al centro*/
+    align-items: center;
+    /* Justificamos el contenido con espacio alrededor*/
+    justify-content: center;
+    /* Establecemos el ancho*/
+    width: 100%;
+    /* Establecemos el alto*/
+    height: 100%;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
+    cursor: pointer;
+    /* Establecemos el margen izquierdo*/
+    margin-left: 2.5%;
+}
+/*? Contenedor para el mostrado de la imagen de la categorias al cargar la pagina*/
+.conenedorImagenBack {
+    /* Establecemos la altura*/
+    height: 25em;
+    /* Establecemos la anchura*/
+    width: 90%;
+    /* Establecemos el puntero para que nosa aparezca seleccionado*/
+    cursor: pointer;
+    /* Establecemos el borde redondo*/
+    border-radius: 1em;
+    /* Establecemos el tamaño de fondo y lo centramos */
+    background-size: cover;
+    /* Etablecemos el fondo para que no se repita*/
+    background-repeat: no-repeat;
+    /* Alineamos el fondo al centro*/
+    background-position: center;
+}
+
+/*? Span para el nombre de las categorias al cargar la pagina de inicio*/
+.contenedorCategorias span {
     /* Establecemos el color del primer plano*/
     color: rgb(66, 66, 66);
     /* Establecemos el tamaño de la fuente*/
-    font-size: 2.2em;
+    font-size: 1.5em;
     /* Establecemos el ancho de la fuente a negrita*/
     font-weight: bold;
     /* Establecemos el color de fondo*/
@@ -244,126 +360,189 @@ body {
     /* Centramos el texto*/
     text-align: center;
     /* Establecemos el borde redondo*/
+    border-radius: 0.7em;
+    /* Establecemos el relleno izquierdo*/
+    padding-left: 3%;
+    /* Establecemos el relleno derecho*/
+    padding-right: 3%;
+}
+
+/*? Contenedor para mostra las categorias desde la barra de navegacion*/
+.contenedorPrincipalCategoriasMenu {
+    /* Establecemos una cuadricula*/
+    display: grid;
+    /* Establecemos el numero de columnas de la cuaricula*/
+    grid-template-columns: 25% 25% 25% 25%;
+    /* Alineamos el texto*/
+    text-align: center;
+    /* Establecemos todas las filas del mismo tamaño*/
+    grid-auto-rows: 1fr;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño de la fuento*/
+    font-size: 1.5em;
+    /* justificamos elj contenido al centro*/
+    justify-content: center;
+    /*Establecemos el margen*/
+    margin: 5%;
+    /* Establecemos el ancho*/
+    width: 78%;
+}
+
+/*? Imagenes del contenedor para mostrar las categorias del menu*/
+.contenedorPrincipalCategoriasMenu img {
+    /* Establecemos la altura*/
+    height: 10em;
+    /* Establecemos la anchura*/
+    width: 90%;
+    /* Establecemos el puntero para que nosa aparezca seleccionado*/
+    cursor: pointer;
+    /*Establecemos el borde redondo*/
     border-radius: 1em;
 }
 
-/*? Contenedor para el mostrado de las categorias al cargar la pagina*/
-.contenedorCategorias {
-    /* Establecemos un contenedor flex*/
-    display: flex;
-    /* Justificamos el contenido al centro*/
-    justify-content: center;
-    /* Establecemos el ancho del borde*/
-    border-width: 0.7em;
-    /* Redondeamos los bordes*/
-    border-radius: 1.2em;
-    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
-    cursor: pointer;
-    /* Evitamos que se repita el fondo*/
-    background-repeat: no-repeat;
-    /* Establecemos el tamaño del fondo para que cubra todo el fondo*/
-    background-size: cover;
-    /* Establecemos el ancho*/
-    width: 24%;
-    /* Establecemos el alto*/
-    height: 96%;
-}
-/*? Contenedor para el mostrado de las categorias desde la barra de navegacion*/
-.contenedorCategoriasMenu ul {
-    /* Establecemos un contenedor vlexile*/
-    display: flex;
-    /* Establecemo la direccion del contenedor*/
-    flex-direction: column;
-    /* Establecemos el espacion entre los elementos*/
-    gap: 4em;
-}
-
-/*? Fila que muestra las categorias*/
-.filaCategoriasMenu {
-    /* Establecemos el color*/
-    color: white;
-    /* Establecemos el tamaño*/
-    font-size: 2em;
-    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
-    cursor: pointer;
-}
-
 /*? Contenedor para mostrar los alergenos desde la barra de navegacion*/
-.contenedorAlergenos ul {
-    /* Establecemos un contenedor vlexile*/
-    display: flex;
-    /* Establecemo la direccion del contenedor*/
-    flex-direction: column;
-    /* Establecemos el espacion entre los elementos*/
-    gap: 4em;
-}
-
-/*? Fila que muestra los alergenos*/
-.filaAlergeno {
-    /* Establecemos el color*/
-    color: white;
-    /* Establecemos el tamaño*/
-    font-size: 2em;
-    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
-    cursor: pointer;
-}
-
-.contenedorPlatosAlergenos ul {
-    /* Establecemos un contenedor vlexile*/
-    display: flex;
-    /* Establecemo la direccion del contenedor*/
-    flex-direction: column;
-    /* Establecemos el espacion entre los elementos*/
-    gap: 4em;
-}
-
-.filaPlatosAlergenos {
-    /* Establecemos el color*/
-    color: white;
-    /* Establecemos el tamaño*/
-    font-size: 2em;
-    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
-    cursor: pointer;
-}
-
-/*? Contenedor para mostra los menus desde la barra de navegacin*/
-.contenedorMenus ul{
-    /* Establecemos un contenedor vlexile*/
-    display: flex;
-    /* Establecemo la direccion del contenedor*/
-    flex-direction: column;
-    /* Establecemos el espacion entre los elementos*/
-    gap: 4em;
-}
-
-/*? Filas de los menus*/
-.filaMenu {
-    /* Establecemos el color*/
-    color: white;
-    /* Establecemos el tamaño*/
-    font-size: 2em;
-    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
-    cursor: pointer;
-}
-
-/*? Contenedor para mostra los platos desde la barra de navegacion*/
-.contenedorPlatos ul {
+.contenedorPrincipalAlergenos {
     /* Establecemos una cuadricula*/
     display: grid;
-    /* Establecemos la direcion de los elementos*/
-    grid-template-columns: 1fr 1fr;
-    /* Establecemos el espacio de los elementos*/
-    gap: 4.5em;
+    /* Establecemos el numero de columnas de la cuaricula*/
+    grid-template-columns: 25% 25% 25% 25%;
+    /* Alineamos el texto*/
+    text-align: center;
+    /* Establecemos todas las filas del mismo tamaño*/
+    grid-auto-rows: 1fr;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño de la fuento*/
+    font-size: 1.5em;
+    /* justificamos elj contenido al centro*/
+    justify-content: center;
+    /* Establecemos el margen*/
+    margin: 5%;
+    /* Etablecemos el borde*/
+    border: 0em;
+    /* Establecemos el ancho*/
+    width: 78%;
+}
+
+/*? Imagenes del contenedor de alegenos desde la barra de navegacion*/
+.contenedorPrincipalAlergenos img {
+    /* Establecemos la altura*/
+    height: 10em;
+    /* Establecemos la anchura*/
+    width: 90%;
+    /* Establecemos el puntero para que nosa aparezca seleccionado*/
+    cursor: pointer;
+    /*Establecemos el borde redondo*/
+    border-radius: 1em;
+}
+
+/*? Contenedor para mostrar los platos que tiene un alergeno*/
+.contenedorPrincipalAlergenosPlatosDescripcion {
+    /* Establecemos una cuadricula*/
+    display: grid;
+    /* Establecemos el numero de columnas de la cuaricula*/
+    grid-template-columns: 25% 25% 25% 25%;
+    /* Alineamos el texto*/
+    text-align: center;
+    /* Establecemos todas las filas del mismo tamaño*/
+    grid-auto-rows: 1fr;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño de la fuento*/
+    font-size: 1.5em;
+    /* justificamos elj contenido al centro*/
+    justify-content: center;
+    /* Establecemos el margen*/
+    margin: 5%;
+    /* Etablecemos el borde*/
+    border: 0em;
+    /* Establecemos el ancho*/
+    width: 78%;
 }
 
 /*? Filas de los platos*/
-.filaPlatos {
-    /* Establecemos el color*/
-    color: white;
-    /* Establecemos el tamaño*/
-    font-size: 2em;
-    /* Cambiamos el cursor para que parezca el contnedor un enlade*/
+.contenedorPrincipalAlergenosPlatosDescripcion img {
+    /* Establecemos la altura*/
+    height: 10em;
+    /* Establecemos la anchura*/
+    width: 90%;
+    /* Establecemos el puntero para que nosa aparezca seleccionado*/
     cursor: pointer;
+    /*Establecemos el borde redondo*/
+    border-radius: 1em;
+}
+
+/*? Contenedor para mostra los menus desde la barra de navegacin*/
+.contenedorMenuPrincipal {
+    /* Establecemos una cuadricula*/
+    display: grid;
+    /* Establecemos el numero de columnas de la cuaricula*/
+    grid-template-columns: 25% 25% 25% 25%;
+    /* Establecemos el tamaño de la fila para que sean todas iguales*/
+    grid-auto-rows: 1fr;
+    /* Alineamos el texto*/
+    text-align: center;
+    /* Establecemos todas las filas del mismo tamaño*/
+    grid-auto-rows: 1fr;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño de la fuento*/
+    font-size: 1.5em;
+    /* justificamos elj contenido al centro*/
+    justify-content: space-around;
+    /* Establecemos el margen*/
+    margin: 5%;
+    /* Etablecemos el borde*/
+    border: 0em;
+    /* Establecemos el ancho*/
+    width: 78%;
+}
+
+/*? Imagenes que mostraremos en los menus*/
+.contenedorMenuPrincipal img {
+    /* Establecemos la altura*/
+    height: 10em;
+    /* Establecemos la anchura*/
+    width: 90%;
+    /* Establecemos el puntero para que nosa aparezca seleccionado*/
+    cursor: pointer;
+    /*Establecemos el borde redondo*/
+    border-radius: 1em;
+}
+
+/*? Contenedor para mostra los platos desde la barra de navegacion*/
+.contenedorPlatosPrincipal {
+    /* Establecemos una cuadricula*/
+    display: grid;
+    /* Establecemos el numero de columnas de la cuaricula*/
+    grid-template-columns: 25% 25% 25% 25%;
+    /* Alineamos el texto*/
+    text-align: center;
+    /* Establecemos todas las filas del mismo tamaño*/
+    grid-auto-rows: 1fr;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño de la fuento*/
+    font-size: 1.5em;
+    /* justificamos elj contenido al centro*/
+    justify-content: center;
+    /*Establecemos el margen*/
+    margin: 5%;
+    /* Establecemos el ancho*/
+    width: 78%;
+}
+
+/*? Imagenes del contenedor delm mostrado de datos*/
+.contenedorPlatosPrincipal img {
+    /* Establecemos la altura*/
+    height: 10em;
+    /* Establecemos la anchura*/
+    width: 90%;
+    /* Establecemos el puntero para que nosa aparezca seleccionado*/
+    cursor: pointer;
+    /*Establecemos el borde redondo*/
+    border-radius: 1em;
 }
 
 /*? Contenedor que incluira la descripcion de los platos*/
@@ -384,33 +563,38 @@ body {
     color: white;
     /* Establecemos el tamaño del la fuente*/
     font-size: 1.5em;
+    /* justificamos elj contenido al centro*/
+    justify-content: center;
+    /*Establecemos el margen*/
+    margin: 5%;
 }
+
 /*? Imagenes del contenedor co la descripcion*/
 .contenedorDescripcion img {
     /* Establecemo la altura*/
-    height: 70%;
+    height: 25em;
     /* Establecemos la anchura*/
-    width: 50%;
+    width: 35em;
 }
 
 /*? Mostrado de la descripcion de los restaurantes*/
-.contenedorDescripcionReataurante{
-        /* Establecemos la altura*/
-        height: 100%;
-        /* Establecemos la anchura*/
-        width: 100%;
-        /* Hacemos un contenedor flexible*/
-        display: flex;
-        /* Establecem0os la direccion de los elementos*/
-        flex-direction: column;
-        /* Justificamos los elementos al centro*/
-        justify-content: center;
-        /* Alineamos los elementos al centro*/
-        align-items: center;
-        /* Establecemos el color del primer plano*/
-        color: white;
-        /* Establecemos el tamaño del la fuente*/
-        font-size: 1.5em;
+.contenedorDescripcionReataurante {
+    /* Establecemos la altura*/
+    height: 100%;
+    /* Establecemos la anchura*/
+    width: 100%;
+    /* Hacemos un contenedor flexible*/
+    display: flex;
+    /* Establecem0os la direccion de los elementos*/
+    flex-direction: column;
+    /* Justificamos los elementos al centro*/
+    justify-content: center;
+    /* Alineamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el tamaño del la fuente*/
+    font-size: 1.5em;
 }
 
 /*!--------------------------- aside ----------------------------------*/
@@ -426,7 +610,7 @@ body {
     /* Alineamos los elementos al centro*/
     align-items: center;
     /* justificamos el cont4nido al centro*/
-    justify-content: space-around;
+    justify-content: center;
     /* Establecemos la altura del contenedor*/
     height: 100%;
     /* Asignamos el color de fondo*/
@@ -467,14 +651,21 @@ body {
     justify-content: center;
     /* Establecemos los bordes redondos*/
     border-radius: 1em;
-    /* Establecemos el ancho del contenedor*/
-    width: 20%;
-    /* Establecemos el alto del contenedor*/
-    height: 90%;
+    /* Establecemos la altura*/
+    height: 23em;
+    /* Establecemos la anchura*/
+    width: 90%;
     /* Establecemos el fondo para que no se repita*/
     background-repeat: repeat;
     /* Establecemos el fondo para que lo cubra el contenedor*/
     background-size: cover;
+    margin: 1%;
+    /* Establecemos el tamaño de fondo y lo centramos */
+    background-size: cover;
+    /* Establecemos el fondo para que no se repita*/
+    background-repeat: no-repeat;
+    /* Establecemos la alineacion del fondo al centro*/
+    background-position: center;
 }
 
 /*? Parrafos del aside*/
@@ -529,6 +720,14 @@ body {
 .footer--contacto {
     /* Establecemos el area en el pie de pagina*/
     grid-area: footer--contacto;
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion a columnas*/
+    flex-direction: column;
+    /* Alineamos el contenido al centro*/
+    align-items: center;
+    /* Justificamos el contenido al centro*/
+    justify-content: center;
     /* Alineamos el texto al centro*/
     text-align: center;
     /* Establecemos la altura*/
@@ -541,6 +740,14 @@ body {
 .footer--social {
     /* Establecemos el area en el pie de pagina*/
     grid-area: footer--social;
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion a columnas*/
+    flex-direction: column;
+    /* Alineamos el contenido al centro*/
+    align-items: center;
+    /* Justificamos el contenido al centro*/
+    justify-content: center;
     /* Alineamos el texto al centro*/
     text-align: center;
     /* Establecemos el tamaño de la fuente*/
@@ -552,7 +759,7 @@ body {
 /*? Imagenes iconos pie de pagina*/
 .footer--social img {
     /* establecemos el alto*/
-    height: 18%;
+    height: 4em;
     /* Establecemos el ancho*/
-    width: 7%;
+    width: 4em;
 }

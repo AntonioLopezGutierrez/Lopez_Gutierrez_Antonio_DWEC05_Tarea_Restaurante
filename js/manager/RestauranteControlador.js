@@ -98,6 +98,8 @@ class RestauranteControlador {
         this[VISTA].alergenos(alergeno);
         // Llamamos al manejador que mostrara los platos que contiene un alergeno
         this[VISTA].manejadorAlergenosPlatos(this.manejadorAlergenosPlatos);
+        // Llamamos al manejador que mostrara los platos que tiene un alergeno desde el menu lateral
+        this[VISTA].manejadorAlegenosPlatosLateral(this.manejadorAlegenosPlatosLateral);
     };
 
     //* Metodo que llama al metodo de mostradoMenus de la vista
@@ -108,6 +110,8 @@ class RestauranteControlador {
         this[VISTA].menus(menus);
         // Llamamos al manejador que mostrara los platos que contiene un menu
         this[VISTA].manejadorMenusPlatos(this.manejadorMenusPlatos);
+        // Llamamos al manejador que mostrara los platos que contiene un menu desde la barra lateral
+        this[VISTA].manejadorMenusPlatosLateral(this.manejadorMenusPlatosLateral);
     };
 
     //* Metodo que llama al metodo de mostradoPlatos de la vista
@@ -118,6 +122,8 @@ class RestauranteControlador {
         this[VISTA].platos(platos);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorPlatosDescripcion(this.manejadorPlatosDescripcion);
+        // Llamamos al manejador que mostrara la descripcion de los platos que tiene la categoria desde el menu lateral
+        this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
     };
 
     //?//METODOS PARA LOS EVENTOS DE LOS USUARIOS EN ELEMENTOS GENERADOS//
@@ -228,6 +234,8 @@ class RestauranteControlador {
             this[VISTA].manejadorAlergenosPlatosDescripcion(
                 this.manejadorAlergenosPlatosDescripcion
             );
+            // Llamamos al manejador que mostrara la descripcion de los platos desde el menu lateral
+            this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
         } else {
             // Verificamos si hay un estado en el historial y si contiene el alergeno
             let alergenoSeleccionado = history.state.alergenoSeleccionado;
@@ -245,6 +253,8 @@ class RestauranteControlador {
             this[VISTA].manejadorAlergenosPlatosDescripcion(
                 this.manejadorAlergenosPlatosDescripcion
             );
+            // Llamamos al manejador que mostrara la descripcion de los platos desde el menu lateral
+            this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
         }
     };
 
@@ -255,8 +265,14 @@ class RestauranteControlador {
             let menusArray = [...this[MODELO].getMenu()];
             // Filtramos los menus por el nombre del menu
             let menuFiltrado = menusArray.filter((menu) => menu.menus.getName() == menuNombre);
+            // Obtenemos array con los platos que tiene el menu
+            let arrayPlatosMenu = menuFiltrado.map((plato) => plato.platos);
             // Llamada al metodo de la vista que muestra los platos del menu
-            this[VISTA].menuMostrarPlatos(menuFiltrado[0]);
+            this[VISTA].menuMostrarPlatos(arrayPlatosMenu[0]);
+            // Llamamos al manejador que mostrara la descripcion de los platos
+            this[VISTA].manejadorPlatosDescripcion(this.manejadorPlatosDescripcion);
+            // Llamamos al manejador que mostrara la descripcion de los platos desde el menu lateral
+            this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
         } else {
             // Verificamos si hay un estado en el historial y si contiene el alergeno
             let menuSeleccionado = history.state.menuSeleccionado;
@@ -266,8 +282,14 @@ class RestauranteControlador {
             let menuFiltrado = menusArray.filter(
                 (menu) => menu.menus.getName() == menuSeleccionado
             );
+            // Obtenemos array con los platos que tiene el menu
+            let arrayPlatosMenu = menuFiltrado.map((plato) => plato.platos);
             // Llamada al metodo de la vista que muestra los platos del menu
-            this[VISTA].menuMostrarPlatos(menuFiltrado[0]);
+            this[VISTA].menuMostrarPlatos(arrayPlatosMenu[0]);
+            // Llamamos al manejador que mostrara la descripcion de los platos
+            this[VISTA].manejadorPlatosDescripcion(this.manejadorPlatosDescripcion);
+            // Llamamos al manejador que mostrara la descripcion de los platos desde el menu lateral
+            this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
         }
     };
 
@@ -355,6 +377,18 @@ class RestauranteControlador {
     manejadorAlergenosPlatosDescripcion = (platoNombre) => {
         // Llamamos al metodo de esta clase on menu motrar platos
         this.onDescripcionPlatos(platoNombre);
+    };
+
+    //* Manejador para el mostrado los platos que tiene un alergeno desde el lateral
+    manejadorAlegenosPlatosLateral = (alergenoNombre) => {
+        // Llamamos al metodo de esta clase on menu motrar platos
+        this.onAlergenosPlatos(alergenoNombre);
+    };
+
+    //* Manejador para el mostrado de los platos que tiene un menu desde la barra lateral
+    manejadorMenusPlatosLateral = (menuNombre) => {
+        // Llamamos al metodo de esta clase on menu motrar platos
+        this.onMenuMostrarPlatos(menuNombre);
     };
 }
 

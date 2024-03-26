@@ -75,6 +75,7 @@ window.addEventListener("popstate", (event) => {
     }
 });
 
+
 //?//////////////////ESTADO INICIAL DEL HISTORIAL////////////////////////
 // Reemplazamos el estado actual del history con el de la accion de inicio
 history.replaceState({ action: "inicio" }, "", null);

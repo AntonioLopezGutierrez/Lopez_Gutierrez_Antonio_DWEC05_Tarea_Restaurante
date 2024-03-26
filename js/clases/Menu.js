@@ -1,58 +1,70 @@
+//!//////////////////////////////CLASE MENU//////////////////////////////
 //Activamos el modo estricto
-"use strict"
+"use strict";
 
-//////////////////////////////////////////////////IMPORTACIONES DE LA CLASE///////////////////////////////////////////////
-//import { NombreObligatorio } from "./ExcepcionesMenu.js";
+//?//////////////////////IMPORTACIONES DE LA CLASE///////////////////////
+import { NombreObligatorio } from "../excepciones/ExcepcionesMenu.js";
 
-/**
- * //////////////////////////////////////////////////CLASE MENU/////////////////////////////////////////////////////
- */
+// Declaracion de la clase
 class Menu {
-    /////////////////////////////////////DECLARACION DE LAS PROPIEDADES PRIVADAS///////////////////////////////////////
+    //?//////////////DECLARACION DE LAS PROPIEDADES PRIVADAS/////////////
     #name;
     #description;
+    #imageUrl;
 
-    /////////////////////////////////////////CONSTRUCTOR DE LA CLASE/////////////////////////////////////////////////
-    constructor(name, description = "") {
-        //Excepciones de las propiedades 
+    //?////////////////////CONSTRUCTOR DE LA CLASE///////////////////////
+    constructor(name, description = "", imageUrl) {
+        //Excepciones de las propiedades
         if (name === undefined) {
             throw new NombreObligatorio();
         }
         //Propiedades del constructor
         this.#name = name;
         this.#description = description;
-
+        this.#imageUrl = imageUrl;
     }
-    ///////////////////////////////////////////////GETTER Y SETTER/////////////////////////////////////////////
-    //Setter para el nombre
+    //?////////////////////////GETTER Y SETTER///////////////////////////
+    // Setter para el nombre
     setName(name) {
         //Excepcion para que el nombre no este vacio
         if (name === undefined) {
             throw new NombreObligatorio();
         }
         this.#name = name;
-
     }
-    //Getter para el nombre
+    // Getter para el nombre
     getName() {
         return this.#name;
     }
-    //Setter para la descripcion
+    // Setter para la descripcion
     setDescription(description) {
         this.#description = description;
     }
-    //Getter para la descripcion
+    // Getter para la descripcion
     getDescription() {
         return this.#description;
     }
-    ////////////////////////////////////////////////////////METODOS//////////////////////////////////////////////
-    toString(){
-        return ("El nombre del menu es: " + this.#name + " y la descripcion es: " + this.#description); 
+    // Setter para la url de la imagen
+    setImageUrl(imageUrl) {
+        this.#imageUrl = imageUrl;
+    }
+    // Getter para obtener la url de la imagen
+    getImageUrl() {
+        return this.#imageUrl;
     }
 
+    //?/////////////////////////////METODOS//////////////////////////////
+    toString() {
+        return (
+            "El nombre del menu es: " +
+            this.#name +
+            " y la descripcion es: " +
+            this.#description +
+            " y la url de la imagen es: " +
+            this.#imageUrl
+        );
+    }
 }
 
-////////////////////////////////////////////////EXPORTACION DE LA CLASE//////////////////////////////////////////////
-export {
-    Menu
-};
+//?///////////////////////EXPORTACION DE LA CLASE/////////////////////////
+export { Menu };

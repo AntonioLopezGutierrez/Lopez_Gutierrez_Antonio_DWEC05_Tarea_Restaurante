@@ -20,17 +20,27 @@ console.log("");
 // Creacion de la primera categoria
 let categoria1 = restauranteModelo.createCategory(
     "Entrantes",
-    "Son pequeñas porciones para abrir el apetito"
+    "Son pequeñas porciones para abrir el apetito",
+    "/imagenes/imagenesCategorias/imagenEntrante.png"
 );
 // Creacion de la segunda categoria
 let categoria2 = restauranteModelo.createCategory(
     "Primeros",
-    "Es mas ligero que el plato principal"
+    "Es mas ligero que el plato principal",
+    "/imagenes/imagenesCategorias/imagenPrimerosPlatos.png"
 );
 // Creacion de la tercera categoria
-let categoria3 = restauranteModelo.createCategory("Segundos", "Es el plato principal de la comida");
+let categoria3 = restauranteModelo.createCategory(
+    "Segundos",
+    "Es el plato principal de la comida",
+    "/imagenes/imagenesCategorias/imagenSegundosPlatos.png"
+);
 // Creacion de la tercera categoria
-let categoria4 = restauranteModelo.createCategory("Postre", "Es el ultimo plato de la comida");
+let categoria4 = restauranteModelo.createCategory(
+    "Postre",
+    "Es el ultimo plato de la comida",
+    "/imagenes/imagenesCategorias/imagenPostres.png"
+);
 //+ Agregar las categorias
 // Añadimos la primerra categoria
 restauranteModelo.addCategory(categoria1);
@@ -183,32 +193,39 @@ restauranteModelo.assignCategoryToDish(categoria4, plato16);
 // Creamos el primer alergeno
 let alergeno1 = restauranteModelo.createAllergen(
     "Lacteos",
-    "Son alergenos derivados de la leche de la vaca"
+    "Son alergenos derivados de la leche de la vaca",
+    "/imagenes/imagenesAlergenos/alergenoLacteos.png"
 );
 // Creamos el segundo alergeno
 let alergeno2 = restauranteModelo.createAllergen(
     "Frutos secos",
-    "Son alergenos derivados de los frutos secos"
+    "Son alergenos derivados de los frutos secos",
+    "/imagenes/imagenesAlergenos/alergenoFrutos.png"
+
 );
 // Creamos el tercer alergeno
 let alergeno3 = restauranteModelo.createAllergen(
     "Pescado",
-    "Son alergenos derivados de los pescados y mariscos"
+    "Son alergenos derivados de los pescados y mariscos",
+    "/imagenes/imagenesAlergenos/alergenoPescado.png"
 );
 // Creamos el cuarto alergeno
 let alergeno4 = restauranteModelo.createAllergen(
     "Proteinas",
-    "Son alergenos derivados de las proteinas de algunos productos"
+    "Son alergenos derivados de las proteinas de algunos productos",
+    "/imagenes/imagenesAlergenos/alergenoProteinas.png"
 );
 // Creamos el quinto alergeno
 let alergeno5 = restauranteModelo.createAllergen(
     "Gluten",
-    "Son alergenos derivados del trigo, cebada, centeno y deribados"
+    "Son alergenos derivados del trigo, cebada, centeno y deribados",
+    "/imagenes/imagenesAlergenos/alergenoGluten.png"
 );
 // Creamos el sexto alergeno
 let alergeno6 = restauranteModelo.createAllergen(
     "Verduras",
-    "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines"
+    "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+    "/imagenes/imagenesAlergenos/alergenoVerduras.png"
 );
 
 //+ Agregacion de los alegenos a los platos
@@ -249,32 +266,55 @@ restauranteModelo.assignAllergenToDish(plato16, alergeno5);
 //+ Creacion de los menus
 // Creacion del primer menu
 let menu1 = restauranteModelo.createMenu(
-    "Menu de la casa",
-    "Menus de elaborado con platos de la casa"
+    "Menu degustacion",
+    "Menu elaborado con un degustacion de platos de la casa",
+    "/imagenes/imagenesMenus/menuDegustacion.png"
 );
 // Creacion del segundo menu
 let menu2 = restauranteModelo.createMenu(
-    "Menu de la casa especial",
-    "Menus degustacion de platos especiales"
+    "Menu para bodas",
+    "Menus elaborado para bodas y eventos",
+    "/imagenes/imagenesMenus/menuBodas.png"
 );
 // Creacion del tercer menu
 let menu3 = restauranteModelo.createMenu(
-    "Menu de fin de semana",
-    "Menus para fines de semana y festivos"
+    "Menu de semana",
+    "Menus para dias laborales y fines de semana",
+    "/imagenes/imagenesMenus/menuSemanal.png"
 );
+
+// Creacion del cuarto menu
+let menu4 = restauranteModelo.createMenu(
+    "Menu ejecutivos",
+    "Menus para personal de oficinas o administrativo",
+    "/imagenes/imagenesMenus/menuEjecutivo.png"
+);
+
 //+ Asignado de platos al menu
 // Asignamos los platos al menu 1
 restauranteModelo.assignDishToMenu(menu1, plato1);
 restauranteModelo.assignDishToMenu(menu1, plato3);
 restauranteModelo.assignDishToMenu(menu1, plato5);
+restauranteModelo.assignDishToMenu(menu1, plato13);
+
 // Asignamos los platos al menu 2
 restauranteModelo.assignDishToMenu(menu2, plato2);
 restauranteModelo.assignDishToMenu(menu2, plato4);
 restauranteModelo.assignDishToMenu(menu2, plato6);
+restauranteModelo.assignDishToMenu(menu2, plato14);
+
 // Asignamos los platos al menu 3
 restauranteModelo.assignDishToMenu(menu3, plato7);
 restauranteModelo.assignDishToMenu(menu3, plato9);
 restauranteModelo.assignDishToMenu(menu3, plato11);
+restauranteModelo.assignDishToMenu(menu3, plato15);
+
+// Asignamos los platos al menu 4
+restauranteModelo.assignDishToMenu(menu4, plato8);
+restauranteModelo.assignDishToMenu(menu4, plato10);
+restauranteModelo.assignDishToMenu(menu4, plato12);
+restauranteModelo.assignDishToMenu(menu4, plato16);
+
 
 //******************Creacion de restaurantes*****************************
 //+ Creacion de las coordenadas para el restaurante
