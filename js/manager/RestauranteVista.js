@@ -165,7 +165,7 @@ class RestauranteVista {
         // Creamos un nuevo elemento option
         let opcionGestion5 = document.createElement("option");
         // Asignamos el texto al elemento
-        opcionGestion5.innerText = "Administrar Platos";
+        opcionGestion5.innerText = "Crear restaurante";
         // Agregamos el option al select
         selectGestion.appendChild(opcionGestion5);
         //+ Elemento option para modificar las categorias de un plato
@@ -413,8 +413,6 @@ class RestauranteVista {
         this.mainContenidoListado.appendChild(contenedor);
     }
 
-    //!/////////////////////////////////////////////////////////////////
-    //!///////////////////////////////////////////////////////////////////
     //* Metodo para el mostrado de los menus desde la barra de navegacion
     #mostradoMenus(menus) {
         // Limpiamos el contenido del main contenido
@@ -450,8 +448,6 @@ class RestauranteVista {
         this.mainContenido.appendChild(contenedorPrincipal);
     }
 
-    //!///////////////////////////////////////////////////////////////////
-    //!///////////////////////////////////////////////////////////////////
     //* Metodo para el mostrado de los menus del restaurnate de la barra lateral
     #mostradoMenuLateralMenu(menus) {
         // Limpiamos el contenido del main contenido
@@ -645,6 +641,234 @@ class RestauranteVista {
         this.mainContenido.appendChild(contenedorPrincipal);
     }
 
+    //!//////////////////////////////////////////////////////////////////
+    //?/////////////METODOS PARA EL MOSTRADO DE FORMULARIOS//////////////
+    //?//////////////////////////////////////////////////////////////////
+    //* Metodo que nos mostrara un formularion para crear nuevos platos
+    #nuevoPlato(categorias, alergenos) {
+        // Borramos el contenido del contenido principal
+        this.mainContenido.innerHTML = "";
+
+        //* Creamos un nuevo elemento de formulario
+        let formulariCrearPlato = document.createElement("form");
+        // Asisnamos el atributo name al elemento
+        formulariCrearPlato.name = "formularioCrearPlato";
+        // Asignamos la clase al formulario
+        formulariCrearPlato.className = "formularioCrearPlato";
+
+        //* Creamos un elemento label para el nombre
+        let etiquetaNombre = document.createElement("label");
+        // Asignamos el atributo for a la etiqueta
+        etiquetaNombre.for = "nombrePlato";
+        // Asignamos el texto a la etiqueta
+        etiquetaNombre.innerText = "Introduzca el nombre del plato";
+
+        //* Creamos un elemento input para el nombre
+        let inputNombre = document.createElement("input");
+        // Asignamos el atributo nombre al input
+        inputNombre.name = "nombrePlato";
+        // Establecemos el tipo del input
+        inputNombre.type = "text";
+        // Asignamos la clase al elemento de texto
+        inputNombre.className = "inputTextFormulario";
+
+        //* Creamos un elemento label para la imagen
+        let etiquetaImagen = document.createElement("label");
+        // Asignamos el atributo for a la etiqueta
+        etiquetaImagen.for = "nombreImagen";
+        // Asignamos el texto a la etiqueta
+        etiquetaImagen.innerText = "Introduzca la url de la imagen";
+
+        //* Creamos un elemento input para la imagen
+        let inputImagen = document.createElement("input");
+        // Asignamos el atributo nombre al input
+        inputImagen.name = "nombreImagen";
+        // Establecemos el tipo del input
+        inputImagen.type = "text";
+        // Asignamos la clase al elemento de texto
+        inputImagen.className = "inputTextFormulario";
+
+        //* Creamos un elemento label para la descripcion
+        let etiquetaDescripcion = document.createElement("label");
+        // Asignamos el atributo for a la etiqueta
+        etiquetaDescripcion.for = "descripcionPlato";
+        // Asignamos el texto a la etiqueta
+        etiquetaDescripcion.innerText = "Introduzca la descripcion del plato";
+
+        //* Creamos un elemento input para la descipcion
+        let inputDescripcion = document.createElement("input");
+        // Asignamos el atributo nombre al input
+        inputDescripcion.name = "descripcionPlato";
+        // Agregamos el tipo del imput
+        inputDescripcion.type = "textarea";
+        // Asignamos el texto de muesta
+        inputDescripcion.placeholder = "Ej: Es una delicia casera...";
+        // Asignamos la clase al elemento de texto
+        inputDescripcion.className = "inputTextAreaFormulario";
+
+        //* Creamos un elemento label para los ingredientes
+        let etiquetaIngredientes = document.createElement("label");
+        // Asignamos el atributo for a la etiqueta
+        etiquetaIngredientes.for = "ingredientesPlato";
+        // Asignamos el texto a la etiqueta
+        etiquetaIngredientes.innerText =
+            "Introduzca los ingredientes del plato separados por comas";
+
+        //* Creamos un elemento input para los ingredientes
+        let inputIngredientes = document.createElement("input");
+        // Asignamos el atributo nombre al input
+        inputIngredientes.name = "ingredientesPlato";
+        // Asignamos el tipo del input
+        inputIngredientes.type = "textarea";
+        // Asignamos el texto de fondo
+        inputIngredientes.placeholder = "Ingrediente1, Ingrediente2, ...";
+        // Asignamos la clase al elemento de texto
+        inputIngredientes.className = "inputTextAreaFormulario";
+
+        //* Creamos un elemento label para las categorias
+        let etiquetaTablaCategorias = document.createElement("label");
+        // Asignamos el atributo for a la etiqueta
+        etiquetaTablaCategorias.for = "tablaCategorias";
+        // Asignamos el texto a la etiqueta
+        etiquetaTablaCategorias.innerText = "Seleccione la categoria a la que pertenece el plato";
+
+        //* Creamos una tabla para mostrar las categorias
+        let tablaCategorias = document.createElement("table");
+        // Le asignamos la clase a la tabla
+        tablaCategorias.className = "tablaFormularios";
+        // Asignamos el atributo name a la tabla
+        tablaCategorias.name = "tablaCategorias";
+        // Recorremos el iterador de categorias
+        for (const categoria of categorias) {
+            // Creamos una nueva fila para la tabla
+            let fila = document.createElement("tr");
+            // Creamos una celda para el checkbox
+            let celdaCheckbox = document.createElement("td");
+            // Creamos el checkbox
+            let checkbox = document.createElement("input");
+            // Asignamos el atributo type al elemento
+            checkbox.type = "checkbox";
+            // Agregamos el checkbox a la celda
+            celdaCheckbox.appendChild(checkbox);
+            // Creamos una celda para el nombre de la categoria
+            let celdaNombreCategoria = document.createElement("td");
+            // Creamos un texto con el nombre de la categoria
+            let nombreCategoriaTexto = document.createTextNode(categoria.categoria.getName());
+            // Agregamos el texto a la celda
+            celdaNombreCategoria.appendChild(nombreCategoriaTexto);
+            // Agregamos el checkbox a la fila
+            fila.appendChild(celdaCheckbox);
+            // El nombre de la categoria a la fila
+            fila.appendChild(celdaNombreCategoria);
+            // Agregamos a laj tabla la fila
+            tablaCategorias.appendChild(fila);
+        }
+
+        //* Creamos un elemento label para los alergenos
+        let etiquetaTablaAlergenos = document.createElement("label");
+        // Asignamos el atributo for a la etiqueta
+        etiquetaTablaAlergenos.for = "tablaAlergenos";
+        // Asignamos el texto a la etiqueta
+        etiquetaTablaAlergenos.innerText = "Seleccione los alergenos a los que pertenece el plato";
+
+        //* Creamos una tabla para mostrar los alergenos
+        let tablaAlergenos = document.createElement("table");
+        // Le asignamos la clase a la tabla
+        tablaAlergenos.className = "tablaFormularios";
+        // Asignamos el atributo name a la tabla
+        tablaAlergenos.name = "tablaAlergenos";
+        // Recorremos el iterador de alergenos
+        for (const alergeno of alergenos) {
+            // Creamos una nueva fila para la tabla
+            let fila = document.createElement("tr");
+            // Creamos una celda para el checkbox
+            let celdaCheckbox = document.createElement("td");
+            // Creamos el checkbox
+            let checkbox = document.createElement("input");
+            // Asignamos el atributo type al elemento
+            checkbox.type = "checkbox";
+            // Agregamos el checkbox a la celda
+            celdaCheckbox.appendChild(checkbox);
+            // Creamos una celda para el nombre de los alergenos
+            let celdaNombreAlergeno = document.createElement("td");
+            // Creamos un texto con el nombre de los alergenos
+            let nombreAlergenoTexto = document.createTextNode(alergeno.getName());
+            // Agregamos el texto a la celda
+            celdaNombreAlergeno.appendChild(nombreAlergenoTexto);
+            // Agregamos el checkbox a la fila
+            fila.appendChild(celdaCheckbox);
+            // El nombre de los alergenos a la fila
+            fila.appendChild(celdaNombreAlergeno);
+            // Agregamos a la tabla la fila
+            tablaAlergenos.appendChild(fila);
+        }
+
+        //* Creamos un elemento boton para el boton de enviar
+        let botonEnviar = document.createElement("button");
+        // Asignamos el texto al boton
+        botonEnviar.innerHTML = "Enviar";
+        // Asignamos la clase al elemento de texto
+        botonEnviar.className = "inputButtonFormulario";
+        // Asignamos el tipo al boton
+        botonEnviar.type = "submit";
+
+        //* Agregaciones de los elementos al formulario
+        // Agregamos la etiqueta de nombre
+        formulariCrearPlato.appendChild(etiquetaNombre);
+        // Agregamos el imput para el nombre
+        formulariCrearPlato.appendChild(inputNombre);
+        // Agregamos la etiqueta para la imagen
+        formulariCrearPlato.appendChild(etiquetaImagen);
+        // Agregamos el imput para la imagen
+        formulariCrearPlato.appendChild(inputImagen);
+        // Agregamos la etiqueta para la descripcion
+        formulariCrearPlato.appendChild(etiquetaDescripcion);
+        // Agregamos el input para la descripcion
+        formulariCrearPlato.appendChild(inputDescripcion);
+        // Agregamos la etiqueta para los ingredientes
+        formulariCrearPlato.appendChild(etiquetaIngredientes);
+        // Agregamos el input para los ingredientes
+        formulariCrearPlato.appendChild(inputIngredientes);
+        // Agregamos la etiqueta para las categorias
+        formulariCrearPlato.appendChild(etiquetaTablaCategorias);
+        // Agregamos la tabla de categoria al formulario
+        formulariCrearPlato.appendChild(tablaCategorias);
+        // Agregamos la etiqueta para los alergenos
+        formulariCrearPlato.appendChild(etiquetaTablaAlergenos);
+        // Agregamos la tabla de categorias al formulario
+        formulariCrearPlato.appendChild(tablaAlergenos);
+        // Agregamos el boton de enviar
+        formulariCrearPlato.appendChild(botonEnviar);
+
+        //* Agregamos el formulario al contenido principal
+        this.mainContenido.appendChild(formulariCrearPlato);
+    }
+
+    //* Metodo que mostrara un formulario para eliminar los platos
+    #eliminarPlato() {
+        console.log("eliminar plato");
+    }
+
+    //* Metodo que mostrara un formulario para la administracion de los platos
+    #administrarPlatos() {
+        console.log("administrar platos");
+    }
+
+    //* Metodo que mostrara un formularion para administrar las categorias
+    #administrarCategorias() {
+        console.log("administrar categorias");
+    }
+
+    //* Metodo que mostrara un formulario para crear un restaurante
+    #nuevoRestaurante() {
+        console.log("nuevo restaurante");
+    }
+
+    //* Metodo que mostrara un formulario para administrar los platos de la categoria
+    #categoriasPlatos() {
+        console.log("categorias platos");
+    }
+
     //?////////////////METODOS QUE LLAMA CONTROLADOR////////////////////
     //?//////////////////////////////////////////////////////////////////
     //* Metodo que se carga justo al cargar la pagina
@@ -752,6 +976,42 @@ class RestauranteVista {
         this.#mostradoPlatos(platos);
         // Llamada al metodo para mostrar los platos que tiene en menu en el latera
         this.#mostradoMenuLateralPlatos(platos);
+    }
+
+    //!//////////////////////////////////////////////////////////////////
+    //?//METODOS QUE LLAMA EL CONTROLADOR PARA ELEMENTOS DEL FORMULARIO//
+    //?//////////////////////////////////////////////////////////////////
+    //* Metodo que mostrara los formularios segun la opcion seleccionada
+    formulariosGestion(opcionSeleccionada, categorias, alergenos, platos, menus) {
+        // Llamada al metodo de actualizar migas de pan
+        this.#actualizarMigasPan("Estamos en la página: FormulariosGestion");
+        // Switch para manejar las diferentes opciones para el mostrado de formulario
+        switch (opcionSeleccionada) {
+            case "Crear Plato":
+                // Llamada al metodo que mostrara un formuliario para crear un plato
+                this.#nuevoPlato(categorias, alergenos);
+                break;
+            case "Eliminar plato":
+                // Llamada al metodo que mostrara un formulario para eliminar plato
+                this.#eliminarPlato(platos);
+                break;
+            case "Administrar Platos":
+                // LLamada al metodo que mostrara un formulario para la gestion de los platos
+                this.#administrarPlatos();
+                break;
+            case "Administrar Categorias":
+                // Llamada al metodo que mostrara un formulatio para administrar las categorias
+                this.#administrarCategorias();
+                break;
+            case "Crear restaurante":
+                // Llamada al metodo que mostrara un formulario para crear un nuevo restaurante
+                this.#nuevoRestaurante();
+                break;
+            case "Categorias Platos":
+                // LLamada al metodo que mostrara un formularion para modificar los platos de la categoria
+                this.#categoriasPlatos();
+                break;
+        }
     }
 
     //?//////////////////METODOS PARA EL CAMBIO DE ESTILOS///////////////
@@ -869,6 +1129,13 @@ class RestauranteVista {
                 "",
                 null
             );
+            // Guardamos una referencia al elemento select
+            let selectElement = event.target;
+            // Si se selecciona una opcion diferente a la primera
+            if (selectElement.selectedIndex !== 0) {
+                // Reiniciamos el select seleccionando la primera opcion
+                selectElement.selectedIndex = 0;
+            }
         });
     }
 
@@ -1120,41 +1387,61 @@ class RestauranteVista {
         }
     }
 
-        //* Metodo que ejecuta el manejador del controlador que mostrara los platos del menu
-        manejadorMenusPlatosLateral(manejadorMenusPlatosLateral) {
-            // Obtenemos los elementos de lista
-            let platos = document.getElementsByClassName("pMenuLateralMenus");
-            // Iteramos sobre los elementos obtenidos
-            for (const plato of platos) {
-                // Agregamos un event listener a cada elemento
-                plato.addEventListener("click", (event) => {
-                    // LLamada al metodo del controlador que nos mostrra los platos que tiene un menu
-                    manejadorMenusPlatosLateral(event.currentTarget.dataset.pmenulateralmenu);
-                    // Llamada al metodo de actualizar migas de pan
-                    this.#actualizarMigasPan("Estamos en la página: MenuMostrarPlatos");
-                    // Apilamos una entrada en el historial con el atributo personalizado
-                    history.pushState(
-                        {
-                            action: "menuMostrarPlatos",
-                            menuSeleccionado: event.currentTarget.dataset.pmenulateralmenu,
-                        },
-                        "",
-                        null
-                    );
-                    // Prevenimos el comportamiento predeterminado
-                    event.preventDefault();
-                });
-            }
+    //* Metodo que ejecuta el manejador del controlador que mostrara los platos del menu
+    manejadorMenusPlatosLateral(manejadorMenusPlatosLateral) {
+        // Obtenemos los elementos de lista
+        let platos = document.getElementsByClassName("pMenuLateralMenus");
+        // Iteramos sobre los elementos obtenidos
+        for (const plato of platos) {
+            // Agregamos un event listener a cada elemento
+            plato.addEventListener("click", (event) => {
+                // LLamada al metodo del controlador que nos mostrra los platos que tiene un menu
+                manejadorMenusPlatosLateral(event.currentTarget.dataset.pmenulateralmenu);
+                // Llamada al metodo de actualizar migas de pan
+                this.#actualizarMigasPan("Estamos en la página: MenuMostrarPlatos");
+                // Apilamos una entrada en el historial con el atributo personalizado
+                history.pushState(
+                    {
+                        action: "menuMostrarPlatos",
+                        menuSeleccionado: event.currentTarget.dataset.pmenulateralmenu,
+                    },
+                    "",
+                    null
+                );
+                // Prevenimos el comportamiento predeterminado
+                event.preventDefault();
+            });
         }
+    }
 
-
-
-
-
-
-
-
-    ///pMenuLateralMenus
+    //!//////////////////////////////////////////////////////////////////////
+    //?///////////MANEJADORES DE EVENTOS PARA LOS FORMULARIOS////////////////
+    //?//////////////////////////////////////////////////////////////////////
+    //* Metodo que ejecuta el manejador del controlador que nos mostrara los formularios
+    manejadorSelectBarraNavegacionGestion(manejadorSelectBarraNavegacionGestion) {
+        // Obtenemos el elemento select
+        let selectGestion = document.getElementById("selectBarraNavegacionGestion");
+        // Hacemos una escucha al evento change del select
+        selectGestion.addEventListener("change", (event) => {
+            // Llamamos al manejador del controlador al que le introduciremos la opcion seleccionada
+            manejadorSelectBarraNavegacionGestion(event.target.value);
+            // Llamada al metodo de actualizar migas de pan
+            this.#actualizarMigasPan("Estamos en la página: FormulariosGestion");
+            // Apilamos una nueva entrada al objeto history a la que le añadimos la opcion seleccionada
+            history.pushState(
+                { action: "formulariosGestion", opcionSeleccionada: event.target.value },
+                "",
+                null
+            );
+            // Guardamos una referencia al elemento select
+            let selectElement = event.target;
+            // Si se selecciona una opcion diferente a la primera
+            if (selectElement.selectedIndex !== 0) {
+                // Reiniciamos el select seleccionando la primera opcion
+                selectElement.selectedIndex = 0;
+            }
+        });
+    }
 }
 
 //?///////////////////////////EXPORTACIONES//////////////////////////////

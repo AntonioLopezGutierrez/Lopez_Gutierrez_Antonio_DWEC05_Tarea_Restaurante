@@ -63,6 +63,14 @@ const historyActions = {
         // Llamada al metodo que muestra la descripcion del restaurante
         miControlador.onRestauranteDescripcion();
     },
+
+    //!//////////////////////////////////////////////////////////////////
+    //?////////////METODOS PARA EL LMOSTRADO DE FORMULARIOS//////////////
+    //* Accion que nos mostrara los formularios para la gestion
+    formulariosGestion() {
+        // Llamada al metodo que muestra los fomularios
+        miControlador.onFormulariosGestion();
+    },
 };
 
 //?////ESCUCHA DEL EVENTO Y LLAMADA A LOS METODOS DEL OBJETO/////
@@ -74,7 +82,6 @@ window.addEventListener("popstate", (event) => {
         historyActions[event.state.action](event);
     }
 });
-
 
 //?//////////////////ESTADO INICIAL DEL HISTORIAL////////////////////////
 // Reemplazamos el estado actual del history con el de la accion de inicio

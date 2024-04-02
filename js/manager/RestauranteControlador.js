@@ -36,16 +36,20 @@ class RestauranteControlador {
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosLateral(this.manejadorCategoriasPlatosLateral);
+        // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
+        this[VISTA].manejadorSelectBarraNavegacionGestion(
+            this.manejadorSelectBarraNavegacionGestion
+        );
     }
 
     //?//////////////METODOS PARA LOS EVENTOS DEL USUARIO////////////////
     //* Metodo que llama al metodo de carga de la vista
     onCarga = () => {
-        // Obtenemos los datos del modelo
+        //+ Obtenemos los datos del modelo
         const categorias = this[MODELO].getCategories();
         const platos = this[MODELO].getDishes();
         const restaurantes = this[MODELO].getRestaurant();
-        // Llama al metodo de inicio de la vista con argumento los iteradores
+        //+ Llama al metodo de inicio de la vista con argumento los iteradores
         this[VISTA].carga(categorias, platos, restaurantes);
     };
 
@@ -76,6 +80,10 @@ class RestauranteControlador {
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosLateral(this.manejadorCategoriasPlatosLateral);
+        // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
+        this[VISTA].manejadorSelectBarraNavegacionGestion(
+            this.manejadorSelectBarraNavegacionGestion
+        );
     };
 
     //* Metodo que llama al metodo de mostradoCategorias de la vista
@@ -124,6 +132,43 @@ class RestauranteControlador {
         this[VISTA].manejadorPlatosDescripcion(this.manejadorPlatosDescripcion);
         // Llamamos al manejador que mostrara la descripcion de los platos que tiene la categoria desde el menu lateral
         this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
+    };
+
+    //!//////////////////////////////////////////////////////////////////
+    //?///////////METODOS PARA LOS EVENTOS DE FORMULARIOS////////////////
+    onFormulariosGestion = (opcionSeleccionada) => {
+        // Comprobamos si ha optenido argumentos
+        if (opcionSeleccionada) {
+            // Obtenemos la categorias del modelo
+            const categorias = this[MODELO].getCategories();
+            // Obtenemos los alergenos del modelo
+            const alergeno = this[MODELO].getAllergen();
+            // Obtenemos los platos del modelo
+            const platos = this[MODELO].getDishes();
+            // Obtenemos los menus del modelo
+            const menus = this[MODELO].getMenu();
+            // LLamamos al metodo de la vista para mostrar los formularios
+            this[VISTA].formulariosGestion(opcionSeleccionada, categorias, alergeno, platos, menus);
+        } else {
+            // Obtenemos la categorias del modelo
+            const categorias = this[MODELO].getCategories();
+            // Obtenemos los alergenos del modelo
+            const alergenos = this[MODELO].getAllergen();
+            // Obtenemos los platos del modelo
+            const platos = this[MODELO].getDishes();
+            // Obtenemos los menus del modelo
+            const menus = this[MODELO].getMenu();
+            // Obtenemos la opcion seleccionada del history que hemos almacenado al a0pilar la entrada
+            let opcionSeleccionada = history.state.opcionSeleccionada;
+            // Llamamos al metodo de la vista para mostrar los formularios
+            this[VISTA].formulariosGestion(
+                opcionSeleccionada,
+                categorias,
+                alergenos,
+                platos,
+                menus
+            );
+        }
     };
 
     //?//METODOS PARA LOS EVENTOS DE LOS USUARIOS EN ELEMENTOS GENERADOS//
@@ -389,6 +434,14 @@ class RestauranteControlador {
     manejadorMenusPlatosLateral = (menuNombre) => {
         // Llamamos al metodo de esta clase on menu motrar platos
         this.onMenuMostrarPlatos(menuNombre);
+    };
+
+    //!//////////////////////////////////////////////////////////////////
+    //?//////////MANEJADORES DE EVENTOS PARA FORMULARIOS/////////////////
+    //* Manejador para la seleccion de laj opcion de los formularios desde la barra de navegacion
+    manejadorSelectBarraNavegacionGestion = (opcionSeleccionada) => {
+        // Llamamos al metodo se la misma clase que nos mostrara los formularios
+        this.onFormulariosGestion(opcionSeleccionada);
     };
 }
 
