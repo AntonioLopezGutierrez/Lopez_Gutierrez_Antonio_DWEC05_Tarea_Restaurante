@@ -134,43 +134,6 @@ class RestauranteControlador {
         this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
     };
 
-    //!//////////////////////////////////////////////////////////////////
-    //?///////////METODOS PARA LOS EVENTOS DE FORMULARIOS////////////////
-    onFormulariosGestion = (opcionSeleccionada) => {
-        // Comprobamos si ha optenido argumentos
-        if (opcionSeleccionada) {
-            // Obtenemos la categorias del modelo
-            const categorias = this[MODELO].getCategories();
-            // Obtenemos los alergenos del modelo
-            const alergeno = this[MODELO].getAllergen();
-            // Obtenemos los platos del modelo
-            const platos = this[MODELO].getDishes();
-            // Obtenemos los menus del modelo
-            const menus = this[MODELO].getMenu();
-            // LLamamos al metodo de la vista para mostrar los formularios
-            this[VISTA].formulariosGestion(opcionSeleccionada, categorias, alergeno, platos, menus);
-        } else {
-            // Obtenemos la categorias del modelo
-            const categorias = this[MODELO].getCategories();
-            // Obtenemos los alergenos del modelo
-            const alergenos = this[MODELO].getAllergen();
-            // Obtenemos los platos del modelo
-            const platos = this[MODELO].getDishes();
-            // Obtenemos los menus del modelo
-            const menus = this[MODELO].getMenu();
-            // Obtenemos la opcion seleccionada del history que hemos almacenado al a0pilar la entrada
-            let opcionSeleccionada = history.state.opcionSeleccionada;
-            // Llamamos al metodo de la vista para mostrar los formularios
-            this[VISTA].formulariosGestion(
-                opcionSeleccionada,
-                categorias,
-                alergenos,
-                platos,
-                menus
-            );
-        }
-    };
-
     //?//METODOS PARA LOS EVENTOS DE LOS USUARIOS EN ELEMENTOS GENERADOS//
     //* Metodo que muestra la descripcion de los restaurantes
     onRestauranteDescripcion = (restauranteNombre) => {
@@ -338,6 +301,162 @@ class RestauranteControlador {
         }
     };
 
+    //!//////////////////////////////////////////////////////////////////
+    //?///////////METODOS PARA LOS EVENTOS DE FORMULARIOS////////////////
+    //* Metodo que nos mostrara los formulularios para la gestion
+    onFormulariosGestion = (opcionSeleccionada) => {
+        // Obtenemos la categorias del modelo
+        const categorias = this[MODELO].getCategories();
+        // Obtenemos los alergenos del modelo
+        const alergenos = this[MODELO].getAllergen();
+        // Obtenemos los platos del modelo
+        const platos = this[MODELO].getDishes();
+        // Obtenemos los menus del modelo
+        const menus = this[MODELO].getMenu();
+        // Comprobamos si ha optenido argumentos
+        if (opcionSeleccionada) {
+            // Comprobamos la opcion seleccionada para llamar al metodo de la vista y al manejador
+            switch (opcionSeleccionada) {
+                case "Crear Plato":
+                    // Llamada al metodo de la vista que mustra el formulario para el nuevo plato
+                    this[VISTA].nuevoPlato(categorias, alergenos);
+                    // LLamamos al manejador para obtener los datos del formulario de creacion de platos
+                    this[VISTA].manejadorFormularioCrearPlato(this.manejadorFormularioCrearPlato);
+                    break;
+                case "Eliminar plato":
+                    // Llamada al metodo de la vista para  mostrar el formulario de eliminar plato
+                    this[VISTA].eliminarPlato(platos);
+                    break;
+                case "Administrar Platos":
+                    // LLamada al metodo de la vista para mostrar los formularios para administrar platos en los menus
+                    this[VISTA].administrarPlatos(menus, platos);
+                    // LLamamos al manejador para obtener el menu y mostrar los platos para la desasignacion
+                    this[VISTA].manejadorFormularioMostrarPlatosMenuDesasignacion(
+                        this.manejadorFormularioMostrarPlatosMenuDesasignacion
+                    );
+                    // LLamamos al manejador para obtener el menu y mostrar los platos para la ordenacion
+                    this[VISTA].manejadorFormularioMostrarPlatosMenuOrdenacion(
+                        this.manejadorFormularioMostrarPlatosMenuOrdenacion
+                    );
+                    break;
+                case "Administrar Categorias":
+                    // Llamada al metodo de la vista para mosrtrar los formularios para administrar las categorias
+                    this[VISTA].administrarCategorias(categorias);
+                    break;
+                case "Crear restaurante":
+                    // Llamada al metodo de la vista para mostrar el formulario para crear un restaurante
+                    this[VISTA].nuevoRestaurante();
+                    break;
+                case "Categorias Platos":
+                    // LLamada al metodo de la vista para mostrar rl formulario para modificar los platos de la categoria
+                    this[VISTA].categoriasPlatos(platos, categorias);
+                    // LLamamos al manejador para obtener los platos de las categorias a dessignar
+                    this[VISTA].manejadorFormularioMostrarPlatosCategoriaDesasignado(
+                        this.manejadorFormularioMostrarPlatosCategoriaDesasignado
+                    );
+                    break;
+            }
+        } else {
+            // Obtenemos la opcion seleccionada del history que hemos almacenado al a0pilar la entrada
+            let opcionSeleccionada = history.state.opcionSeleccionada;
+            // Comprobamos la opcion seleccionada para llamar al metodo de la vista y al manejador
+            switch (opcionSeleccionada) {
+                case "Crear Plato":
+                    // Llamada al metodo de la vista que mustra el formulario para el nuevo plato
+                    this[VISTA].nuevoPlato(categorias, alergenos);
+                    // LLamamos al manejador para obtener los datos del formulario de creacion de platos
+                    this[VISTA].manejadorFormularioCrearPlato(this.manejadorFormularioCrearPlato);
+                    break;
+                case "Eliminar plato":
+                    // Llamada al metodo de la vista para  mostrar el formulario de eliminar plato
+                    this[VISTA].eliminarPlato(platos);
+                    break;
+                case "Administrar Platos":
+                    // LLamada al metodo de la vista para mostrar los formularios para administrar platos en los menus
+                    this[VISTA].administrarPlatos(menus);
+                    // LLamamos al manejador para obtener el menu y mostrar los platos para la desasignacion
+                    this[VISTA].manejadorFormularioMostrarPlatosMenuDesasignacion(
+                        this.manejadorFormularioMostrarPlatosMenuDesasignacion
+                    );
+                    // LLamamos al manejador para obtener el menu y mostrar los platos para la ordenacion
+                    this[VISTA].manejadorFormularioMostrarPlatosMenuOrdenacion(
+                        this.manejadorFormularioMostrarPlatosMenuOrdenacion
+                    );
+                    break;
+                case "Administrar Categorias":
+                    // Llamada al metodo de la vista para mosrtrar los formularios para administrar las categorias
+                    this[VISTA].administrarCategorias(categorias);
+                    break;
+                case "Crear restaurante":
+                    // Llamada al metodo de la vista para mostrar el formulario para crear un restaurante
+                    this[VISTA].nuevoRestaurante();
+                    break;
+                case "Categorias Platos":
+                    // LLamada al metodo de la vista para mostrar rl formulario para modificar los platos de la categoria
+                    this[VISTA].categoriasPlatos(platos, categorias);
+                    // LLamamos al manejador para obtener los platos de las categorias a dessignar
+                    this[VISTA].manejadorFormularioMostrarPlatosCategoriaDesasignado(
+                        this.manejadorFormularioMostrarPlatosCategoriaDesasignado
+                    );
+                    break;
+            }
+        }
+    };
+
+    //* Metodo para el mostrado de platos segun el menu seleccionado para la desasignacion
+    onManejadorFormularioMostrarPlatosMenuDesasignacion = (menuSeleccionado) => {
+        // Obtenemos el array de con los menus
+        let menusArray = [...this[MODELO].getMenu()];
+        // Filtramos los menus por el nombre del menu
+        let menuFiltrado = menusArray.filter((menu) => menu.menus.getName() == menuSeleccionado);
+        // Obtenemos array con los platos que tiene el menu
+        let arrayPlatosMenu = menuFiltrado.map((plato) => plato.platos);
+        // Llamada al metodo de la vista que muestra los platos del menu
+        this[VISTA].menuMostrarPlatosDesasignacion(arrayPlatosMenu[0]);
+    };
+
+    //* Metodo para el mostrado de plaros segun el menu seleccionado para la oordenacion
+    onManejadorFormularioMostrarPlatosMenuOrdenacion = (menuSeleccionado) => {
+        // Obtenemos el array de con los menus
+        let menusArray = [...this[MODELO].getMenu()];
+        // Filtramos los menus por el nombre del menu
+        let menuFiltrado = menusArray.filter((menu) => menu.menus.getName() == menuSeleccionado);
+        // Obtenemos array con los platos que tiene el menu
+        let arrayPlatosMenu = menuFiltrado.map((plato) => plato.platos);
+        // Llamada al metodo de la vista que muestra los platos del menu
+        this[VISTA].menuMostrarPlatosOrdenacion(arrayPlatosMenu[0]);
+    };
+
+    //* Metodo para el mostrado de platos segun el menu seleccionado para la desasignacion
+    onManejadorFormularioMostrarPlatosCategoriaDesasignado = (categoriaSeleccionada) => {
+        // Obtenemos el array de categorias
+        let arrayCategorias = [...this[MODELO].getCategories()];
+        // Filtrar las categorias por el nombre de las categorias
+        let categoriaFiltrado = arrayCategorias.filter(
+            (categoria) => categoria.categoria.getName() == categoriaSeleccionada
+        );
+        // Obtenemos los platos de las categorias
+        let platosCategorias = this[MODELO].getDishesInCategory(categoriaFiltrado[0]);
+        // Llamada al metodo de la vista que muestra los platos de la categoria
+        this[VISTA].categoriasMostrarPlatosDesasignado(platosCategorias);
+    };
+
+    //* Metodo para la creacion de platos asignado la categoria y los alergenos
+    onManejadorFormularioCrearPlato = (
+        nombre,
+        urlImagen,
+        descripcion,
+        ingredientesArray,
+        categoriasArray,
+        alergenosArray
+    ) => {
+        // LLamada al metodo del modelo para la creacion del plato
+        // Llamada al metodo del modelo para asignar las categorias
+        // LLamada al metodo para asignar los alergenos
+        // Llamada al metodo que mostrara el mensage de que se ha creado
+        console.log("HOLA");
+    };
+
     //?/////////////////////MANEJADORES DE EVENTOS///////////////////////
     //* Manejador para el boton de inicio en la barra de navegacion
     manejadorInicio = () => {
@@ -442,6 +561,44 @@ class RestauranteControlador {
     manejadorSelectBarraNavegacionGestion = (opcionSeleccionada) => {
         // Llamamos al metodo se la misma clase que nos mostrara los formularios
         this.onFormulariosGestion(opcionSeleccionada);
+    };
+
+    //* Manejador que nos mostrara los platos que tiene el menu para la desasignacion
+    manejadorFormularioMostrarPlatosMenuDesasignacion = (menuSeleccionado) => {
+        // Llamamos al metodo de la misma clase que nos mostrara los platos a desasignar del menu
+        this.onManejadorFormularioMostrarPlatosMenuDesasignacion(menuSeleccionado);
+    };
+
+    //* Manejador que nos mostrara los platos que tiene el menu para su organizacion
+    manejadorFormularioMostrarPlatosMenuOrdenacion = (menuSeleccionado) => {
+        // Llamamos al metodo de la misma clase que nos mostrara los platos a organizar
+        this.onManejadorFormularioMostrarPlatosMenuOrdenacion(menuSeleccionado);
+    };
+
+    //* Manejador que nos mostrara los platos que tiene una categoria para desasignarlos
+    manejadorFormularioMostrarPlatosCategoriaDesasignado = (categoriaSeleccionada) => {
+        // Llamamaos al metodo de la misma clase que nos mostrara los platos a desasignar por categoria
+        this.onManejadorFormularioMostrarPlatosCategoriaDesasignado(categoriaSeleccionada);
+    };
+
+    //* Manejador para la creacion del plato desde el formulario
+    manejadorFormularioCrearPlato = (
+        nombre,
+        urlImagen,
+        descripcion,
+        ingredientesArray,
+        categoriasArray,
+        alergenosArray
+    ) => {
+        // LLamamos al metodo de la misma clase que creara el plato y asignara las categorias y alergenos
+        this.onManejadorFormularioCrearPlato(
+            nombre,
+            urlImagen,
+            descripcion,
+            ingredientesArray,
+            categoriasArray,
+            alergenosArray
+        );
     };
 }
 

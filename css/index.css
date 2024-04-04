@@ -597,7 +597,7 @@ header {
     font-size: 1.5em;
 }
 
-/*!-------------------------Estilos formularios------------------------*/
+/*! -------------------------Estilos formularios------------------------*/
 /*? Formulario para la creacion de platos*/
 .formularioCrearPlato {
     /* Establecemos un contenedor flexible*/
@@ -653,7 +653,7 @@ header {
     /* Alineamos el texto al centro*/
     text-align: center;
     /* Establecemos el tamaño de la fuente*/
-    font-size: 1.2em;
+    font-size: 1.5em;
     /* Establecemos el espacio de las columnas*/
     column-gap: 0.2em;
 }
@@ -675,12 +675,24 @@ header {
     row-gap: 1em;
 }
 
+/*? Formulario para la desasignacion de platos al menu*/
+.formularioDeasignacionPlatoMenu {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elementos*/
+    flex-direction: column;
+    /* Alineamos los elementos*/
+    align-items: center;
+    /* Establecemos el espacio entre las filas*/
+    row-gap: 1em;
+}
+
 /*? Contenedor principal para la administracion de los formularios de las categorias*/
 .contenedorAdministracionCategoriasFormulario {
     /* Establecemos un contenedor flexible*/
     display: grid;
     /* Establecemos el tamaño de las columna*/
-    grid-template-columns: 49.8% 49.8%;
+    grid-template-columns: 49.9% 49.9%;
     /* Establecemos la altura*/
     height: 100%;
     /* Establecemos la anchura*/
@@ -703,7 +715,25 @@ header {
     border: 0.3em solid white;
 }
 
-/*? */
+/*? Formulario para crear categorias*/
+.formularioCrearCategoria {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.5em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 1em;
+}
+
+/*? Formulario para eliminar la categoria*/
 .formularioEliminarCategoria {
     /* Establecemos un contenedor flexible*/
     display: flex;
@@ -722,8 +752,95 @@ header {
     /* Establecemos el margen*/
     margin: 1em;
 }
+/*? Formulario para la creacion de restaurantes*/
+.formularioCrearRestaurante {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.5em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 1em;
+}
 
-/*!--------------------Estilos elementos formularios--------------------*/
+/*? Contenedor principal para la administracion de las categorias y los platos*/
+.contenedorAdministracionCategoriaPlatos {
+    /* Establecemos un contenedor flexible*/
+    display: grid;
+    /* Establecemos el tamaño de las columna*/
+    grid-template-columns: 49.9% 49.9%;
+    /* Establecemos la altura*/
+    height: 100%;
+    /* Establecemos la anchura*/
+    width: 100%;
+    /* Establcecemos el color del primer plano*/
+    color: white;
+    /* Establecemos los espacios entre los elementos*/
+    row-gap: 1em;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.5em;
+    /* Establecemos el espacio de las columnas*/
+    column-gap: 0.2em;
+}
+
+/*? Contenedores para asignar las categorias a los platos*/
+.asignarCategoriasPlatosDiv {
+    /* Establecemos los bordes a los contenedores*/
+    border: 0.3em solid white;
+}
+
+/*? Formulario para la asignacion de una categoria a un plato */
+.formularioAsignacionCategoriasPlatos {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 1em;
+}
+
+/*? Contenedor para desasignar las categorias a los platos*/
+.desasignarCategoriasPlatosDiv {
+    /* Establecemos los bordes a los contenedores*/
+    border: 0.3em solid white;
+}
+
+/*? Formulario para la desasignacion de platos*/
+.formularioDesasignacionCategoriasPlatos {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 1em;
+}
+
+/*! --------------------Estilos elementos formularios--------------------*/
 /*? Input de tipo texto parja formularios*/
 .inputTextFormulario {
     /* Establemos la altura*/
@@ -851,8 +968,19 @@ header {
     /* Establecemos el borde superior*/
     margin-top: 1em;
 }
+/*? Input de tipo boton para la creacio del restaurante*/
+.inputButtonCrearRestaurante {
+    /* Establemos la altura*/
+    height: 3em;
+    /* Establecemos la anchura*/
+    width: 48.6em;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 0.75em;
+    /* Establecemos el borde superior*/
+    margin-top: 1em;
+}
 
-/*!--------------------------- aside ----------------------------------*/
+/*! --------------------------- aside ----------------------------------*/
 /****************** Cuerpo secundario de la pagina**********************/
 /*? Cuerpo secundario contenedor pricipal*/
 .aside {
