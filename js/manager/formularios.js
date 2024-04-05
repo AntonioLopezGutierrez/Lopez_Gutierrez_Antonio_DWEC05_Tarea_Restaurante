@@ -99,6 +99,8 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
         checkbox.type = "checkbox";
         // Asignamos el atributo name a los elementos
         checkbox.name = "checkboxCategoriasCrear";
+        // Asignamos el atributo value al checkbox
+        checkbox.value = categoria.categoria.getName();
         // Agregamos el checkbox a la celda
         celdaCheckbox.appendChild(checkbox);
         // Creamos una celda para el nombre de la categoria
@@ -137,7 +139,9 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
         // Asignamos el atributo type al elemento
         checkbox.type = "checkbox";
         // Asignamos el atributo name a los elementos
-        checkbox.name = "checkboxAlergenos";
+        checkbox.name = "checkboxAlergenosCrear";
+        // Asignamos el valor al checkbox
+        checkbox.value = alergeno.getName();
         // Agregamos el checkbox a la celda
         celdaCheckbox.appendChild(checkbox);
         // Creamos una celda para el nombre de los alergenos
@@ -225,7 +229,7 @@ function eliminarPlato(mainContenido, platos) {
         // Asignamos el tipo del input como radio
         radioPlato.type = "radio";
         // Asignamos el atributo name al radio boton
-        radioPlato.name = "platoSeleccionado";
+        radioPlato.name = "platoSeleccionadoEliminado";
         // Asignamos el valor del radio button con el nombre del plato
         radioPlato.value = plato.platos.getName();
         // Creamos un nuevo elemento span para asociarlo con el radio button
@@ -242,8 +246,11 @@ function eliminarPlato(mainContenido, platos) {
     let botonEliminarPlato = document.createElement("button");
     // Asignamos el texto al boton
     botonEliminarPlato.innerHTML = "Eliminar";
+    // Asignamos el atributo name al boton
+    botonEliminarPlato.name = "botonEliminarPlato";
     // Asignamos la clase al boton de enviar
     botonEliminarPlato.className = "inputButtonFormularioEliminarPlatos";
+
     // Asignamos el tipo al boton
     botonEliminarPlato.type = "submit";
 
@@ -607,7 +614,7 @@ function mostrarPlatosMenuOrdenacion(arryPlatos) {
     );
 
     // Obtenemos el elemento de titulo
-    let tituloSegundoPlato = document.getElementById("tituloSeleccionPlatoDesasignado");
+    let tituloSegundoPlato = document.getElementById("tituloPrimerPlatoOrdenado");
 
     // Obtenemos el elemento con los radiobotones
     let contenedorRadiobotonesSegundoPlato = document.getElementById(
@@ -1005,7 +1012,7 @@ function nuevoRestaurante(mainContenido) {
 }
 
 //?METODO QUE MOSTRARA UN FORMULARIO PARA LA ADMINISTRACION DE LAS CATEGORIAS A LOS PLATOS//
-function categoriasPlatos(mainContenido, platos, categorias) {
+function categoriasPlatosAsignado(mainContenido, platos, categorias) {
     // Borramos el contenido del main principal
     mainContenido.innerHTML = "";
 
@@ -1182,11 +1189,14 @@ function categoriasPlatos(mainContenido, platos, categorias) {
 //?///FUNCION QUE NOS MOSTRARA LOS PLATOS QUE TIENE LA CATEGORIA PARA DESASIGNARLOS///
 function platosCategoriasDesasignado(arryPlatos) {
     //+ Obtenemos el elemento formulario para agregarle los platos
-    let formularioDesasignacionCategoriasPlatos = document.forms.formularioDesasignacionCategoriasPlatos;
+    let formularioDesasignacionCategoriasPlatos =
+        document.forms.formularioDesasignacionCategoriasPlatos;
 
     //+ Obtenemos los elementos creados para poder eliminarlos si existen
     // Obtenemos el elemento de titulo
-    let tituloPlatosDesasignadoCategorias = document.getElementById("tituloSeleccionPlatoDesasignadoCategorias");
+    let tituloPlatosDesasignadoCategorias = document.getElementById(
+        "tituloSeleccionPlatoDesasignadoCategorias"
+    );
     // Obtenemos el elemento con los radiobotones
     let contenedorRadiobotonesPlatos = document.getElementById(
         "contenedorRadiobotonesPlatosDesasignadoCategorias"
@@ -1213,12 +1223,14 @@ function platosCategoriasDesasignado(arryPlatos) {
     // Signamos un atributo id para el titulo
     tituloSeleccionPlatoDesasignadoCategorias.id = "tituloSeleccionPlatoDesasignadoCategorias";
     // Asignamos el texto a la etiqueta
-    tituloSeleccionPlatoDesasignadoCategorias.innerText = "Escoja el plato a desasignar del la categoria";
+    tituloSeleccionPlatoDesasignadoCategorias.innerText =
+        "Escoja el plato a desasignar del la categoria";
 
     //+ Creamos un nuevo elemento div que almacenara los radiobotones
     let contenedorRadiobotonesPlatosDesasignadoCategorias = document.createElement("div");
     // Asignamos la clase al contenedor con los radiobotones
-    contenedorRadiobotonesPlatosDesasignadoCategorias.className = "radioBotonesContenedorFormulario";
+    contenedorRadiobotonesPlatosDesasignadoCategorias.className =
+        "radioBotonesContenedorFormulario";
     // Asignamos un id al contenedor con los radiobotones
     contenedorRadiobotonesPlatosDesasignadoCategorias.id =
         "contenedorRadiobotonesPlatosDesasignadoCategorias";
@@ -1259,9 +1271,118 @@ function platosCategoriasDesasignado(arryPlatos) {
     // Añadimos el titulo al formulario
     formularioDesasignacionCategoriasPlatos.appendChild(tituloSeleccionPlatoDesasignadoCategorias);
     // Añadimos el contendor de los radiobuttons al formulario
-    formularioDesasignacionCategoriasPlatos.appendChild(contenedorRadiobotonesPlatosDesasignadoCategorias);
+    formularioDesasignacionCategoriasPlatos.appendChild(
+        contenedorRadiobotonesPlatosDesasignadoCategorias
+    );
     // Añadimos el boton al formulario
     formularioDesasignacionCategoriasPlatos.appendChild(botonDesasignarPlatosCategorias);
+}
+
+//?//FUNCION QUE NOS MOSTRARA UN MENSAJE PARA LA CONFIRMACION DE FORMULARIOS////
+function mostradoMensajeFormulariosConfirmacion(mainContenido, stringMensaje) {
+    // Borramos el contenido del main contenido
+    mainContenido.innerHTML = "";
+    // Creamos un nuevo elemento de parrafo
+    let mensajeMostrado = document.createElement("p");
+    // Añadimos una clase al elemento de parrafo
+    mensajeMostrado.className = "mensajesFormulariosConfirmacion";
+    // Le asignamos el texto al parrafo
+    mensajeMostrado.textContent = stringMensaje;
+    // Añadimos el parrafo al main contenido
+    mainContenido.appendChild(mensajeMostrado);
+}
+
+//?//FUNCION QUE NOS MOSTRARA UN MENSAJE PARA EL ERROR DE LOS FORMULARIOS////
+function mostradoMensajeFormulariosError(mainContenido, stringError) {
+    // Borramos el contenido del main contenido
+    mainContenido.innerHTML = "";
+    // Creamos un nuevo elemento de parrafo
+    let mensajeMostrado = document.createElement("p");
+    // Añadimos una clase al elemento de parrafo
+    mensajeMostrado.className = "mensajesFormulariosError";
+    // Le asignamos el texto al parrafo
+    mensajeMostrado.textContent = stringError;
+    // Añadimos el parrafo al main contenido
+    mainContenido.appendChild(mensajeMostrado);
+}
+
+//?/////FUNCION QUE MOSTRARA LOS FORMULARIOS DESDE LA BARRA LATERAL//////////
+function mostradoFomulariosMenuLateral(mainContenidoListado) {
+    // Limpiamos el contenido del main contenido
+    mainContenidoListado.innerHTML = "";
+    //* Creamos un nuevo elemento contenedor
+    let contenedor = document.createElement("div");
+    // Asignamos el id al elemento contenedor
+    contenedor.id = "divLateralFormularios";
+
+    //* Creamos un nuevo elemento de parrafo para crear el plato
+    let parrafo = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo.classList.add("pLateralCategoria");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo.innerText = "Crear Plato";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo.setAttribute("data-plateralFormulario", "Crear Plato");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo);
+
+    //* Creamos un nuevo elemento de parrafo para eliminar el plato
+    let parrafo1 = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo1.classList.add("pLateralCategoria");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo1.innerText = "Eliminar Plato";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo1.setAttribute("data-plateralFormulario", "Eliminar Plato");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo1);
+
+    //* Creamos un nuevo elemento de parrafo para administrar el plato en el menu
+    let parrafo2 = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo2.classList.add("pLateralCategoria");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo2.innerText = "Administra platos";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo2.setAttribute("data-plateralFormulario", "Administra platos");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo2);
+
+    //* Creamos un nuevo elemento de parrafo para administrar las categorias
+    let parrafo3 = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo3.classList.add("pLateralCategoria");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo3.innerText = "Administra categorias";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo3.setAttribute("data-plateralFormulario", "Administra categorias");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo3);
+
+    //* Creamos un nuevo elemento de parrafo para la creacion del restaurante
+    let parrafo4 = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo4.classList.add("pLateralCategoria");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo4.innerText = "Crear restaurante";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo4.setAttribute("data-plateralFormulario", "Crear restaurante");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo4);
+
+    //* Creamos un nuevo elemento de parrafo para administrar las categorias de los platos
+    let parrafo5 = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo5.classList.add("pLateralCategoria");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo5.innerText = "Categorias Platos";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo5.setAttribute("data-plateralFormulario", "Categorias Platos");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo5);
+
+    //* Agregamos el contenedor al main listado
+    mainContenidoListado.appendChild(contenedor);
 }
 
 //?//////////////////////EXPORTACION DE LAS FUNCIONES////////////////////
@@ -1273,6 +1394,9 @@ export {
     mostrarPlatosMenuOrdenacion,
     administrarCategorias,
     nuevoRestaurante,
-    categoriasPlatos,
+    categoriasPlatosAsignado,
     platosCategoriasDesasignado,
+    mostradoMensajeFormulariosConfirmacion,
+    mostradoMensajeFormulariosError,
+    mostradoFomulariosMenuLateral,
 };

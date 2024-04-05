@@ -968,6 +968,7 @@ header {
     /* Establecemos el borde superior*/
     margin-top: 1em;
 }
+
 /*? Input de tipo boton para la creacio del restaurante*/
 .inputButtonCrearRestaurante {
     /* Establemos la altura*/
@@ -978,6 +979,17 @@ header {
     font-size: 0.75em;
     /* Establecemos el borde superior*/
     margin-top: 1em;
+}
+
+.mensajesFormulariosConfirmacion{
+    color: greenyellow;
+    font-size: 3em;
+
+
+}
+.mensajesFormulariosError{
+    color: red;
+    font-size: 3em;
 }
 
 /*! --------------------------- aside ----------------------------------*/

@@ -168,25 +168,14 @@ let plato16 = restauranteModelo.createDish(
 
 //+ Asignamos los platos a las categorias
 // Añadimos los platos de la categoria 1
-restauranteModelo.assignCategoryToDish(categoria1, plato1);
-restauranteModelo.assignCategoryToDish(categoria1, plato3);
-restauranteModelo.assignCategoryToDish(categoria1, plato5);
-restauranteModelo.assignCategoryToDish(categoria1, plato8);
+restauranteModelo.assignCategoryToDish(categoria1, plato1, plato3, plato5, plato8);
 // Añadimos los platos de la categoria 2
-restauranteModelo.assignCategoryToDish(categoria2, plato2);
-restauranteModelo.assignCategoryToDish(categoria2, plato4);
-restauranteModelo.assignCategoryToDish(categoria2, plato6);
-restauranteModelo.assignCategoryToDish(categoria2, plato7);
+restauranteModelo.assignCategoryToDish(categoria2, plato2, plato4, plato6, plato7);
 // Añadimos los platos de la categoria 3
-restauranteModelo.assignCategoryToDish(categoria3, plato9);
-restauranteModelo.assignCategoryToDish(categoria3, plato10);
-restauranteModelo.assignCategoryToDish(categoria3, plato11);
-restauranteModelo.assignCategoryToDish(categoria3, plato12);
-// Añadimos los platos de la categoria 3
-restauranteModelo.assignCategoryToDish(categoria4, plato13);
-restauranteModelo.assignCategoryToDish(categoria4, plato14);
-restauranteModelo.assignCategoryToDish(categoria4, plato15);
-restauranteModelo.assignCategoryToDish(categoria4, plato16);
+restauranteModelo.assignCategoryToDish(categoria3, plato9, plato10, plato11, plato12);
+// Añadimos los platos de la categoria 4
+restauranteModelo.assignCategoryToDish(categoria4, plato13, plato14, plato15, plato16);
+
 
 //***********Creacion de alergenos y asignacion a las platos*************
 //+ Creacion de alergenos

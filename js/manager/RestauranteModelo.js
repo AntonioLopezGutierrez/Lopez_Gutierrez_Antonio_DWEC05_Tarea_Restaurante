@@ -225,34 +225,33 @@ class RestauranteModelo {
             }
         }
 
-        //Por cada categoria que haya en el array de categorias
-        for (let i = 0; i < categoriasEntrante.length; i++) {
-            //Asignamos la categoria a la variable
-            const category = categoriasEntrante[i];
-            //Asignamos el plato a la variable
-            const dish = platosEntrantes[i];
+        //Por cada categoria que halla en el array de categorias
+        categoriasEntrante.forEach((categoria) => {
+            // Por cada plato que halla en el array de platos
+            platosEntrantes.forEach((dish) => {
+                //Buscamos la categoria en el array de categoria para ver si existe
+                let existingAssignment = this.#categories.find(
+                    (categoriaPlatoObj) =>
+                        categoriaPlatoObj.categoria.getName() === categoria.categoria.getName()
+                );
 
-            //Buscamos la categoria en el array de categoria para ver si existe
-            let existingAssignment = this.#categories.find(
-                (categoriaPlatoObj) =>
-                    categoriaPlatoObj.categoria.getName() === category.categoria.getName()
-            );
+                //Buscamos si el plato ya esta asignado a esa categoria
+                let platoExistente = existingAssignment.platos.find(
+                    (existingPlato) => existingPlato.platos.getName() === dish.platos.getName()
+                );
 
-            //Buscamos si el plato ya esta asignado a esa categoria
-            let platoExistente = existingAssignment.platos.find(
-                (existingPlato) => existingPlato.platos.getName() === dish.platos.getName()
-            );
+                //Si el plato no esta asignado a la categoria lo asignamos
+                if (!platoExistente) {
+                    //Añadimos los platos a la categoria
+                    existingAssignment.platos.push(dish);
+                }
+                //Si ya esta asignado saltamos la excepcion
+                else {
+                    throw new ExistePlato(platoExistente.platos);
+                }
+            });
+        });
 
-            //Si el plato no esta asignado a la categoria lo asignamos
-            if (!platoExistente) {
-                //Añadimos los platos a la categoria
-                existingAssignment.platos.push(dish);
-            }
-            //Si ya esta asignado saltamos la excepcion
-            else {
-                throw new ExistePlato(platoExistente.platos);
-            }
-        }
         //Devolvemos la instancia del metodo para que se pueda encadenar
         return this;
     }
@@ -997,32 +996,31 @@ class RestauranteModelo {
             }
         }
 
-        //Por cada plato que haya en el array de platos
-        for (let i = 0; i < platosEntrantes.length; i++) {
-            //Asignamos el alergeno a la variable
-            const allergen = alergenosEntrante[i];
-            //Asignamos el plato a la variable
-            const dish = platosEntrantes[i];
+        // Por cada plato que haya en el array de platos
+        platosEntrantes.forEach((plato) => {
+            // Por cada alergeno que haya en el array de alergenos
+            alergenosEntrante.forEach((alergeno) => {
+                // Buscamos el plato en las asignaciones existentes por el nombre
+                let existingAssignment = this.#dishes.find(
+                    (dishes) => dishes.platos.getName() === plato.platos.getName()
+                );
+                // Buscamos si el alergeno ya esta asignado al plato
+                let alergenoExistente = existingAssignment.alergenos.find(
+                    (existingAlergeno) => existingAlergeno.getName() === alergeno.getName()
+                );
 
-            //Buscamos el plato en las asignaciones existentes por el nombre
-            let existingAssignment = this.#dishes.find(
-                (dishes) => dishes.platos.getName() === dish.platos.getName()
-            );
-            //Buscamos si el alergeno ya esta asignado al plato
-            let alergenoExistente = existingAssignment.alergenos.find(
-                (existingAlergeno) => existingAlergeno.getName() === allergen.getName()
-            );
+                // Si el alergeno no esta adignado al plato lo asignamos
+                if (!alergenoExistente) {
+                    existingAssignment.alergenos.push(alergeno);
+                }
+                // Si ya esta asignado saltamos la excepcion
+                else {
+                    throw new ExisteAlergeno(alergenoExistente);
+                }
+            });
+        });
 
-            //Si el alergeno no esta adignado al plato lo asignamos
-            if (!alergenoExistente) {
-                existingAssignment.alergenos.push(allergen);
-            }
-            //Si ya esta asignado saltamos la excepcion
-            else {
-                throw new ExisteAlergeno(alergenoExistente);
-            }
-        }
-        //Devolvemos la instancia del metodo para que se pueda encadenar
+        // Devolvemos la instancia del metodo para que se pueda encadenar
         return this;
     }
 
