@@ -1,6 +1,9 @@
 //!/////////////////////CLASE RESTAURANTECONTROLADOR/////////////////////
 "use strict";
 
+import { Coordinate } from "../clases/Coordinate.js";
+import { validarLatitud, validarLongitud } from "./validacionesFormularios.js";
+
 //?///////////////////////////PROPIEDADES PRIVADA////////////////////////
 // Constante privada en el que almacenaremos el modelo
 const MODELO = Symbol("RestauranteModelo");
@@ -330,6 +333,10 @@ class RestauranteControlador {
                     this[VISTA].nuevoPlato(categorias, alergenos);
                     // LLamamos al manejador para obtener los datos del formulario de creacion de platos
                     this[VISTA].manejadorFormularioCrearPlato(this.manejadorFormularioCrearPlato);
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
                     break;
                 case "Eliminar plato":
                     // Llamada al metodo de la vista para  mostrar el formulario de eliminar plato
@@ -337,6 +344,10 @@ class RestauranteControlador {
                     // LLamamos al manejador para obtener los datos del formulario para eliminar platos
                     this[VISTA].manejadorFormularioCrearEliminarPlato(
                         this.manejadorFormularioCrearEliminarPlato
+                    );
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
                     );
                     break;
                 case "Administrar Platos":
@@ -350,14 +361,42 @@ class RestauranteControlador {
                     this[VISTA].manejadorFormularioMostrarPlatosMenuOrdenacion(
                         this.manejadorFormularioMostrarPlatosMenuOrdenacion
                     );
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para la asignacion de los platos al menu
+                    this[VISTA].manejadorFormularioAsignarPlatoMenu(
+                        this.manejadorFormularioAsignarPlatoMenu
+                    );
                     break;
                 case "Administrar Categorias":
                     // Llamada al metodo de la vista para mosrtrar los formularios para administrar las categorias
                     this[VISTA].administrarCategorias(categorias);
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para crear la categoria desde el formulario
+                    this[VISTA].manejadorFormularioCrearCategoria(
+                        this.manejadorFormularioCrearCategoria
+                    );
+                    // LLamamos al manejador de la vista para eliminar la categoria desde el formulario
+                    this[VISTA].manejadorFormularioEliminarCategoria(
+                        this.manejadorFormularioEliminarCategoria
+                    );
                     break;
                 case "Crear restaurante":
                     // Llamada al metodo de la vista para mostrar el formulario para crear un restaurante
                     this[VISTA].nuevoRestaurante();
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista que creara el restaurante desde el formulario
+                    this[VISTA].manejadorFormularioCrearRestaurante(
+                        this.manejadorFormularioCrearRestaurante
+                    );
                     break;
                 case "Categorias Platos":
                     // LLamada al metodo de la vista para mostrar rl formulario para modificar los platos de la categoria
@@ -365,6 +404,14 @@ class RestauranteControlador {
                     // LLamamos al manejador para obtener los platos de las categorias a dessignar
                     this[VISTA].manejadorFormularioMostrarPlatosCategoriaDesasignado(
                         this.manejadorFormularioMostrarPlatosCategoriaDesasignado
+                    );
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para asignar la categoria al plato
+                    this[VISTA].manejadorFormularioAsignarPlatoCategorias(
+                        this.manejadorFormularioAsignarPlatoCategorias
                     );
                     break;
             }
@@ -378,6 +425,10 @@ class RestauranteControlador {
                     this[VISTA].nuevoPlato(categorias, alergenos);
                     // LLamamos al manejador para obtener los datos del formulario de creacion de platos
                     this[VISTA].manejadorFormularioCrearPlato(this.manejadorFormularioCrearPlato);
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
                     break;
                 case "Eliminar plato":
                     // Llamada al metodo de la vista para  mostrar el formulario de eliminar plato
@@ -386,10 +437,14 @@ class RestauranteControlador {
                     this[VISTA].manejadorFormularioCrearEliminarPlato(
                         this.manejadorFormularioCrearEliminarPlato
                     );
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
                     break;
                 case "Administrar Platos":
                     // LLamada al metodo de la vista para mostrar los formularios para administrar platos en los menus
-                    this[VISTA].administrarPlatos(menus);
+                    this[VISTA].administrarPlatos(menus, platos);
                     // LLamamos al manejador para obtener el menu y mostrar los platos para la desasignacion
                     this[VISTA].manejadorFormularioMostrarPlatosMenuDesasignacion(
                         this.manejadorFormularioMostrarPlatosMenuDesasignacion
@@ -398,14 +453,42 @@ class RestauranteControlador {
                     this[VISTA].manejadorFormularioMostrarPlatosMenuOrdenacion(
                         this.manejadorFormularioMostrarPlatosMenuOrdenacion
                     );
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para la asignacion de los platos al menu
+                    this[VISTA].manejadorFormularioAsignarPlatoMenu(
+                        this.manejadorFormularioAsignarPlatoMenu
+                    );
                     break;
                 case "Administrar Categorias":
                     // Llamada al metodo de la vista para mosrtrar los formularios para administrar las categorias
                     this[VISTA].administrarCategorias(categorias);
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para crear la categoria desde el formulario
+                    this[VISTA].manejadorFormularioCrearCategoria(
+                        this.manejadorFormularioCrearCategoria
+                    );
+                    // LLamamos al manejador de la vista para eliminar la categoria desde el formulario
+                    this[VISTA].manejadorFormularioEliminarCategoria(
+                        this.manejadorFormularioEliminarCategoria
+                    );
                     break;
                 case "Crear restaurante":
                     // Llamada al metodo de la vista para mostrar el formulario para crear un restaurante
                     this[VISTA].nuevoRestaurante();
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista que creara el restaurante desde el formulario
+                    this[VISTA].manejadorFormularioCrearRestaurante(
+                        this.manejadorFormularioCrearRestaurante
+                    );
                     break;
                 case "Categorias Platos":
                     // LLamada al metodo de la vista para mostrar rl formulario para modificar los platos de la categoria
@@ -413,6 +496,15 @@ class RestauranteControlador {
                     // LLamamos al manejador para obtener los platos de las categorias a dessignar
                     this[VISTA].manejadorFormularioMostrarPlatosCategoriaDesasignado(
                         this.manejadorFormularioMostrarPlatosCategoriaDesasignado
+                    );
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+
+                    // LLamamos al manejador de la vista para asignar la categoria al plato
+                    this[VISTA].manejadorFormularioAsignarPlatoCategorias(
+                        this.manejadorFormularioAsignarPlatoCategorias
                     );
                     break;
             }
@@ -443,7 +535,7 @@ class RestauranteControlador {
         this[VISTA].menuMostrarPlatosOrdenacion(arrayPlatosMenu[0]);
     };
 
-    //* Metodo para el mostrado de platos segun el menu seleccionado para la desasignacion
+    //* Metodo para el mostrado de platos segun la categoria seleccionado para la desasignacion
     onManejadorFormularioMostrarPlatosCategoriaDesasignado = (categoriaSeleccionada) => {
         // Obtenemos el array de categorias
         let arrayCategorias = [...this[MODELO].getCategories()];
@@ -455,6 +547,11 @@ class RestauranteControlador {
         let platosCategorias = this[MODELO].getDishesInCategory(categoriaFiltrado[0]);
         // Llamada al metodo de la vista que muestra los platos de la categoria
         this[VISTA].categoriasMostrarPlatosDesasignado(platosCategorias);
+        
+        // LLamamos al manejador de la vista para desasignar la categoria al plato
+        this[VISTA].manejadorFormularioDesasignarPlatoCategorias(
+            this.manejadorFormularioDesasignarPlatoCategorias
+        );
     };
 
     //* Metodo para la creacion de platos asignado la categoria y los alergenos
@@ -477,7 +574,7 @@ class RestauranteControlador {
             // Creamos un nuevo array para almacenar las categorias filtradas por nombre
             let arrayCategoriasFiltrado = [];
             // Comprobamos si el array de categorias por parametros no esta vacio
-            if (categoriasArray) {
+            if (categoriasArray.length > 0) {
                 // Recorremos los nombres de las categorias
                 categoriasArray.forEach((categoriaNombre) => {
                     // Filtramos las categorias por el nombre de las categorias
@@ -496,7 +593,7 @@ class RestauranteControlador {
             // Creamos un nuevo array para almacenar los alergenos filtradas por nombre
             let arrayAlergenosFiltrado = [];
             // Comprobamos si el array de categorias por parametros no esta vacio
-            if (alergenosArray) {
+            if (alergenosArray.length > 0) {
                 // Recorremos los nombres de las categorias
                 alergenosArray.forEach((alegenoNombre) => {
                     // Filtramos las categorias por el nombre de las categorias
@@ -522,19 +619,358 @@ class RestauranteControlador {
     };
 
     //* Metodo para la eliminacion de platos desde el formulario
-    onManejadorFormularioCrearEliminarPlato = (NombreplatoSeleccionado) => {
-        // Obtenemos el array de platos
-        let platosArray = [...this[MODELO].getDishes()];
-        // Filtramos los platos por el nombre del plato por parametors
-        let platoFiltrado = platosArray.filter(
-            (plato) => plato.platos.getName() == NombreplatoSeleccionado
-        );
-        // LLamamos al metodo del modelo para la eliminacion de platos
-        this[MODELO].removeDish(platoFiltrado[0]);
-        // Creamos el mensaje para la eliminacion ha sido exitosa
-        const stringMensaje = "El plato se a eliminado correctamente";
-        // Llamada al metodo de la vista que mostrara un mensaje para la eliminacion del plato
-        this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+    onManejadorFormularioCrearEliminarPlato = (nombreplatoSeleccionado) => {
+        // Si obtenemos un plato seleccionado
+        if (nombreplatoSeleccionado) {
+            // Obtenemos el array de platos
+            let platosArray = [...this[MODELO].getDishes()];
+            // Filtramos los platos por el nombre del plato por parametors
+            let platoFiltrado = platosArray.filter(
+                (plato) => plato.platos.getName() == nombreplatoSeleccionado
+            );
+            // LLamamos al metodo del modelo para la eliminacion de platos
+            this[MODELO].removeDish(platoFiltrado[0]);
+            // Creamos el mensaje para la eliminacion ha sido exitosa
+            const stringMensaje = "El plato se a eliminado correctamente";
+            // Llamada al metodo de la vista que mostrara un mensaje para la eliminacion del plato
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+        } else {
+            // Mostramos un mensaje de error si no hay ningun plato selecionado
+            const stringError = "No has seleccionado ningun plato";
+            // Llamada al metodo de la vista que mostrara el mensaje de error
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la asignacion de un plato a un menu desde el formulario
+    onManejadorFormularioAsignarPlatoMenu = (menusSelecionadoArray, platoSelecionadoArray) => {
+        try {
+            // Creamos un nuevo array para almacenar las categorias filtradas por nombre
+            let arrayMenusFiltrado = [];
+            // Creamos un nuevo array para almacenar las categorias filtradas por nombre
+            let arrayPlatosFiltrado = [];
+            // Si hemos seleccionado un menu
+            if (menusSelecionadoArray.length > 0) {
+                // Si hemos seleccionado plato
+                if (platoSelecionadoArray.length > 0) {
+                    //- Recorremos el array con los nombres de los menus
+                    menusSelecionadoArray.forEach((menuNombre) => {
+                        // Obtenemos el array de con los menus
+                        let menusArray = [...this[MODELO].getMenu()];
+                        // Filtramos los menus por el nombre del menu
+                        let menuFiltrado = menusArray.filter(
+                            (menu) => menu.menus.getName() == menuNombre
+                        );
+                        // Agregamos el menu filtrado a nuestro array
+                        arrayMenusFiltrado.push(menuFiltrado[0]);
+                    });
+
+                    //- Recorremos el array con los nombres de los platos
+                    platoSelecionadoArray.forEach((platoNombre) => {
+                        let platosArray = [...this[MODELO].getDishes()];
+                        // Filtramos los platos por el nombre del plato por parametors
+                        let platoFiltrado = platosArray.filter(
+                            (plato) => plato.platos.getName() == platoNombre
+                        );
+                        // Agregamos el menu filtrado a nuestro array
+                        arrayPlatosFiltrado.push(platoFiltrado[0]);
+                    });
+                    //- Llamamos al metodo del modelo que asignara el plato al menu
+                    this[MODELO].assignDishToMenu(...arrayMenusFiltrado, ...arrayPlatosFiltrado);
+                    //- Creamos el mensaje para la asignacion exitosa
+                    const stringMensaje = "Los platos se han asignado correctamente a los menus";
+                    //- Llamada al metodo de la vista que mostrara un mensaje para la asignacion de platos
+                    this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+                } else {
+                    // Creamos un mensaje de error si no se ha  seleccionado ningun plato
+                    let stringError = "El plato no puede estar sin seleccionar";
+                    // Llamamos al metodo de la vista que mostrara el mensaje para el error de asignacion
+                    this[VISTA].mostradoMensajeFormulariosError(stringError);
+                }
+            } else {
+                // Creamos un mensaje de error si no se ha  seleccionado ningun menu
+                let stringError = "El menu no puede estar sin seleccionar";
+                // Llamamos al metodo de la vista que mostrara el mensaje para el error de asignacion
+                this[VISTA].mostradoMensajeFormulariosError(stringError);
+            }
+        } catch (error) {
+            // Creamos un mensaje de error para si el plato ya esta asignado al menu
+            let stringError = error.message;
+            // Llamamos al metodo de la vista que mostrara el mensaje para el error de asignacion
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la desasignacion de un plato del menu desde el formularios
+    onManejadorFormularioDesasignarPlatoMenu = (nombreMenuSelecionado, nombrePlatoSelecionado) => {
+        // Comprobamos que el plato se ha seleccionado
+        if (nombrePlatoSelecionado) {
+            //- Obtenemos el array de con los menus
+            let menusArray = [...this[MODELO].getMenu()];
+            // Filtramos los menus por el nombre del menu
+            let menuFiltrado = menusArray.filter(
+                (menu) => menu.menus.getName() == nombreMenuSelecionado
+            );
+            //- Obtenemos el array de los platos
+            let platosArray = [...this[MODELO].getDishes()];
+            // Filtramos los platos por el nombre del plato por parametors
+            let platoFiltrado = platosArray.filter(
+                (plato) => plato.platos.getName() == nombrePlatoSelecionado
+            );
+            //- LLamamos al metodo del modelo que desasignara los platos
+            this[MODELO].deassignDishToMenu(menuFiltrado[0], platoFiltrado[0]);
+            //- Creamos el mensaje para la desasignacion exitosa
+            const stringMensaje = "El plato se ha desasignado correctamente";
+            //- Llamada al metodo de la vista que mostrara un mensaje para la asignacion de platos
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+        } else {
+            // Creamos un mensaje de error para si el plato no esta seleccionado
+            let stringError = "El plato tiene que estar seleccionado";
+            // Llamamos al metodo de la vista que mostrara el mensaje para el error de asignacion
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la ordenacior de los platos en el menu desde el formulario
+    onManejadorFormularioOrdenarPlatoMenu = (
+        nombreMenuSelecionado,
+        nombrePlatoSelecionado1,
+        nombrePlatoSelecionado2
+    ) => {
+        // Comprobamos si el plato 1 se ha seleccionado
+        if (nombrePlatoSelecionado1) {
+            // Comprobamos si el plato 2 se ha seleccionado
+            if (nombrePlatoSelecionado2) {
+                //- Obtenemos el array de con los menus
+                let menusArray = [...this[MODELO].getMenu()];
+                // Filtramos los menus por el nombre del menu
+                let menuFiltrado = menusArray.filter(
+                    (menu) => menu.menus.getName() == nombreMenuSelecionado
+                );
+                //- Obtenemos el array de los platos por el nombre del primer plato seleccionado
+                let platosArray1 = [...this[MODELO].getDishes()];
+                // Filtramos los platos por el nombre del plato por parametors
+                let platoFiltrado1 = platosArray1.filter(
+                    (plato) => plato.platos.getName() == nombrePlatoSelecionado1
+                );
+                //- Obtenemos el array de los platos por el nombre del segundo plato selecciionado
+                let platosArray2 = [...this[MODELO].getDishes()];
+                // Filtramos los platos por el nombre del plato por parametors
+                let platoFiltrado2 = platosArray2.filter(
+                    (plato) => plato.platos.getName() == nombrePlatoSelecionado2
+                );
+
+                //- Llamada al metodo del modelo que ordenara los platos
+                this[MODELO].changeDishesPositionsInMenu(
+                    menuFiltrado[0],
+                    platoFiltrado1[0],
+                    platoFiltrado2[0]
+                );
+                //- Creamos el mensaje para la asignacion exitosa
+                const stringMensaje = "Los platos se han ordenado correctamente en el menu";
+                //- Llamada al metodo de la vista que mostrara un mensaje para la asignacion de platos
+                this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+            } else {
+                // Creamos un mensaje de error para si el plato no esta seleccionado
+                let stringError = "El plato2 tiene que estar seleccionado";
+                // Llamamos al metodo de la vista que mostrara el mensaje para el error para si el plato no esta seleccionado
+                this[VISTA].mostradoMensajeFormulariosError(stringError);
+            }
+        } else {
+            // Creamos un mensaje de error para si el plato no esta seleccionado
+            let stringError = "El plato1 tiene que estar seleccionado";
+            // Llamamos al metodo de la vista que mostrara el mensaje para el error para si el plato no esta seleccionado
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la creacion de las categorias desde el formulario
+    onManejadorFormularioCrearCategoria = (
+        nombreCategoria,
+        descripcionCategoria,
+        urlImagenCategoria
+    ) => {
+        try {
+            //- Llamamos al metodo del modelo que nos creara la categoria
+            let nuevaCategoria = this[MODELO].createCategory(
+                nombreCategoria,
+                descripcionCategoria,
+                urlImagenCategoria
+            );
+            //- Llamada al metodo del modelo que nos agregara la nueva categoria
+            this[MODELO].addCategory(nuevaCategoria);
+            //- Creamos un mensaje de confirmacio para si la categoria fue creada correctamente
+            let stringConfirmacion = "La categoria se ha creado correctamente";
+            //- Llamamos al metodo de la vista que mostrara el mensaje de confirmacion
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringConfirmacion);
+        } catch (error) {
+            // Creamos un mensaje de error para si el nombre de la categoria esta vacio
+            let stringError = error.message;
+            // Llamamos al metodo de la vista que mostrara el mensaje
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la eliminacion de las categorias desde el formulario
+    onManejadorFormularioEliminarCategoria = (nombreCategoria) => {
+        // Comprobamos si se ha pulsado alguna categoria
+        if (nombreCategoria) {
+            // Obtenemos el array de categorias
+            let arrayCategorias = [...this[MODELO].getCategories()];
+            // Filtrar las categorias por el nombre de las categorias
+            let categoriaFiltrado = arrayCategorias.filter(
+                (categoria) => categoria.categoria.getName() == nombreCategoria
+            );
+            // Llamamos al metodo del modelo para la eliminacion de la categoria
+            this[MODELO].removeCategory(categoriaFiltrado[0]);
+            // Creamos un mensaje de confirmacio para si la categoria fue eliminada correctamente
+            let stringConfirmacion = "La categoria se ha eliminado correctamente";
+            // Llamamos al metodo de la vista que mostrara el mensaje de confirmacion
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringConfirmacion);
+        } else {
+            // Creamos un mensaje de error para si el nombre de la categoria esta vacio
+            let stringError = "Selecciona la categoria que desea eliminar";
+            // Llamamos al metodo de la vista que mostrara el mensaje
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la creacion del restaurante desde el formulario
+    onManejadorFormularioCrearRestaurante = (
+        nombreRestaurante,
+        descripcionRestaurante,
+        latitudRestaurante,
+        longitudRestaurante
+    ) => {
+        try {
+            //- Validamos la latitud y la longitud para que esten en los rangos permitidos
+            validarLatitud(latitudRestaurante);
+            validarLongitud(longitudRestaurante);
+            //- Creamos un objeto coordenadas para las coordenadas del restaurante
+            let coordenadas = new Coordinate(latitudRestaurante, longitudRestaurante);
+            //- Llamamos al metodo del modelo que nos creara el restaurante
+            let nuevoRestaurante = this[MODELO].createRestaurant(
+                nombreRestaurante,
+                descripcionRestaurante,
+                coordenadas
+            );
+            //- Llamada al metodo del modelo que nos agregara el restaurante
+            this[MODELO].addRestaurant(nuevoRestaurante);
+            //- Creamos un mensaje de confirmacio para si el restaurante fue creado correctamente
+            let stringConfirmacion = "El restaurante se ha creado correctamente";
+            //- Llamamos al metodo de la vista que mostrara el mensaje de confirmacion
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringConfirmacion);
+
+            //- Obtenemos los restaurantes del modelo para actualizar la barra de navegacion
+            let arrayRestaurantes = [...this[MODELO].getRestaurant()];
+            //- Llamamos al metodo de la vista que nos actualizara la barra de navegacion
+            this[VISTA].actualizadoBarraNavegacionCreacionRestaurante(arrayRestaurantes);
+            //- Llamada al manejador del boton de restaurantes de la vista pasandole el manejador
+            this[VISTA].manejadorRestauranteDescripcion(this.manejadorRestauranteDescripcion);
+            //- Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorSelectBarraNavegacionGestion(
+                this.manejadorSelectBarraNavegacionGestion
+            );
+        } catch (error) {
+            // Creamos un mensaje de error para si el nombre del restaurante esta vacio
+            let stringError = error.message;
+            // Llamamos al metodo de la vista que mostrara el mensaje
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la asignacion de platos a las categorias desde el formulario
+    onManejadorFormularioAsignarPlatoCategorias = (arrayCategoriasNombre, arrayPlatosNombre) => {
+        // Creamos un nuevo array para almacenar las categorias filtradas por nombre
+        let arrayCategoriasFiltrado = [];
+        // Creamos un nuevo array para almacenar los platos filtrados por nombre
+        let arrayPlatosFiltrado = [];
+        try {
+            // Comprobamos si se ha seleccionado una categoria
+            if (arrayCategoriasNombre.length > 0) {
+                // Comprobamos que se ha seleccionado un plato
+                if (arrayPlatosNombre.length > 0) {
+                    //- Recorremos el array con los nombres de las categorias
+                    arrayCategoriasNombre.forEach((categoriaNombre) => {
+                        // Obtenemos el array de con las categorias
+                        let categoriasArray = [...this[MODELO].getCategories()];
+                        // Filtramos las categorias por el nombre de categoria
+                        let categoriaFiltrado = categoriasArray.filter(
+                            (categoria) => categoria.categoria.getName() == categoriaNombre
+                        );
+                        // Agregamos la categoria filtrada a nuestro array
+                        arrayCategoriasFiltrado.push(categoriaFiltrado[0]);
+                    });
+
+                    //- Recorremos el array con los nombres de los platos
+                    arrayPlatosNombre.forEach((platoNombre) => {
+                        let platosArray = [...this[MODELO].getDishes()];
+                        // Filtramos los platos por el nombre del plato por parametors
+                        let platoFiltrado = platosArray.filter(
+                            (plato) => plato.platos.getName() == platoNombre
+                        );
+                        // Agregamos el menu filtrado a nuestro array
+                        arrayPlatosFiltrado.push(platoFiltrado[0]);
+                    });
+                    // Llamamos al metodo del modelo que asignara los platos a las categorias
+                    this[MODELO].assignCategoryToDish(
+                        ...arrayCategoriasFiltrado,
+                        ...arrayPlatosFiltrado
+                    );
+
+                    //- Creamos un mensaje de confirmacio para si el plato fue asignado correctamente
+                    let stringConfirmacion = "El plato se ha asignado a la categoria correctamente";
+                    //- Llamamos al metodo de la vista que mostrara el mensaje de confirmacion
+                    this[VISTA].mostradoMensajeFormulariosConfirmacion(stringConfirmacion);
+                } else {
+                    // Creamos un mensaje de error para si el nombre del plato no esta seleccionado
+                    let stringError = "El plato no puede estar sin seleccionar";
+                    // Llamamos al metodo de la vista que mostrara el mensaje
+                    this[VISTA].mostradoMensajeFormulariosError(stringError);
+                }
+            } else {
+                // Creamos un mensaje de error para si el nombre de la categoria no esta seleccionado
+                let stringError = "La categoria no puede estar sin seleccionar";
+                // Llamamos al metodo de la vista que mostrara el mensaje
+                this[VISTA].mostradoMensajeFormulariosError(stringError);
+            }
+        } catch (error) {
+            // Creamos un mensaje de error para si la categoria ya tiene el plato asignado
+            let stringError = error.message;
+            // Llamamos al metodo de la vista que mostrara el mensaje
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+    //* Metodo para la desasignacion de platos a las categorias desde el formulario
+    onManejadorFormularioDesasignarPlatoCategorias = (categoriaNombre, platoNombre) => {
+        // Comprobamos que el plato se ha seleccionado
+        if (platoNombre) {
+            //- Obtenemos el array de con las categorias
+            // Obtenemos el array de con las categorias
+            let categoriasArray = [...this[MODELO].getCategories()];
+            // Filtramos las categorias por el nombre de categoria
+            let categoriaFiltrado = categoriasArray.filter(
+                (categoria) => categoria.categoria.getName() == categoriaNombre
+            );
+            //- Obtenemos el array de los platos
+            let platosArray = [...this[MODELO].getDishes()];
+            // Filtramos los platos por el nombre del plato por parametors
+            let platoFiltrado = platosArray.filter(
+                (plato) => plato.platos.getName() == platoNombre
+            );
+            //- LLamamos al metodo del modelo que desasignara los platos de las categorias
+            this[MODELO].deassignCategoryToDish(categoriaFiltrado[0], platoFiltrado[0]);
+
+            //- Creamos el mensaje para la desasignacion exitosa
+            const stringMensaje = "El plato se ha desasignado correctamente";
+            //- Llamada al metodo de la vista que mostrara un mensaje para la asignacion de platos
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+        } else {
+            // Creamos un mensaje de error para si el plato no esta seleccionado
+            let stringError = "El plato tiene que estar seleccionado";
+            // Llamamos al metodo de la vista que mostrara el mensaje para el error de asignacion
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
     };
 
     //?/////////////////////MANEJADORES DE EVENTOS///////////////////////
@@ -649,21 +1085,33 @@ class RestauranteControlador {
         this.onFormulariosGestion(opcionSeleccionada);
     };
 
+    //* Manejador para la seleccion de la opcion de los formularios desde la barra lateral
+    manejadorFormularoiosGestionLateral = (opcionSeleccionada) => {
+        // Llamamos al metodo se la misma clase que nos mostrara los formularios
+        this.onFormulariosGestion(opcionSeleccionada);
+    };
+
     //* Manejador que nos mostrara los platos que tiene el menu para la desasignacion
     manejadorFormularioMostrarPlatosMenuDesasignacion = (menuSeleccionado) => {
         // Llamamos al metodo de la misma clase que nos mostrara los platos a desasignar del menu
         this.onManejadorFormularioMostrarPlatosMenuDesasignacion(menuSeleccionado);
+        // LLamamos al manejador de la vista para la desasignacion de los platos al menu
+        this[VISTA].manejadorFormularioDesasignarPlatoMenu(
+            this.manejadorFormularioDesasignarPlatoMenu
+        );
     };
 
     //* Manejador que nos mostrara los platos que tiene el menu para su organizacion
     manejadorFormularioMostrarPlatosMenuOrdenacion = (menuSeleccionado) => {
         // Llamamos al metodo de la misma clase que nos mostrara los platos a organizar
         this.onManejadorFormularioMostrarPlatosMenuOrdenacion(menuSeleccionado);
+        // Llamamos al manejador de la vista para la ordenacion de platos
+        this[VISTA].manejadorFormularioOrdenarPlatoMenu(this.manejadorFormularioOrdenarPlatoMenu);
     };
 
     //* Manejador que nos mostrara los platos que tiene una categoria para desasignarlos
     manejadorFormularioMostrarPlatosCategoriaDesasignado = (categoriaSeleccionada) => {
-        // Llamamaos al metodo de la misma clase que nos mostrara los platos a desasignar por categoria
+        // Llamamamos al metodo de la misma clase que nos mostrara los platos a desasignar por categoria
         this.onManejadorFormularioMostrarPlatosCategoriaDesasignado(categoriaSeleccionada);
     };
 
@@ -688,9 +1136,86 @@ class RestauranteControlador {
     };
 
     //* Manejador que eliminara el plato desde el formulario
-    manejadorFormularioCrearEliminarPlato = (NombreplatoSeleccionado) => {
-        // Llamamaos al metodo de la misma clase que eliminara el plato
-        this.onManejadorFormularioCrearEliminarPlato(NombreplatoSeleccionado);
+    manejadorFormularioCrearEliminarPlato = (nombreplatoSeleccionado) => {
+        // Llamamamos al metodo de la misma clase que eliminara el plato
+        this.onManejadorFormularioCrearEliminarPlato(nombreplatoSeleccionado);
+    };
+
+    //* Manejador que asignara el plato al menu desde el formulario
+    manejadorFormularioAsignarPlatoMenu = (nombreMenuSelecionado, nombrePlatoSelecionado) => {
+        // Llamamamos al metodo de la misma clase que asignara el plato al menu
+        this.onManejadorFormularioAsignarPlatoMenu(nombreMenuSelecionado, nombrePlatoSelecionado);
+    };
+
+    //* Manejador que desasigna el plato al menu desde el formulario
+    manejadorFormularioDesasignarPlatoMenu = (nombreMenuSelecionado, nombrePlatoSelecionado) => {
+        // Llamamamos al metodo de la misma clase que desasignara el plato del menu
+        this.onManejadorFormularioDesasignarPlatoMenu(
+            nombreMenuSelecionado,
+            nombrePlatoSelecionado
+        );
+    };
+
+    //* Manejador que ordenar los platos al menu desde el formulario
+    manejadorFormularioOrdenarPlatoMenu = (
+        nombreMenuSelecionado,
+        nombrePlatoSelecionado1,
+        nombrePlatoSelecionado2
+    ) => {
+        // Llamamamos al metodo de la misma clase que ordenara los platos del menu
+        this.onManejadorFormularioOrdenarPlatoMenu(
+            nombreMenuSelecionado,
+            nombrePlatoSelecionado1,
+            nombrePlatoSelecionado2
+        );
+    };
+
+    //* Manejador que crea las categorias desde el formulario
+    manejadorFormularioCrearCategoria = (
+        nombreCategoria,
+        descripcionCategoria,
+        urlImagenCategoria
+    ) => {
+        // Llamamamos al metodo de la misma clase que creara la categoris
+        this.onManejadorFormularioCrearCategoria(
+            nombreCategoria,
+            descripcionCategoria,
+            urlImagenCategoria
+        );
+    };
+
+    //* Manejador que eliminara la categoria desde el formulario
+    manejadorFormularioEliminarCategoria = (nombreCategoria) => {
+        // Llamamamos al metodo de la misma clase que eliminara la categoria
+        this.onManejadorFormularioEliminarCategoria(nombreCategoria);
+    };
+
+    //* Manejador que creara el restaurante desde el formulario
+    manejadorFormularioCrearRestaurante = (
+        nombreRestaurante,
+        descripcionRestaurante,
+        latitudRestaurante,
+        longitudRestaurante
+    ) => {
+        // Llamamamos al metodo de la misma clase que creara un restaurante
+        this.onManejadorFormularioCrearRestaurante(
+            nombreRestaurante,
+            descripcionRestaurante,
+            latitudRestaurante,
+            longitudRestaurante
+        );
+    };
+
+    //* Manejador que asignara los platos a las categorias
+    manejadorFormularioAsignarPlatoCategorias = (arrayCategoriasNombre, arrayPlatosNombre) => {
+        // Llamamamos al metodo de la misma clase que asignara los platos a las categorias
+        this.onManejadorFormularioAsignarPlatoCategorias(arrayCategoriasNombre, arrayPlatosNombre);
+    };
+
+    //* Manejador que desasignara los platos a las categorias
+    manejadorFormularioDesasignarPlatoCategorias = (categoriasNombre, platosNombre) => {
+        // Llamamamos al metodo de la misma clase que desasignara los platos a las categorias
+        this.onManejadorFormularioDesasignarPlatoCategorias(categoriasNombre, platosNombre);
     };
 }
 

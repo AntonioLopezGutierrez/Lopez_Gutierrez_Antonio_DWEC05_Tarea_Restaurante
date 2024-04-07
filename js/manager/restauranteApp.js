@@ -281,29 +281,16 @@ let menu4 = restauranteModelo.createMenu(
 
 //+ Asignado de platos al menu
 // Asignamos los platos al menu 1
-restauranteModelo.assignDishToMenu(menu1, plato1);
-restauranteModelo.assignDishToMenu(menu1, plato3);
-restauranteModelo.assignDishToMenu(menu1, plato5);
-restauranteModelo.assignDishToMenu(menu1, plato13);
+restauranteModelo.assignDishToMenu(menu1, plato1, plato3, plato5, plato13);
 
 // Asignamos los platos al menu 2
-restauranteModelo.assignDishToMenu(menu2, plato2);
-restauranteModelo.assignDishToMenu(menu2, plato4);
-restauranteModelo.assignDishToMenu(menu2, plato6);
-restauranteModelo.assignDishToMenu(menu2, plato14);
+restauranteModelo.assignDishToMenu(menu2, plato2, plato4, plato6, plato14);
 
 // Asignamos los platos al menu 3
-restauranteModelo.assignDishToMenu(menu3, plato7);
-restauranteModelo.assignDishToMenu(menu3, plato9);
-restauranteModelo.assignDishToMenu(menu3, plato11);
-restauranteModelo.assignDishToMenu(menu3, plato15);
+restauranteModelo.assignDishToMenu(menu3, plato7, plato9, plato11, plato15);
 
 // Asignamos los platos al menu 4
-restauranteModelo.assignDishToMenu(menu4, plato8);
-restauranteModelo.assignDishToMenu(menu4, plato10);
-restauranteModelo.assignDishToMenu(menu4, plato12);
-restauranteModelo.assignDishToMenu(menu4, plato16);
-
+restauranteModelo.assignDishToMenu(menu4, plato8, plato10, plato12, plato16);
 
 //******************Creacion de restaurantes*****************************
 //+ Creacion de las coordenadas para el restaurante

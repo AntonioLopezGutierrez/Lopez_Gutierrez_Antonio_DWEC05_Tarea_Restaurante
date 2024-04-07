@@ -284,6 +284,12 @@ class RestauranteVista {
         mostradoMensajeFormulariosError(this.mainContenido, stringError);
     }
 
+    //* Metodo que actualizara la barra de navegacion cuando creamos un restaurante
+    actualizadoBarraNavegacionCreacionRestaurante(arrayRestaurantes) {
+        // Llamada a la funcion de elementos pagina principal que mostrara la barra de navegacion
+        barraNavegacion(this.barraNavegacion, this.migaDePanActual, arrayRestaurantes);
+    }
+
     //?////////////////METODOS PARA EL MANEJO DE EVENTOS/////////////////
     //?//////////////////////////////////////////////////////////////////
     //* Metodo para ejecutar el manejador del controlador de inicio
@@ -400,29 +406,36 @@ class RestauranteVista {
             }
         });
     }
-    
+
     //* Metodo que ejecuta el manejador del controlador que mostrara la descripcion del restaurante en el lateral
     manejadorRestauranteDescripcionLateral(manejadorRestauranteDescripcionLateral) {
-        // Obtenemos el elemento
-        let divLateralCategoria = document.getElementById("divRestaurantesDescripcionLateral");
-        // Agregamos un event listener al elemento
-        divLateralCategoria.addEventListener("click", (event) => {
-            // Llamamos al manejador al que le introducimos el atributo personalizado
-            manejadorRestauranteDescripcionLateral(event.target.dataset.prestaurantedescripcionlateral);
-            // Llamada al metodo de actualizar migas de pan
-            this.#actualizarMigasPan("Estamos en la página: RestauranteDescripcion");
-            // Apilamos una entrada en el historial con el atributo personalizado
-            history.pushState(
-                {
-                    action: "restauranteDescripcion",
-                    categoriaSeleccionado: event.target.dataset.prestaurantedescripcionlateral,
-                },
-                "",
-                null
-            );
-            // Prevenimos el comportamiento predeterminado
-            event.preventDefault();
-        });
+        // Obtenemos la coleccion de elementos por su clase
+        let parrafoLateralDescripcion = document.getElementsByClassName(
+            "pRestauranteDescripcionLateral"
+        );
+        // Iteramos sobre la coleccion de elementos
+        for (let parrafo of parrafoLateralDescripcion) {
+            // Agregamos un event listener a cada elemento
+            parrafo.addEventListener("click", (event) => {
+                // Llamamos al manejador al que le introducimos el atributo personalizado
+                manejadorRestauranteDescripcionLateral(
+                    event.target.dataset.prestaurantedescripcionlateral
+                );
+                // Llamada al metodo de actualizar migas de pan
+                this.#actualizarMigasPan("Estamos en la página: RestauranteDescripcion");
+                // Apilamos una entrada en el historial con el atributo personalizado
+                history.pushState(
+                    {
+                        action: "restauranteDescripcion",
+                        categoriaSeleccionado: event.target.dataset.prestaurantedescripcionlateral,
+                    },
+                    "",
+                    null
+                );
+                // Prevenimos el comportamiento predeterminado
+                event.preventDefault();
+            });
+        }
     }
 
     //* Metodo que ejecuta el manejador del controlador que mostrara los platos de una categoria
@@ -455,25 +468,28 @@ class RestauranteVista {
     //* Metodo que ejecuta el manejador del controlador que mostrara los platos de una categoria
     manejadorCategoriasPlatosLateral(manejadorCategoriasPlatosLateral) {
         // Obtenemos el elemento
-        let divLateralCategoria = document.getElementById("divLateralCategoria");
-        // Agregamos un event listener al elemento
-        divLateralCategoria.addEventListener("click", (event) => {
-            // Llamamos al manejador al que le introducimos el atributo personalizado
-            manejadorCategoriasPlatosLateral(event.target.dataset.plateralcategoria);
-            // Llamada al metodo de actualizar migas de pan
-            this.#actualizarMigasPan("Estamos en la página: CategoriasPlatos");
-            // Apilamos una entrada en el historial con el atributo personalizado
-            history.pushState(
-                {
-                    action: "categoriasPlatos",
-                    categoriaSeleccionado: event.target.dataset.plateralcategoria,
-                },
-                "",
-                null
-            );
-            // Prevenimos el comportamiento predeterminado
-            event.preventDefault();
-        });
+        let parrafoLateralCategoria = document.getElementsByClassName("pLateralCategoria");
+        // Iteramos sobre la coleccion de elementos
+        for (let parrafo of parrafoLateralCategoria) {
+            // Agregamos un event listener a cada elemento
+            parrafo.addEventListener("click", (event) => {
+                // Llamamos al manejador al que le introducimos el atributo personalizado
+                manejadorCategoriasPlatosLateral(event.target.dataset.plateralcategoria);
+                // Llamada al metodo de actualizar migas de pan
+                this.#actualizarMigasPan("Estamos en la página: CategoriasPlatos");
+                // Apilamos una entrada en el historial con el atributo personalizado
+                history.pushState(
+                    {
+                        action: "categoriasPlatos",
+                        categoriaSeleccionado: event.target.dataset.plateralcategoria,
+                    },
+                    "",
+                    null
+                );
+                // Prevenimos el comportamiento predeterminado
+                event.preventDefault();
+            });
+        }
     }
 
     //* Metodo que ejecuta el manejador del controlador que mostrara los platos de una categoria
@@ -530,11 +546,10 @@ class RestauranteVista {
 
     //* Metodo que ejecuta el manejador del controlador que mostrara la descripcion de los platos desde el lateral
     manejadorPlatosDescripcionLateral(manejadorPlatosDescripcionLateral) {
-        // Obtenemos los elementos con la clase "pPlatosDescripcionLateral"
+        // Obtenemos el elemento por su lase
         let pplatosDescripcionLaterales = document.getElementsByClassName(
             "pPlatosDescripcionLateral"
         );
-
         for (const platos of pplatosDescripcionLaterales) {
             platos.addEventListener("click", (event) => {
                 // Llamamos al manejador al que le introducimos el atributo personalizado
@@ -728,7 +743,32 @@ class RestauranteVista {
         });
     }
 
-    //!MANEJADOR PARA LA BARRA LATERAL DE LOS FORMULARIO
+    //* Metodo que ejecuta el manejador del controlador que mostrara los formularios desde la barra lateral
+    manejadorFormularoiosGestionLateral(manejadorFormularoiosGestionLateral) {
+        // Obtenemos los elementos de lista por su nombre
+        let lateralFormularios = document.getElementsByClassName("pLateralFormularios");
+        // Iteramos sobre los elementos obtenidos
+        for (const formularios of lateralFormularios) {
+            // Agregamos un event listener a cada elemento
+            formularios.addEventListener("click", (event) => {
+                // LLamada al metodo del controlador que nos mostra el formulario selecionado
+                manejadorFormularoiosGestionLateral(event.currentTarget.dataset.plateralformulario);
+                // Llamada al metodo de actualizar migas de pan
+                this.#actualizarMigasPan("Estamos en la página: FormulariosGestion");
+                // Apilamos una entrada en el historial con el atributo personalizado
+                history.pushState(
+                    {
+                        action: "formulariosGestion",
+                        menuSeleccionado: event.currentTarget.dataset.plateralformulario,
+                    },
+                    "",
+                    null
+                );
+                // Prevenimos el comportamiento predeterminado
+                event.preventDefault();
+            });
+        }
+    }
 
     //* Manejador que mostrara los platos que tiene un menu para desasignarlo
     manejadorFormularioMostrarPlatosMenuDesasignacion(
@@ -866,7 +906,7 @@ class RestauranteVista {
                 event.preventDefault();
                 //- Obtenemos el plato del radioBoton marcado
                 let arrayBotonesPlatoEliminado = this.form.elements["platoSeleccionadoEliminado"];
-                // Creamos un array para almacenar los valores de los alergenos
+                // Creamos un array para almacenar los valores de los platos
                 let arrayPlatosSeleccionados = [];
                 // Recorremos los radiobotones para ver cual esta pulsado
                 for (let radioboton of arrayBotonesPlatoEliminado) {
@@ -882,7 +922,333 @@ class RestauranteVista {
             }
         );
     }
+
+    //* Manejador para el formulario para la asignacion de platos al menu
+    manejadorFormularioAsignarPlatoMenu(manejadorFormularioAsignarPlatoMenu) {
+        document.forms.formularioAsignacionPlatoMenu.elements["botonAsignarPlato"].addEventListener(
+            "click",
+            function (event) {
+                // Prevenimos el comportamiento por defecto
+                event.preventDefault();
+                //- Obtenemos los menus del checkbox marcado
+                let arrayCheckboxMenus = this.form.elements["checkboxMenuAsignadoPlato"];
+                // Creamos un array para almacenar los valores de los menus
+                let arrayMenuSeleccionados = [];
+                // Recorremos los checkboxes
+                for (let checkbox of arrayCheckboxMenus) {
+                    // Si el checkbox esta marcado
+                    if (checkbox.checked) {
+                        // Añadimos el valor al array
+                        arrayMenuSeleccionados.push(checkbox.value);
+                    }
+                }
+                //- Obtenemos los platos del checkbox marcado
+                let arrayCheckboxPlatos = this.form.elements["checkboxPlatoAsignadoMenu"];
+                // Creamos un array para almacenar los valores de los menus
+                let arrayPlatoSeleccionados = [];
+                // Recorremos los checkboxes
+                for (let checkbox of arrayCheckboxPlatos) {
+                    // Si el checkbox esta marcado
+                    if (checkbox.checked) {
+                        // Añadimos el valor al array
+                        arrayPlatoSeleccionados.push(checkbox.value);
+                    }
+                }
+                //- Llamada al manejador del controlador para la asignacion del plato al menu
+                manejadorFormularioAsignarPlatoMenu(
+                    arrayMenuSeleccionados,
+                    arrayPlatoSeleccionados
+                );
+            }
+        );
+    }
+
+    //* Manejador para el formulario para la desasignacion de los platos del menu
+    manejadorFormularioDesasignarPlatoMenu(manejadorFormularioDesasignarPlatoMenu) {
+        // Comprobamos si el boton para desasignar el plato esta creado por su atributo ame
+        if (document.forms.formularioDeasignacionPlatoMenu.elements["botonDesasignarPlatos"]) {
+            // Asociamos un manejador de eventos al boton de desasignado
+            document.forms.formularioDeasignacionPlatoMenu.elements[
+                "botonDesasignarPlatos"
+            ].addEventListener("click", function (event) {
+                // Prevenimos el comportamiento por defecto
+                event.preventDefault();
+
+                //- Obtenemos el menu del radioBoton marcado
+                let arrayBotonesMenuDesasignado = this.form.elements["menuDesasignadoSeleccionado"];
+                // Creamos un array para almacenar los valores de los menus
+                let arrayMenuDesasignado = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesMenuDesasignado) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayMenuDesasignado.push(radioboton.value);
+                    }
+                }
+
+                //- Obtenemos el plato del radioBoton marcado
+                let arrayBotonesPlatoDesasignado =
+                    this.form.elements["platoDesasignadoSeleccionado"];
+                // Creamos un array para almacenar los valores de los platos
+                let arrayPlatosSeleccionados = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesPlatoDesasignado) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayPlatosSeleccionados.push(radioboton.value);
+                    }
+                }
+
+                //+ Llamada al manejador del controlador para la eliminacion del plato
+                manejadorFormularioDesasignarPlatoMenu(
+                    arrayMenuDesasignado[0],
+                    arrayPlatosSeleccionados[0]
+                );
+            });
+        }
+    }
+
+    //* Manejador para el formulario para la ordenacion de los platos del menu
+    manejadorFormularioOrdenarPlatoMenu(manejadorFormularioOrdenarPlatoMenu) {
+        // Comprobamos si el boton de ordenar platos esta creado por su atributo name
+        if (document.forms.formularioOrdenarPlatoMenu.elements["botonOrdenarPlatos"]) {
+            // Asignamos un manejador de eventos al boton
+            document.forms.formularioOrdenarPlatoMenu.elements[
+                "botonOrdenarPlatos"
+            ].addEventListener("click", function (event) {
+                // Prevenimos el comportamiento por defecto
+                event.preventDefault();
+
+                //- Obtenemos el menu del radioBoton marcado
+                let arrayBotonesMenuOrdenado = this.form.elements["menuOrdenadoSeleccionado"];
+                // Creamos un array para almacenar los valores de los menus
+                let arrayMenuOrdenado = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesMenuOrdenado) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayMenuOrdenado.push(radioboton.value);
+                    }
+                }
+
+                //- Obtenemos el plato 1 del radioBoton marcado
+                let arrayBotonesPlatoOrdenado1 = this.form.elements["primerPlatoOrdenado"];
+                // Creamos un array para almacenar los valores de los platos
+                let arrayPlatosOrdenado1 = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesPlatoOrdenado1) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayPlatosOrdenado1.push(radioboton.value);
+                    }
+                }
+
+                //- Obtenemos el plato 2 del radioBoton marcado
+                let arrayBotonesPlatoOrdenado2 = this.form.elements["segundoPlatoOrdenado"];
+                // Creamos un array para almacenar los valores de los platos
+                let arrayPlatosOrdenado2 = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesPlatoOrdenado2) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayPlatosOrdenado2.push(radioboton.value);
+                    }
+                }
+
+                //+ Llamada al manejador del controlador para la eliminacion del plato
+                manejadorFormularioOrdenarPlatoMenu(
+                    arrayMenuOrdenado[0],
+                    arrayPlatosOrdenado1[0],
+                    arrayPlatosOrdenado2[0]
+                );
+            });
+        }
+    }
+
+    //* Manejador para el formulario para la creacion de la categoria
+    manejadorFormularioCrearCategoria(manejadorFormularioCrearCategoria) {
+        // Obtenemos el boton del formulario para crear la categoria por su atributo name
+        document.forms.formularioCrearCategoria.elements["botonCrearCategoria"].addEventListener(
+            "click",
+            function (event) {
+                // Prevenimos el comportamiento por defecto
+                event.preventDefault();
+                //+ Obtenemos los datos del formulario
+                //- Obtenemos el nombre de la categoria por el atributo name del elemento
+                let nombreCategoria = this.form.nombreCategoriaCrear.value;
+
+                //- Obtenemos la descripcion del de la categoria por el atributo name del elemento
+                let descripcionCategoria = this.form.descripcionCategoriaCrear.value;
+
+                //- Obtenemos la url de la imagen de la categori por el atributo name del elemento
+                let urlImagenCategoria = this.form.nombreImagenCategoriaCrear.value;
+
+                //+ Llamada al manejador del controlador para la creacion de la categoria
+                manejadorFormularioCrearCategoria(
+                    nombreCategoria,
+                    descripcionCategoria,
+                    urlImagenCategoria
+                );
+            }
+        );
+    }
+
+    //* Manejador para el formulario para la eliminacion de las categorias
+    manejadorFormularioEliminarCategoria(manejadorFormularioEliminarCategoria) {
+        // Obtenemos el boton del formulario para crear la eliminar la categoria por su atributo name
+        document.forms.formularioEliminarCategoria.elements[
+            "botonEliminarCategoria"
+        ].addEventListener("click", function (event) {
+            // Prevenimos el comportamiento por defecto
+            event.preventDefault();
+            //- Obtenemos la categoria del radioBoton marcado
+            let arrayBotonesCategoriaEliminado =
+                this.form.elements["categoriaSeleccionadaEliminado"];
+            // Creamos un array para almacenar los valores de las categorias
+            let arrayCategoriasEliminado = [];
+            // Recorremos los radiobotones para ver cual esta pulsado
+            for (let radioboton of arrayBotonesCategoriaEliminado) {
+                // Si el radioboton esta pulsado
+                if (radioboton.checked) {
+                    // Añadimos el valor al array
+                    arrayCategoriasEliminado.push(radioboton.value);
+                }
+            }
+            // Llamada al manejador del controlador para la eliminacion de la categoria
+            manejadorFormularioEliminarCategoria(arrayCategoriasEliminado[0]);
+        });
+    }
+
+    //* Manejador para el formulario para la creacion de restaurantes
+    manejadorFormularioCrearRestaurante(manejadorFormularioCrearRestaurante) {
+        // Obtenemos el boton del formulario para crear la eliminar la categoria por su atributo name
+        document.forms.formularioCrearRestaurante.elements[
+            "botonCrearRestaurante"
+        ].addEventListener("click", function (event) {
+            // Prevenimos el comportamiento por defecto
+            event.preventDefault();
+            //+ Obtenemos los datos del formulario
+            //- Obtenemos el nombre del restaurante por el atributo name del elemento
+            let nombreRestaurante = this.form.nombreRestauranteCreacion.value;
+
+            //- Obtenemos la descripcion del restaurante por el atributo name del elemento
+            let descripcionRestaurante = this.form.descripcionRestauranteCrear.value;
+
+            //- Obtenemos la latitud del restaurante por el atributo name del elemento
+            let latitudRestaurante = this.form.latitudRestauranteCrear.value;
+
+            //- Obtenemos la longitud del restaurante por el atributo name del elemento
+            let longitudRestaurante = this.form.longitudRestauranteCrear.value;
+
+            //+ Llamada al manejador del controlador para la creacion del restaurante
+            manejadorFormularioCrearRestaurante(
+                nombreRestaurante,
+                descripcionRestaurante,
+                latitudRestaurante,
+                longitudRestaurante
+            );
+        });
+    }
+
+    //* Manejador para el formulario para la asignacion de platos al las categorias
+    manejadorFormularioAsignarPlatoCategorias(manejadorFormularioAsignarPlatoCategorias) {
+        // Obtenemos el boton de asignar platos al menu por su atributo ombre
+        document.forms.formularioAsignacionCategoriasPlatos.elements[
+            "botonAsignarPlatosCategorias"
+        ].addEventListener("click", function (event) {
+            // Prevenimos el comportamiento por defecto
+            event.preventDefault();
+            //- Obtenemos las categorias del checkbox marcado
+            let arrayCheckboxCategorias = this.form.elements["checkboxCategoriaAsignadoPlatos"];
+            // Creamos un array para almacenar los valores de las categorias
+            let arrayCategoriasSeleccionados = [];
+            // Recorremos los checkboxes
+            for (let checkbox of arrayCheckboxCategorias) {
+                // Si el checkbox esta marcado
+                if (checkbox.checked) {
+                    // Añadimos el valor al array
+                    arrayCategoriasSeleccionados.push(checkbox.value);
+                }
+            }
+            //- Obtenemos los platos del checkbox marcado
+            let arrayCheckboxPlatos = this.form.elements["checkboxPlatosAsignadoCategorias"];
+            // Creamos un array para almacenar los valores de los menus
+            let arrayPlatoSeleccionados = [];
+            // Recorremos los checkboxes
+            for (let checkbox of arrayCheckboxPlatos) {
+                // Si el checkbox esta marcado
+                if (checkbox.checked) {
+                    // Añadimos el valor al array
+                    arrayPlatoSeleccionados.push(checkbox.value);
+                }
+            }
+            //- Llamada al manejador del controlador para la asignacion del plato a la categoria
+            manejadorFormularioAsignarPlatoCategorias(
+                arrayCategoriasSeleccionados,
+                arrayPlatoSeleccionados
+            );
+        });
+    }
+
+    //* Manejador para el formulario para la desasignacion de los platos de las categorias
+    manejadorFormularioDesasignarPlatoCategorias(manejadorFormularioDesasignarPlatoCategorias) {
+        // Comprobamos si el boton para desasignar el plato esta creado por su atributo name
+        if (
+            document.forms.formularioDesasignacionCategoriasPlatos.elements[
+                "botonDesasignarPlatosCategorias"
+            ]
+        ) {
+            // Asociamos un manejador de eventos al boton de desasignado
+            document.forms.formularioDesasignacionCategoriasPlatos.elements[
+                "botonDesasignarPlatosCategorias"
+            ].addEventListener("click", function (event) {
+                // Prevenimos el comportamiento por defecto
+                event.preventDefault();
+
+                //- Obtenemos las categorias del radioBoton marcado
+                let arrayBotonesCategoriasDesasignado =
+                    this.form.elements["categoriaDesasignadoSeleccionado"];
+                // Creamos un array para almacenar los valores de las categorias
+                let arrayCategoriasDesasignado = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesCategoriasDesasignado) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayCategoriasDesasignado.push(radioboton.value);
+                    }
+                }
+
+                //- Obtenemos el plato del radioBoton marcado
+                let arrayBotonesPlatoDesasignado =
+                    this.form.elements["platoDesasignadoSeleccionadoCategorias"];
+                // Creamos un array para almacenar los valores de los platos
+                let arrayPlatosSeleccionados = [];
+                // Recorremos los radiobotones para ver cual esta pulsado
+                for (let radioboton of arrayBotonesPlatoDesasignado) {
+                    // Si el radioboton esta pulsado
+                    if (radioboton.checked) {
+                        // Añadimos el valor al array
+                        arrayPlatosSeleccionados.push(radioboton.value);
+                    }
+                }
+
+                //- Llamada al manejador del controlador para la desasignacion de platos
+                manejadorFormularioDesasignarPlatoCategorias(
+                    arrayCategoriasDesasignado[0],
+                    arrayPlatosSeleccionados[0]
+                );
+            });
+        }
+    }
 }
 
 //?///////////////////////////EXPORTACIONES//////////////////////////////
 export { RestauranteVista };
+
+

@@ -14,19 +14,27 @@ class Category {
     //?/////////////////////CONSTRUCTOR DE LA CLASE//////////////////////
     constructor(name, description = "", imageUrl = "") {
         // Excepciones de las propiedades del constructor
-        if (name === undefined) {
+        if (name === "") {
             throw new NombreObligatorio();
+        }
+        // Verificamos si la imagen esta vacia y le asignamos la imagen por defecto
+        if (imageUrl === "") {
+            // Asignamos la imagen por defecto a la propiedad
+            this.#imageUrl = "../../imagenes/imagenPorDefecto.png";
+        } else {
+            // Si no esta vacia asignamos la imagen
+            this.#imageUrl = imageUrl;
         }
         // Asignacion de los valores de la propiedados con los parametros
         this.#name = name;
         this.#description = description;
-        this.#imageUrl = imageUrl;
     }
+    
     //?///////////////////////////GETTER Y SETTER////////////////////////
     //Setter para el nombre
     setName(name) {
         //Excepcion para que el nombre no este vacio
-        if (name === undefined) {
+        if (name === "") {
             throw new NombreObligatorio();
         }
         this.#name = name;
@@ -45,7 +53,14 @@ class Category {
     }
     // Setter para modificar la imagen
     setImageUrl(imageUrl) {
-        this.#imageUrl = imageUrl;
+        // Verificamos si la imagen esta vacia y le asignamos la imagen por defecto
+        if (imageUrl === "") {
+            // Asignamos la imagen por defecto a la propiedad
+            this.#imageUrl = "../../imagenes/imagenPorDefecto.png";
+        } else {
+            // Si no esta vacia asignamos la imagen
+            this.#imageUrl = imageUrl;
+        }
     }
     // Getter para obtener la imagen
     getImageUrl() {
@@ -54,9 +69,14 @@ class Category {
 
     //?///////////////////////////METODOS////////////////////////////////
     toString() {
-        return "La categoria es: " + this.#name + 
-        " y la descripcion es: " + this.#description + 
-        " la url de la imagen es " + this.#imageUrl;
+        return (
+            "La categoria es: " +
+            this.#name +
+            " y la descripcion es: " +
+            this.#description +
+            " la url de la imagen es " +
+            this.#imageUrl
+        );
     }
 }
 

@@ -103,7 +103,7 @@ class RestauranteModelo {
             return categoriaPlatoObj;
         }
     }
-    //+Metodo para añadir la categoria
+    //+ Metodo para añadir la categoria
     addCategory(...categorias) {
         //Iteramos sobre las categorias entradas por parametros
         for (const categoria of categorias) {
@@ -122,7 +122,7 @@ class RestauranteModelo {
             );
             //Verificamos si encontramos alguna categoria
             if (categoriasEncontradas.length > 0) {
-                throw new ExisteCategoria(categoria.categoria);
+                throw new ExisteCategoria();
             } else {
                 //Si no existe la categoria la añadimos al array de categorias
                 this.#categories.push(categoria);
@@ -247,7 +247,7 @@ class RestauranteModelo {
                 }
                 //Si ya esta asignado saltamos la excepcion
                 else {
-                    throw new ExistePlato(platoExistente.platos);
+                    throw new ExistePlato();
                 }
             });
         });
@@ -492,33 +492,33 @@ class RestauranteModelo {
             }
         }
 
-        //Por cada menu que haya en el array de menus
-        for (let i = 0; i < menusEntrante.length; i++) {
-            //Asignamos el menu a la variable
-            const menu = menusEntrante[i];
-            //Asignamos el plato a la variable
-            const dish = platosEntrantes[i];
+        //Por cada menu que halla en el array de categorias
+        menusEntrante.forEach((menu) => {
+            // Por cada plato que halla en el array de platos
+            platosEntrantes.forEach((dish) => {
 
-            //Buscamos el menu en el array de menus para ver si existe
-            let existingAssignment = this.#menus.find(
-                (exitingMenu) => exitingMenu.menus.getName() === menu.menus.getName()
-            );
+                //Buscamos el menu en el array de menus para ver si existe
+                let existingAssignment = this.#menus.find(
+                    (exitingMenu) => exitingMenu.menus.getName() === menu.menus.getName()
+                );
 
-            //Buscamos si el plato ya esta asignado al menu
-            let platoExistente = existingAssignment.platos.find(
-                (existingPlato) => existingPlato.platos.getName() === dish.platos.getName()
-            );
+                //Buscamos si el plato ya esta asignado al menu
+                let platoExistente = existingAssignment.platos.find(
+                    (existingPlato) => existingPlato.platos.getName() === dish.platos.getName()
+                );
 
-            //Si el plato no esta asignado al menu lo asignamos
-            if (!platoExistente) {
-                //Añadimos los platos al menu
-                existingAssignment.platos.push(dish);
-            }
-            //Si ya esta asignado saltamos la excepcion
-            else {
-                throw new ExistePlato(platoExistente.platos);
-            }
-        }
+                //Si el plato no esta asignado al menu lo asignamos
+                if (!platoExistente) {
+                    //Añadimos los platos al menu
+                    existingAssignment.platos.push(dish);
+                }
+                //Si ya esta asignado saltamos la excepcion
+                else {
+                    throw new ExistePlato();
+                }
+            });
+        });
+
         //Devolvemos la instancia del metodo para que se pueda encadenar
         return this;
     }
@@ -764,7 +764,7 @@ class RestauranteModelo {
             );
             //Verificamos si encontramos algun restaurante
             if (restaurantEncontrados.length > 0) {
-                throw new ExisteRestaurant(restaurant);
+                throw new ExisteRestaurant();
             } else {
                 //Añadimos el restaurante al array
                 this.#restaurants.push(restaurant);
@@ -862,7 +862,7 @@ class RestauranteModelo {
             );
             //Verificamos si encontramos algun plato
             if (dishEncontrados.length > 0) {
-                throw new ExistePlato(dish.platos);
+                throw new ExistePlato();
             } else {
                 //Añadimos el plato al array
                 this.#dishes.push(dish);

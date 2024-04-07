@@ -550,7 +550,7 @@ function mostradoMenuLateralRestaurantes(mainContenidoListado, restaurantes) {
         // Creamos un nuevo elemento de parrafo
         let parrafo = document.createElement("p");
         // Asignamos una clase a la fila
-        parrafo.classList.add("pPlatosDescripcionLateral");
+        parrafo.classList.add("pRestauranteDescripcionLateral");
         // Creamos un atributo personalizado
         parrafo.setAttribute("data-prestaurantedescripcionlateral", restaurante.getName());
         // Agregamos el texto con el nombre de los platos

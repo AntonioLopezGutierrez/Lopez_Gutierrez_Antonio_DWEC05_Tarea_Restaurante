@@ -274,6 +274,53 @@ header {
     /* Centramos el texto*/
     text-align: center;
 }
+/*? Listado de la barra lateral que musestra los restaurantes*/
+.pRestauranteDescripcionLateral {
+    /* Establecemos el relleno del elemento*/
+    padding: 0.5em;
+    /* Establecemos el margen superior*/
+    margin-top: 20%;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 100%;
+    /* Establecemos el ancho en negrita*/
+    font-weight: bold;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el puntero como si fuera un enlace*/
+    cursor: pointer;
+    /* Establecemos el color de fondo*/
+    background-color: rgba(66, 66, 66, 0.5);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Centramos el texto*/
+    text-align: center;
+}
+
+/*? Listado de la barra lateral que muestra los formularion*/
+.pLateralFormularios {
+    /* Establecemos el relleno del elemento*/
+    padding: 0.5em;
+    /* Establecemos el margen superior*/
+    margin-top: 20%;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 100%;
+    /* Establecemos el ancho en negrita*/
+    font-weight: bold;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el puntero como si fuera un enlace*/
+    cursor: pointer;
+    /* Establecemos el color de fondo*/
+    background-color: rgba(66, 66, 66, 0.5);
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Centramos el texto*/
+    text-align: center;
+}
 
 /********************** Contenido central mostrado**********************/
 /*? Contenido que mostraremos en la pagina*/
@@ -323,14 +370,23 @@ header {
     /* Cambiamos el cursor para que parezca el contnedor un enlade*/
     cursor: pointer;
     /* Establecemos el margen izquierdo*/
-    margin-left: 2.5%;
+    margin-left: 2em;
+    /* Establecemos el magen derecho*/
+    margin-right: 2em;
+    /* Establecemos el margen superior*/
+    margin-top: 1em;
+    /* Establecemos el margen inferior*/
+    margin-bottom: 1em;
+    /* Establecemos el espacio de las columnas*/
+    column-gap: 1em;
 }
+
 /*? Contenedor para el mostrado de la imagen de la categorias al cargar la pagina*/
 .conenedorImagenBack {
     /* Establecemos la altura*/
     height: 25em;
     /* Establecemos la anchura*/
-    width: 90%;
+    width: 100%;
     /* Establecemos el puntero para que nosa aparezca seleccionado*/
     cursor: pointer;
     /* Establecemos el borde redondo*/
@@ -657,6 +713,7 @@ header {
     /* Establecemos el espacio de las columnas*/
     column-gap: 0.2em;
 }
+
 /*? Contenedores para la administracion de los platos*/
 .contenedorAdministracionPlatosDiv {
     /* Establecemos los bordes a los contenedores*/
@@ -752,6 +809,7 @@ header {
     /* Establecemos el margen*/
     margin: 1em;
 }
+
 /*? Formulario para la creacion de restaurantes*/
 .formularioCrearRestaurante {
     /* Establecemos un contenedor flexible*/
@@ -981,13 +1039,36 @@ header {
     margin-top: 1em;
 }
 
-.mensajesFormulariosConfirmacion{
+/*? Tabla para los formularios de asignado de menus al plato*/
+.tablaAMenusAsignadoPlatos {
+    /* Establecemos la anchura*/
+    width: 15em;
+    /* Establecemos el margen*/
+    margin-left: 2em;
+    /* Establecemos el margen*/
+    margin-right: 2em;
+}
+
+/*? Columnas para los formularios de asignado de menus al plato*/
+.tablaAMenusAsignadoPlatos td {
+    /* Establecemos el ancho de las columnas */
+    width: 25%;
+    /* Alineamos el contenido de las celdas */
+    text-align: left;
+    /* Añadimos un borde para separar las celdas */
+    border: 1px solid white;
+    /* Colapsamos los bordes*/
+    border-collapse: collapse;
+}
+
+/*? Mensaje de confirmacion de que el formulario se ha procesado correctamente*/
+.mensajesFormulariosConfirmacion {
     color: greenyellow;
     font-size: 3em;
-
-
 }
-.mensajesFormulariosError{
+
+/*? Mensaje de denegacio de que el formulario no se ha procesado correctamente*/
+.mensajesFormulariosError {
     color: red;
     font-size: 3em;
 }

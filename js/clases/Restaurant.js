@@ -1,26 +1,25 @@
+//!//////////////////////////CLASE RESTAURANT////////////////////////////
 //Activamos el modo estricto
 "use strict"
 
-//////////////////////////////////////////////////IMPORTACIONES DE LA CLASE///////////////////////////////////////////////
+//?/////////////////////IMPORTACIONES DE LA CLASE////////////////////////
 import {
     NombreObligatorio,
     InstanciaCoordinate
 } from "../../js/excepciones/ExcepcionesRestaurant.js";
 import { Coordinate } from "./Coordinate.js";
 
-/**
- * ///////////////////////////////////////////////CLASE RESTAURANT/////////////////////////////////////////////////////
- */
+//?/////////////////////////DECLARACION DE LA CLASE//////////////////////
 class Restaurant {
-    /////////////////////////////////////DECLARACION DE LAS PROPIEDADES PRIVADAS///////////////////////////////////////
+    //?/////////////DECLARACION DE LAS PROPIEDADES PRIVADAS//////////////
     #name;
     #description;
     #location;
 
-    /////////////////////////////////////////CONSTRUCTOR DE LA CLASE/////////////////////////////////////////////////
+    //?/////////////////////CONSTRUCTOR DE LA CLASE//////////////////////
     constructor(name, description = "", location = new Coordinate(0, 0)) {
         //Excepciones de las propiedades 
-        if (name === undefined) {
+        if (name === "") {
             throw new NombreObligatorio();
         }
         if (!(location instanceof Coordinate)) {
@@ -32,11 +31,11 @@ class Restaurant {
         this.#location = location;
 
     }
-    ///////////////////////////////////////////////GETTER Y SETTER/////////////////////////////////////////////
+    //?/////////////////////////GETTER Y SETTER//////////////////////////
     //Setter para el nombre
     setName(name) {
         //Excepcion para que el nombre no este vacio
-        if (name === undefined) {
+        if (name === "") {
             throw new NombreObligatorio();
         }
         this.#name = name;
@@ -67,7 +66,7 @@ class Restaurant {
         return this.#location;
     }
 
-    ////////////////////////////////////////////////////////METODOS//////////////////////////////////////////////
+    //?//////////////////////////////METODOS/////////////////////////////
     toString() {
         return ("El nombre del restaurante es: " + this.#name + " y la descripcion es: "
             + this.#description + " y la localizacion es: " + this.#location);
@@ -75,7 +74,7 @@ class Restaurant {
 
 }
 
-////////////////////////////////////////////////EXPORTACION DE LA CLASE//////////////////////////////////////////////
+//?////////////////////////EXPORTACION DE LA CLASE///////////////////////
 export {
     Restaurant
 };

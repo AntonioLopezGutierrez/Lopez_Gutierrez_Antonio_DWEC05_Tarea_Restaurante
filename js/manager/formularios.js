@@ -28,6 +28,10 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
     inputNombrePlato.type = "text";
     // Asignamos la clase al elemento de texto
     inputNombrePlato.className = "inputTextFormulario";
+    // Establecemos la longitud maxima del input
+    inputNombrePlato.maxLength = 20;
+    // Establecemos el atributo para que sea requerido
+    inputNombrePlato.required = true;
 
     //+ Creamos un elemento parrafo para la imagen
     let parrafoImagenPlato = document.createElement("p");
@@ -42,6 +46,8 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
     inputImagenPlato.type = "text";
     // Asignamos la clase al elemento de texto
     inputImagenPlato.className = "inputTextFormulario";
+    // Establecemos la longitud maxima del input
+    inputImagenPlato.maxLength = 100;
 
     //+ Creamos un elemento parrafo para la descripcion
     let parrafoDescripcionPlato = document.createElement("p");
@@ -58,6 +64,8 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
     inputDescripcionPlato.placeholder = "Ej: Es una delicia casera...";
     // Asignamos la clase al elemento de texto
     inputDescripcionPlato.className = "inputTextAreaFormulario";
+    // Establecemos la longitud maxima del input
+    inputDescripcionPlato.maxLength = 200;
 
     //+ Creamos un elemento parrafo para los ingredientes
     let parrafoIngredientesPlatos = document.createElement("p");
@@ -75,6 +83,8 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
     inputIngredientesPlatos.placeholder = "Ingrediente1, Ingrediente2, ...";
     // Asignamos la clase al elemento de texto
     inputIngredientesPlatos.className = "inputTextAreaFormulario";
+    // Establecemos la longitud maxima del input
+    inputIngredientesPlatos.maxLength = 100;
 
     //+ Creamos un elemento parrafo para la seleccion de categorias
     let parrafoSeleccionCategorias = document.createElement("p");
@@ -232,6 +242,10 @@ function eliminarPlato(mainContenido, platos) {
         radioPlato.name = "platoSeleccionadoEliminado";
         // Asignamos el valor del radio button con el nombre del plato
         radioPlato.value = plato.platos.getName();
+        // Añadimos la propiedad required para que se tenga que pulsar un boton
+        if (plato === platos[0]) {
+            radioPlato.required = true;
+        }
         // Creamos un nuevo elemento span para asociarlo con el radio button
         let spanPlato = document.createElement("span");
         // Asignamos el texto al label con el nombre del plato
@@ -270,12 +284,12 @@ function administrarPlatos(mainContenido, menus, platos) {
     // Borramos los elementos del main contenido
     mainContenido.innerHTML = "";
 
-    //+ Creacion de un elemento div para la administracion de datos
+    //* Creacion de un elemento div para la administracion de datos
     let administrarPlatosDiv = document.createElement("div");
     // Asignamos la clase al elemento
     administrarPlatosDiv.className = "contenedorAdministracionPlatosFormulario";
 
-    //+ Creacion de un elemento div para la asignacion de platos al menu
+    //* Creacion de un elemento div para la asignacion de platos al menu
     //- Creacion de un elemento div para la asignacion de platos al menu
     let asignarPlatosDiv = document.createElement("div");
     // Agregamos la clase al contenedor
@@ -298,30 +312,40 @@ function administrarPlatos(mainContenido, menus, platos) {
     // Asignamos el texto a la etiqueta
     tituloSeleccionMenuAsignacion.innerText = "Escoja el menu al que quiere asignar el plato";
 
-    //- Creamos un nuevo elemento div que almacenara los radiobotones
-    let contenedorRadiobotonesMenusAsignacion = document.createElement("div");
-    // Asignamos la clase al contenedor con los radiobotones
-    contenedorRadiobotonesMenusAsignacion.className = "radioBotonesContenedorFormulario";
-    // Recorremos el iterador de menus
+    //- Creamos una tabla para mostrar los menus
+    let tablaAMenusAsignadoPlatos = document.createElement("table");
+    // Le asignamos la clase a la tabla
+    tablaAMenusAsignadoPlatos.className = "tablaAMenusAsignadoPlatos";
+    // Asignamos el atributo name a la tabla
+    tablaAMenusAsignadoPlatos.name = "tablaAMenusAsignadoPlatos";
+    // Recorremos el iterador de alergenos
     for (const menu of menus) {
-        //- Creamos un nuevo elemento input
-        let radiomenu = document.createElement("input");
-        // Configuramos el tipo del input que sera radio
-        radiomenu.type = "radio";
-        // Asignamos el atributo name al radio boton
-        radiomenu.name = "menuAsignadoSeleccionado";
-        // Asignamos el valor del radio button con el nombre del menu
-        radiomenu.value = menu.menus.getName();
-
-        //- Creamos un nuevo elemento span para asociarlo con el radio button
-        let spanMenu = document.createElement("span");
-        // Asignamos el texto al span con el nombre del menu
-        spanMenu.innerText = menu.menus.getName();
-
-        //- Añadimos el radio button al contenedor
-        contenedorRadiobotonesMenusAsignacion.appendChild(radiomenu);
-        // Añadimos el span del radioboton al formulario
-        contenedorRadiobotonesMenusAsignacion.appendChild(spanMenu);
+        // Creamos una nueva fila para la tabla
+        let fila = document.createElement("tr");
+        // Creamos una celda para el checkbox
+        let celdaCheckbox = document.createElement("td");
+        // Creamos el checkbox
+        let checkbox = document.createElement("input");
+        // Asignamos el atributo type al elemento
+        checkbox.type = "checkbox";
+        // Asignamos el atributo name a los elementos
+        checkbox.name = "checkboxMenuAsignadoPlato";
+        // Asignamos el valor al checkbox
+        checkbox.value = menu.menus.getName();
+        // Agregamos el checkbox a la celda
+        celdaCheckbox.appendChild(checkbox);
+        // Creamos una celda para el nombre de los menus
+        let celdaNombreAlergeno = document.createElement("td");
+        // Creamos un texto con el nombre de los menus
+        let nombreAlergenoTexto = document.createTextNode(menu.menus.getName());
+        // Agregamos el texto a la celda
+        celdaNombreAlergeno.appendChild(nombreAlergenoTexto);
+        // Agregamos el checkbox a la fila
+        fila.appendChild(celdaCheckbox);
+        // El nombre de los menus a la fila
+        fila.appendChild(celdaNombreAlergeno);
+        // Agregamos a la tabla la fila
+        tablaAMenusAsignadoPlatos.appendChild(fila);
     }
 
     //- Creamos un elemento de titulo para la seleccion de los platos
@@ -329,36 +353,48 @@ function administrarPlatos(mainContenido, menus, platos) {
     // Asignamos el texto a la etiqueta
     tituloSeleccionPlatoAsignacion.innerText = "Escoja el plato que quiere asignar al menu";
 
-    //- Creamos un nuevo elemento div que almacenara los radiobotones
-    let contenedorRadiobotonesPlatosAsignacion = document.createElement("div");
-    // Asignamos la clase al contenedor con los radiobotones
-    contenedorRadiobotonesPlatosAsignacion.className = "radioBotonesContenedorFormulario";
-    // Recorremos el iterador de platos
+    //- Creamos una tabla para mostrar los platos
+    let tablaPlatosAsignadoMenus = document.createElement("table");
+    // Le asignamos la clase a la tabla
+    tablaPlatosAsignadoMenus.className = "tablaAMenusAsignadoPlatos";
+    // Asignamos el atributo name a la tabla
+    tablaPlatosAsignadoMenus.name = "tablaPlatosAsignadoMenus";
+    // Recorremos el iterador de alergenos
     for (const plato of platos) {
-        //- Creamos un nuevo elemento input
-        let radioBoton = document.createElement("input");
-        // Configuramos el tipo del input que sera radio
-        radioBoton.type = "radio";
-        // Asignamos el atributo name al radio boton
-        radioBoton.name = "platoAsignadoSeleccionado";
-        // Asignamos el valor del radio button con el nombre
-        radioBoton.value = plato.platos.getName();
-
-        //- Creamos un nuevo elemento span para asociarlo con el radio button
-        let spanBoton = document.createElement("span");
-        // Asignamos el texto al span con el nombre del menu
-        spanBoton.innerText = plato.platos.getName();
-
-        //- Añadimos el radio button al contenedor
-        contenedorRadiobotonesPlatosAsignacion.appendChild(radioBoton);
-        // Añadimos el span del radioboton al formulario
-        contenedorRadiobotonesPlatosAsignacion.appendChild(spanBoton);
+        // Creamos una nueva fila para la tabla
+        let fila = document.createElement("tr");
+        // Creamos una celda para el checkbox
+        let celdaCheckbox = document.createElement("td");
+        // Creamos el checkbox
+        let checkbox = document.createElement("input");
+        // Asignamos el atributo type al elemento
+        checkbox.type = "checkbox";
+        // Asignamos el atributo name a los elementos
+        checkbox.name = "checkboxPlatoAsignadoMenu";
+        // Asignamos el valor al checkbox
+        checkbox.value = plato.platos.getName();
+        // Agregamos el checkbox a la celda
+        celdaCheckbox.appendChild(checkbox);
+        // Creamos una celda para el nombre de los menus
+        let celdaNombreAlergeno = document.createElement("td");
+        // Creamos un texto con el nombre de los platos
+        let nombreAlergenoTexto = document.createTextNode(plato.platos.getName());
+        // Agregamos el texto a la celda
+        celdaNombreAlergeno.appendChild(nombreAlergenoTexto);
+        // Agregamos el checkbox a la fila
+        fila.appendChild(celdaCheckbox);
+        // Agregamos el nombre de los platos a la fila
+        fila.appendChild(celdaNombreAlergeno);
+        // Agregamos a la tabla la fila
+        tablaPlatosAsignadoMenus.appendChild(fila);
     }
 
     //- Creamos un elemento boton para asignar el plato
     let botonAsignarPlato = document.createElement("button");
     // Asignamos el texto al boton
     botonAsignarPlato.innerHTML = "Asignar";
+    // Asignamos un atributo name al boton
+    botonAsignarPlato.name = "botonAsignarPlato";
     // Asignamos la clase al boton de enviar
     botonAsignarPlato.className = "inputButtonFormularioEliminarPlatos";
     // Asignamos el tipo al boton
@@ -368,11 +404,11 @@ function administrarPlatos(mainContenido, menus, platos) {
     // Agregacion del elemento de titulo al formulario
     formularioAsignarPlatoMenu.appendChild(tituloSeleccionMenuAsignacion);
     // Agregamos el contenedor de radiobotones al formulario
-    formularioAsignarPlatoMenu.appendChild(contenedorRadiobotonesMenusAsignacion);
+    formularioAsignarPlatoMenu.appendChild(tablaAMenusAsignadoPlatos);
     // Agregacion del elemento de titulo al formulario
     formularioAsignarPlatoMenu.appendChild(tituloSeleccionPlatoAsignacion);
     // Agregamos el contenedor de radiobotones al formulario
-    formularioAsignarPlatoMenu.appendChild(contenedorRadiobotonesPlatosAsignacion);
+    formularioAsignarPlatoMenu.appendChild(tablaPlatosAsignadoMenus);
     // Agregamos el contenedor de radiobotones al formulario
     formularioAsignarPlatoMenu.appendChild(botonAsignarPlato);
 
@@ -381,7 +417,7 @@ function administrarPlatos(mainContenido, menus, platos) {
     // Agregamos el formulario al contenedor principal
     asignarPlatosDiv.appendChild(formularioAsignarPlatoMenu);
 
-    //+ Creacion de un elemento div para la desasignacion de platos al menu
+    //* Creacion de un elemento div para la desasignacion de platos al menu
     //- Creamos un nuevo elemento div para la desasignacion de platos
     let desAsignarPlatosDiv = document.createElement("div");
     // Agregamos la clase al contenedor
@@ -565,6 +601,11 @@ function mostrarPlatosMenuDesasignacion(arryPlatos) {
         // Asignamos el valor del radio button con el nombre
         radioBoton.value = plato.platos.getName();
 
+        // Añadimos la propiedad required para que se tenga que pulsar un boton
+        if (plato === arryPlatos[0]) {
+            radioBoton.required = true;
+        }
+
         //- Creamos un nuevo elemento span para asociarlo con el radio button
         let spanRadio = document.createElement("span");
         // Asignamos el texto al span con el nombre
@@ -582,6 +623,8 @@ function mostrarPlatosMenuDesasignacion(arryPlatos) {
     botonDesasignarPlatos.innerHTML = "Desasignar";
     // Asignamos la clase al boton de enviar
     botonDesasignarPlatos.className = "inputButtonFormularioEliminarPlatos";
+    // Asignamos el atributo name al boton
+    botonDesasignarPlatos.name = "botonDesasignarPlatos";
     // Asignamos un id al boton
     botonDesasignarPlatos.id = "botonDesasignarPlatos";
     // Asignamos el tipo al boton
@@ -596,7 +639,6 @@ function mostrarPlatosMenuDesasignacion(arryPlatos) {
     formularioDesasignarPlatos.appendChild(botonDesasignarPlatos);
 }
 
-//!//////////////////////////////////////////////////////////////////
 //?//FUNCION QUE MOSTRARA LOS PLATOS QUE TIENE UN MENU PARA ORGANIZARLOS//
 function mostrarPlatosMenuOrdenacion(arryPlatos) {
     //* Mostrado del primer plato que seleccionaremos para la ordenacion
@@ -604,28 +646,22 @@ function mostrarPlatosMenuOrdenacion(arryPlatos) {
     let formularioOrdenarPlatoMenu = document.forms.formularioOrdenarPlatoMenu;
 
     //+ Obtenemos los elementos creados para poder eliminarlos si existen
-
     // Obtenemos el elemento de titulo
     let tituloPrimePlato = document.getElementById("tituloPrimerPlatoOrdenado");
-
     // Obtenemos el elemento con los radiobotones
     let contenedorRadiobotonesPrimerPlato = document.getElementById(
         "contenedorRadiobotonesPrimerPlatoOrdenar"
     );
-
     // Obtenemos el elemento de titulo
-    let tituloSegundoPlato = document.getElementById("tituloPrimerPlatoOrdenado");
-
+    let tituloSegundoPlato = document.getElementById("tituloSegundoPlatoOrdenado");
     // Obtenemos el elemento con los radiobotones
     let contenedorRadiobotonesSegundoPlato = document.getElementById(
         "contenedorRadiobotonesSegundoPlatoOrdenar"
     );
-
     // Obtenemos el boton para desasignar platos
     let botonOrdenar = document.getElementById("botonOrdenarPlatos");
 
     //+ Borramos los elementos si ya han sido creados
-
     // Borramos el titulo para la desasignacion de los platos
     if (tituloPrimePlato) {
         formularioOrdenarPlatoMenu.removeChild(tituloPrimePlato);
@@ -671,6 +707,11 @@ function mostrarPlatosMenuOrdenacion(arryPlatos) {
         // Asignamos el valor del radio button con el nombre
         radioBoton.value = plato.platos.getName();
 
+        // Añadimos la propiedad required para que se tenga que pulsar un boton
+        if (plato === arryPlatos[0]) {
+            radioBoton.required = true;
+        }
+
         //- Creamos un nuevo elemento span para asociarlo con el radio button
         let spanRadio = document.createElement("span");
         // Asignamos el texto al span con el nombre
@@ -686,7 +727,7 @@ function mostrarPlatosMenuOrdenacion(arryPlatos) {
     //+ Creamos un elemento de titulo para la seleccion de los platos
     let tituloSegundoPlatoOrdenado = document.createElement("h4");
     // Signamos un atributo id para el titulo
-    tituloSegundoPlatoOrdenado.id = "tituloSeleccionPlatoDesasignado";
+    tituloSegundoPlatoOrdenado.id = "tituloSegundoPlatoOrdenado";
     // Asignamos el texto a la etiqueta
     tituloSegundoPlatoOrdenado.innerText = "Escoja el segundo plato para ordenar";
 
@@ -707,6 +748,11 @@ function mostrarPlatosMenuOrdenacion(arryPlatos) {
         // Asignamos el valor del radio button con el nombre
         radioBoton.value = plato.platos.getName();
 
+        // Añadimos la propiedad required para que se tenga que pulsar un boton
+        if (plato === arryPlatos[0]) {
+            radioBoton.required = true;
+        }
+
         //- Creamos un nuevo elemento span para asociarlo con el radio button
         let spanRadio = document.createElement("span");
         // Asignamos el texto al span con el nombre
@@ -724,6 +770,8 @@ function mostrarPlatosMenuOrdenacion(arryPlatos) {
     botonOrdenarPlato.innerHTML = "Ordenar";
     // Asignamos la clase al boton de enviar
     botonOrdenarPlato.className = "inputButtonFormularioEliminarPlatos";
+    // Asignamos el atributo name al boton de ordenar
+    botonOrdenarPlato.name = "botonOrdenarPlatos";
     // Asignamos un id al boton
     botonOrdenarPlato.id = "botonOrdenarPlatos";
     // Asignamos el tipo al boton
@@ -778,6 +826,10 @@ function administrarCategorias(mainContenido, categorias) {
     inputNombreCategoria.type = "text";
     // Asignamos la clase al elemento de texto
     inputNombreCategoria.className = "inputTextFormularioCategorias";
+    // Establecemos la longitud maxima del input
+    inputNombreCategoria.maxLength = 20;
+    // Establecemos que el atributo sea requerido
+    inputNombreCategoria.required = true;
 
     //- Creamos un elemento parrafo para la descripcion
     let parrafoDescripcionCategorias = document.createElement("p");
@@ -794,6 +846,8 @@ function administrarCategorias(mainContenido, categorias) {
     inputDescripcionCategoria.placeholder = "Ej: Es una categoria que ...";
     // Asignamos la clase al elemento de texto
     inputDescripcionCategoria.className = "inputTextAreaFormularioCategorias";
+    // Establecemos la longitud maxima del input
+    inputDescripcionCategoria.maxLength = 200;
 
     //- Creamos un elemento parrado para la imagen
     let parrafoImagenCategoria = document.createElement("p");
@@ -808,11 +862,15 @@ function administrarCategorias(mainContenido, categorias) {
     inputImagenCategoria.type = "text";
     // Asignamos la clase al elemento de texto
     inputImagenCategoria.className = "inputTextFormularioCategorias";
+    // Establecemos la longitud maxima del input
+    inputDescripcionCategoria.maxLength = 100;
 
     //- Creamos un elemento boton para el boton de enviar
     let botonCrearCategoria = document.createElement("button");
     // Asignamos el texto al boton
     botonCrearCategoria.innerHTML = "Crear categoria";
+    // Asignamos el atributo name al boton
+    botonCrearCategoria.name = "botonCrearCategoria";
     // Asignamos la clase al boton de enviar
     botonCrearCategoria.className = "inputButtonAdministrarCategorias";
     // Asignamos el tipo al boton
@@ -865,9 +923,15 @@ function administrarCategorias(mainContenido, categorias) {
         // Asignamos el tipo del input como radio
         radioCategoria.type = "radio";
         // Asignamos el atributo name al radio boton
-        radioCategoria.name = "categoriaSeleccionada";
+        radioCategoria.name = "categoriaSeleccionadaEliminado";
         // Asignamos el valor del radio button con el nombre del plato
         radioCategoria.value = categoria.categoria.getName();
+
+        // Añadimos la propiedad required para que se tenga que pulsar un boton
+        if (categoria === categorias[0]) {
+            radioCategoria.required = true;
+        }
+
         // Creamos un nuevo elemento span para asociarlo con el radio button
         let spanPlato = document.createElement("span");
         // Asignamos el texto span con el nombre de la categoria
@@ -884,6 +948,8 @@ function administrarCategorias(mainContenido, categorias) {
     botonEliminarCategoria.innerHTML = "Eliminar";
     // Asignamos la clase al boton de enviar
     botonEliminarCategoria.className = "inputButtonAdministrarCategorias";
+    // Asignamos el atributo name al boton
+    botonEliminarCategoria.name = "botonEliminarCategoria";
     // Asignamos el tipo al boton
     botonEliminarCategoria.type = "submit";
 
@@ -932,6 +998,8 @@ function nuevoRestaurante(mainContenido) {
     inputNombreRestaurante.type = "text";
     // Asignamos la clase al elemento de texto
     inputNombreRestaurante.className = "inputTextFormulario";
+    // Establecemos la longitud maxima del input
+    inputNombreRestaurante.maxLength = 50;
 
     //+ Creamos un elemento parrafo para la descripcion
     let parrafoDescripcionRestaurante = document.createElement("p");
@@ -948,6 +1016,8 @@ function nuevoRestaurante(mainContenido) {
     inputDescripcionRestaurante.placeholder = "Ej: Es un restaurante de comida...";
     // Asignamos la clase al elemento de texto
     inputDescripcionRestaurante.className = "inputTextAreaFormulario";
+    // Establecemos la longitud maxima del input
+    inputDescripcionRestaurante.maxLength = 200;
 
     //+ Creamos un elemento parrafo para la latitud
     let parrafoLatitudRestaurante = document.createElement("p");
@@ -957,11 +1027,15 @@ function nuevoRestaurante(mainContenido) {
     //+ Creamos un elemento input para la latitud
     let inputLatitudRestaurante = document.createElement("input");
     // Asignamos el atributo nombre al input
-    inputLatitudRestaurante.name = "inputLatitudRestaurante";
+    inputLatitudRestaurante.name = "latitudRestauranteCrear";
     // Asignamos el tipo del input
     inputLatitudRestaurante.type = "number";
     // Asignamos la clase al elemento de texto
     inputLatitudRestaurante.className = "inputTextAreaFormulario";
+    // Establecemos el numero minimo del input
+    inputLatitudRestaurante.min = 0;
+    // Establecemos el numero maximo del input
+    inputLatitudRestaurante.max = 100;
 
     //+ Creamos un elemento parrafo para la longitud
     let parrafoLongitudRestaurante = document.createElement("p");
@@ -972,16 +1046,22 @@ function nuevoRestaurante(mainContenido) {
     //+ Creamos un elemento input para la longitud
     let inputLongitudRestaurante = document.createElement("input");
     // Asignamos el atributo nombre al input
-    inputLongitudRestaurante.name = "inputLongitudRestaurante";
+    inputLongitudRestaurante.name = "longitudRestauranteCrear";
     // Asignamos el tipo del input
     inputLongitudRestaurante.type = "number";
     // Asignamos la clase al elemento de texto
     inputLongitudRestaurante.className = "inputTextAreaFormulario";
+    // Establecemos el numero minimo del input
+    inputLongitudRestaurante.min = 0;
+    // Establecemos el numero maximo del input
+    inputLongitudRestaurante.max = 100;
 
     //+ Creamos un elemento boton para el boton de eliminar la categoria
     let botonCrearRestaurante = document.createElement("button");
     // Asignamos el texto al boton
     botonCrearRestaurante.innerHTML = "Crear";
+    // Agregamos el atributo name al boton
+    botonCrearRestaurante.name = "botonCrearRestaurante";
     // Asignamos la clase al boton de enviar
     botonCrearRestaurante.className = "inputButtonCrearRestaurante";
     // Asignamos el tipo al boton
@@ -1021,16 +1101,16 @@ function categoriasPlatosAsignado(mainContenido, platos, categorias) {
     // Agregamos la clase al contenedor
     contenedorAdministracionCategoriaPlatos.className = "contenedorAdministracionCategoriaPlatos";
 
-    //+ Creamos un nuevo div para la asignacion de las categorias a los platos
-    //- Creacion de un elemento div para la asignacion de las categorias a los platos
+    //+ Creamos un nuevo div para la asignacion de los platos a las categorias
+    //- Creacion de un elemento div para la asignacion de los platos a las categorias
     let asignarCategoriasPlatosDiv = document.createElement("div");
     // Agregamos la clase al contenedor
     asignarCategoriasPlatosDiv.className = "asignarCategoriasPlatosDiv";
 
-    //- Creamos un elemento de titulo para la asignacion de las categorias a los latos
+    //- Creamos un elemento de titulo para la asignacion de los platos a las categorias
     let tituloAsignarCategoriasPlatos = document.createElement("h3");
     // Asignamos el texto a la etiqueta
-    tituloAsignarCategoriasPlatos.innerText = "Asignacion de categorias a los platos";
+    tituloAsignarCategoriasPlatos.innerText = "Asignacion los platos a las categorias";
 
     //- Creamos un nuevo elemento de formulario
     let formularioAsignarPlatoMenu = document.createElement("form");
@@ -1043,74 +1123,107 @@ function categoriasPlatosAsignado(mainContenido, platos, categorias) {
     let tituloSeleccionCategoriaAsignado = document.createElement("h4");
     // Asignamos el texto a la etiqueta
     tituloSeleccionCategoriaAsignado.innerText =
-        "Escoja la categoria a la que quiere asignar el plato";
+        "Escoja las categorias a la que quiere asignar el platos";
 
-    //- Creamos un nuevo elemento div que almacenara los radiobotones
-    let contenedorRadiobotonesCategoriasAsignacion = document.createElement("div");
-    // Asignamos la clase al contenedor con los radiobotones
-    contenedorRadiobotonesCategoriasAsignacion.className = "radioBotonesContenedorFormulario";
-    // Recorremos el iterador de menus
+    //- Creamos una tabla para mostrar las categorias para la asignacion de platos
+    let tablaCategoriasAsignadoPlatos = document.createElement("table");
+    // Le asignamos la clase a la tabla
+    tablaCategoriasAsignadoPlatos.className = "tablaFormularios";
+    // Asignamos el atributo name a la tabla
+    tablaCategoriasAsignadoPlatos.name = "tablaCategoriasAsignadoPlatos";
+    // Recorremos el iterador de alergenos
     for (const categoria of categorias) {
-        //- Creamos un nuevo elemento input
-        let radioCategoria = document.createElement("input");
-        // Configuramos el tipo del input que sera radio
-        radioCategoria.type = "radio";
-        // Asignamos el atributo name al radio boton
-        radioCategoria.name = "categoriaAsignadoSeleccionado";
-        // Asignamos el valor del radio button con el nombre de la categoria
-        radioCategoria.value = categoria.categoria.getName();
-
-        //- Creamos un nuevo elemento span para asociarlo con el radio button
-        let spanCategoria = document.createElement("span");
-        // Asignamos el texto al span con el nombre
-        spanCategoria.innerText = categoria.categoria.getName();
-
-        //- Añadimos el radio button al contenedor
-        contenedorRadiobotonesCategoriasAsignacion.appendChild(radioCategoria);
-        // Añadimos el span del radioboton al formulario
-        contenedorRadiobotonesCategoriasAsignacion.appendChild(spanCategoria);
+        // Creamos una nueva fila para la tabla
+        let fila = document.createElement("tr");
+        // Creamos una celda para el checkbox
+        let celdaCheckbox = document.createElement("td");
+        // Creamos el checkbox
+        let checkbox = document.createElement("input");
+        // Asignamos el atributo type al elemento
+        checkbox.type = "checkbox";
+        // Asignamos el atributo name a los elementos
+        checkbox.name = "checkboxCategoriaAsignadoPlatos";
+        // Asignamos el valor al checkbox
+        checkbox.value = categoria.categoria.getName();
+        // Agregamos el checkbox a la celda
+        celdaCheckbox.appendChild(checkbox);
+        // Creamos una celda para el nombre de las categorias
+        let celdaNombre = document.createElement("td");
+        // Creamos un texto con el nombre de las categorias
+        let nombreCategoriaTexto = document.createTextNode(categoria.categoria.getName());
+        // Agregamos el texto a la celda
+        celdaNombre.appendChild(nombreCategoriaTexto);
+        // Agregamos el checkbox a la fila
+        fila.appendChild(celdaCheckbox);
+        // Agregamos el nombre de la categoria a la fila
+        fila.appendChild(celdaNombre);
+        // Agregamos a la tabla la fila
+        tablaCategoriasAsignadoPlatos.appendChild(fila);
     }
 
-    //- Creamos un elemento de titulo para la seleccion de las categorias
+    //- Creamos un elemento de titulo para la seleccion de los platos
     let tituloSeleccionPlatoAsignado = document.createElement("h4");
     // Asignamos el texto a la etiqueta
-    tituloSeleccionPlatoAsignado.innerText = "Escoja el plato para asignar la categoria";
+    tituloSeleccionPlatoAsignado.innerText = "Escoja los platos para asignar la categorias";
 
-    //- Creamos un nuevo elemento div que almacenara los radiobotones
-    let contenedorRadiobotonesPlatoAsignacion = document.createElement("div");
-    // Asignamos la clase al contenedor con los radiobotones
-    contenedorRadiobotonesPlatoAsignacion.className = "radioBotonesContenedorFormulario";
-    // Recorremos el iterador de menus
+    //- Creamos una tabla para mostrar las platos para asignar a las categorias
+    let tablaPlatosAsignadoCategorias = document.createElement("table");
+    // Le asignamos la clase a la tabla
+    tablaPlatosAsignadoCategorias.className = "tablaFormularios";
+    // Asignamos el atributo name a la tabla
+    tablaPlatosAsignadoCategorias.name = "tablaPlatosAsignadoCategorias";
+    // Recorremos el iterador de alergenos
     for (const plato of platos) {
-        //- Creamos un nuevo elemento input
-        let radioBoton = document.createElement("input");
-        // Configuramos el tipo del input que sera radio
-        radioBoton.type = "radio";
-        // Asignamos el atributo name al radio boton
-        radioBoton.name = "platosAsignadoSeleccionado";
-        // Asignamos el valor del radio button con el nombre
-        radioBoton.value = plato.platos.getName();
-
-        //- Creamos un nuevo elemento span para asociarlo con el radio button
-        let spanRadio = document.createElement("span");
-        // Asignamos el texto al span con el nombre
-        spanRadio.innerText = plato.platos.getName();
-
-        //- Añadimos el radio button al contenedor
-        contenedorRadiobotonesPlatoAsignacion.appendChild(radioBoton);
-        // Añadimos el span del radioboton al formulario
-        contenedorRadiobotonesPlatoAsignacion.appendChild(spanRadio);
+        // Creamos una nueva fila para la tabla
+        let fila = document.createElement("tr");
+        // Creamos una celda para el checkbox
+        let celdaCheckbox = document.createElement("td");
+        // Creamos el checkbox
+        let checkbox = document.createElement("input");
+        // Asignamos el atributo type al elemento
+        checkbox.type = "checkbox";
+        // Asignamos el atributo name a los elementos
+        checkbox.name = "checkboxPlatosAsignadoCategorias";
+        // Asignamos el valor al checkbox
+        checkbox.value = plato.platos.getName();
+        // Agregamos el checkbox a la celda
+        celdaCheckbox.appendChild(checkbox);
+        // Creamos una celda para el nombre de los platos
+        let celdaNombre = document.createElement("td");
+        // Creamos un texto con el nombre de los platos
+        let nombreCategoriaTexto = document.createTextNode(plato.platos.getName());
+        // Agregamos el texto a la celda
+        celdaNombre.appendChild(nombreCategoriaTexto);
+        // Agregamos el checkbox a la fila
+        fila.appendChild(celdaCheckbox);
+        // Agregamos el nombre de los platos a la fila
+        fila.appendChild(celdaNombre);
+        // Agregamos a la tabla la fila
+        tablaPlatosAsignadoCategorias.appendChild(fila);
     }
+
+    //- Creamos un elemento boton para el boton de para asignar los platos a la categoria
+    let botonAsignarPlatosCategorias = document.createElement("button");
+    // Asignamos el texto al boton
+    botonAsignarPlatosCategorias.innerHTML = "Asignar Platos";
+    // Agregamos el atributo name al boton
+    botonAsignarPlatosCategorias.name = "botonAsignarPlatosCategorias";
+    // Asignamos la clase al boton de enviar
+    botonAsignarPlatosCategorias.className = "inputButtonAdministrarPlatos";
+    // Asignamos el tipo al boton
+    botonAsignarPlatosCategorias.type = "submit";
 
     //- Agregacion de elementos del formulario
     // Agregacion del titulo para la categoria asignada del formulario
     formularioAsignarPlatoMenu.appendChild(tituloSeleccionCategoriaAsignado);
     // Agregamos el contenedor de radiobotones de las categorias asignada al formulario
-    formularioAsignarPlatoMenu.appendChild(contenedorRadiobotonesCategoriasAsignacion);
+    formularioAsignarPlatoMenu.appendChild(tablaCategoriasAsignadoPlatos);
     // Agregacion del titulo para el plato asignado del formulario
     formularioAsignarPlatoMenu.appendChild(tituloSeleccionPlatoAsignado);
     // Agregamos el contenedor de radiobotones para el palto asignado del fromulario
-    formularioAsignarPlatoMenu.appendChild(contenedorRadiobotonesPlatoAsignacion);
+    formularioAsignarPlatoMenu.appendChild(tablaPlatosAsignadoCategorias);
+    //  Agregamos el boton de enviar del formulario
+    formularioAsignarPlatoMenu.appendChild(botonAsignarPlatosCategorias);
 
     //- Agregacion del titulo al contenedor principal
     asignarCategoriasPlatosDiv.appendChild(tituloAsignarCategoriasPlatos);
@@ -1126,14 +1239,14 @@ function categoriasPlatosAsignado(mainContenido, platos, categorias) {
     //- Creamos un elemento de titulo para la desasignacion de las categorias a los platos
     let tituloDesasignarCategoriasPlatos = document.createElement("h3");
     // Asignamos el texto a la etiqueta
-    tituloDesasignarCategoriasPlatos.innerText = "Desasignacion de categorias a los platos";
+    tituloDesasignarCategoriasPlatos.innerText = "Desasignacion de los platos a las categorias";
 
     //- Creamos un nuevo elemento de formulario
-    let formularioDesasignarPlatoMenu = document.createElement("form");
+    let formularioDesasignacionCategoriasPlatos = document.createElement("form");
     // Asisnamos el atributo name al elemento
-    formularioDesasignarPlatoMenu.name = "formularioDesasignacionCategoriasPlatos";
+    formularioDesasignacionCategoriasPlatos.name = "formularioDesasignacionCategoriasPlatos";
     // Asignamos la clase al alemento form
-    formularioDesasignarPlatoMenu.className = "formularioDesasignacionCategoriasPlatos";
+    formularioDesasignacionCategoriasPlatos.className = "formularioDesasignacionCategoriasPlatos";
 
     //- Creamos un elemento de titulo para la seleccion de las categorias
     let tituloSeleccionCategoriaDesasignado = document.createElement("h4");
@@ -1169,14 +1282,16 @@ function categoriasPlatosAsignado(mainContenido, platos, categorias) {
 
     //- Agregacion de elementos del formulario
     // Agregacion del titulo para la categoria asignada
-    formularioDesasignarPlatoMenu.appendChild(tituloSeleccionCategoriaDesasignado);
+    formularioDesasignacionCategoriasPlatos.appendChild(tituloSeleccionCategoriaDesasignado);
     // Agregamos el contenedor de radiobotones al formulario
-    formularioDesasignarPlatoMenu.appendChild(contenedorRadiobotonesCategoriasDesasignacion);
+    formularioDesasignacionCategoriasPlatos.appendChild(
+        contenedorRadiobotonesCategoriasDesasignacion
+    );
 
     //- Agregacion del titulo al contenedor principal
     desasignarCategoriasPlatosDiv.appendChild(tituloDesasignarCategoriasPlatos);
     // Agregamos el formulario al contenedor principal
-    desasignarCategoriasPlatosDiv.appendChild(formularioDesasignarPlatoMenu);
+    desasignarCategoriasPlatosDiv.appendChild(formularioDesasignacionCategoriasPlatos);
 
     //+ Agregamos el contenedor de la asignacion al contenedor principal
     contenedorAdministracionCategoriaPlatos.appendChild(asignarCategoriasPlatosDiv);
@@ -1245,6 +1360,11 @@ function platosCategoriasDesasignado(arryPlatos) {
         // Asignamos el valor del radio button con el nombre
         radioBoton.value = plato.platos.getName();
 
+        // Añadimos la propiedad required para que se tenga que pulsar un boton
+        if (plato === arryPlatos[0]) {
+            radioBoton.required = true;
+        }
+
         //- Creamos un nuevo elemento span para asociarlo con el radio button
         let spanRadio = document.createElement("span");
         // Asignamos el texto al span con el nombre
@@ -1262,6 +1382,8 @@ function platosCategoriasDesasignado(arryPlatos) {
     botonDesasignarPlatosCategorias.innerHTML = "Desasignar";
     // Asignamos la clase al boton de enviar
     botonDesasignarPlatosCategorias.className = "inputButtonFormularioEliminarPlatos";
+    // Agregamos el atributo name al boton
+    botonDesasignarPlatosCategorias.name = "botonDesasignarPlatosCategorias";
     // Asignamos un id al boton
     botonDesasignarPlatosCategorias.id = "botonDesasignarPlatosCategorias";
     // Asignamos el tipo al boton
@@ -1318,66 +1440,66 @@ function mostradoFomulariosMenuLateral(mainContenidoListado) {
     //* Creamos un nuevo elemento de parrafo para crear el plato
     let parrafo = document.createElement("p");
     // Asignamos una clase a la clase al elemento de parrafo
-    parrafo.classList.add("pLateralCategoria");
+    parrafo.classList.add("pLateralFormularios");
     // Agregamos el texto con el nombre deL formulario al elemento de parrafo
     parrafo.innerText = "Crear Plato";
     // Agregamos un atributo data con el nombre del formulario
-    parrafo.setAttribute("data-plateralFormulario", "Crear Plato");
+    parrafo.setAttribute("data-plateralformulario", "Crear Plato");
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo);
 
     //* Creamos un nuevo elemento de parrafo para eliminar el plato
     let parrafo1 = document.createElement("p");
     // Asignamos una clase a la clase al elemento de parrafo
-    parrafo1.classList.add("pLateralCategoria");
+    parrafo1.classList.add("pLateralFormularios");
     // Agregamos el texto con el nombre deL formulario al elemento de parrafo
     parrafo1.innerText = "Eliminar Plato";
     // Agregamos un atributo data con el nombre del formulario
-    parrafo1.setAttribute("data-plateralFormulario", "Eliminar Plato");
+    parrafo1.setAttribute("data-plateralformulario", "Eliminar plato");
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo1);
 
     //* Creamos un nuevo elemento de parrafo para administrar el plato en el menu
     let parrafo2 = document.createElement("p");
     // Asignamos una clase a la clase al elemento de parrafo
-    parrafo2.classList.add("pLateralCategoria");
+    parrafo2.classList.add("pLateralFormularios");
     // Agregamos el texto con el nombre deL formulario al elemento de parrafo
-    parrafo2.innerText = "Administra platos";
+    parrafo2.innerText = "Administrar platos";
     // Agregamos un atributo data con el nombre del formulario
-    parrafo2.setAttribute("data-plateralFormulario", "Administra platos");
+    parrafo2.setAttribute("data-plateralformulario", "Administrar Platos");
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo2);
 
     //* Creamos un nuevo elemento de parrafo para administrar las categorias
     let parrafo3 = document.createElement("p");
     // Asignamos una clase a la clase al elemento de parrafo
-    parrafo3.classList.add("pLateralCategoria");
+    parrafo3.classList.add("pLateralFormularios");
     // Agregamos el texto con el nombre deL formulario al elemento de parrafo
-    parrafo3.innerText = "Administra categorias";
+    parrafo3.innerText = "Administrar categorias";
     // Agregamos un atributo data con el nombre del formulario
-    parrafo3.setAttribute("data-plateralFormulario", "Administra categorias");
+    parrafo3.setAttribute("data-plateralformulario", "Administrar Categorias");
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo3);
 
     //* Creamos un nuevo elemento de parrafo para la creacion del restaurante
     let parrafo4 = document.createElement("p");
     // Asignamos una clase a la clase al elemento de parrafo
-    parrafo4.classList.add("pLateralCategoria");
+    parrafo4.classList.add("pLateralFormularios");
     // Agregamos el texto con el nombre deL formulario al elemento de parrafo
     parrafo4.innerText = "Crear restaurante";
     // Agregamos un atributo data con el nombre del formulario
-    parrafo4.setAttribute("data-plateralFormulario", "Crear restaurante");
+    parrafo4.setAttribute("data-plateralformulario", "Crear restaurante");
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo4);
 
     //* Creamos un nuevo elemento de parrafo para administrar las categorias de los platos
     let parrafo5 = document.createElement("p");
     // Asignamos una clase a la clase al elemento de parrafo
-    parrafo5.classList.add("pLateralCategoria");
+    parrafo5.classList.add("pLateralFormularios");
     // Agregamos el texto con el nombre deL formulario al elemento de parrafo
     parrafo5.innerText = "Categorias Platos";
     // Agregamos un atributo data con el nombre del formulario
-    parrafo5.setAttribute("data-plateralFormulario", "Categorias Platos");
+    parrafo5.setAttribute("data-plateralformulario", "Categorias Platos");
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo5);
 

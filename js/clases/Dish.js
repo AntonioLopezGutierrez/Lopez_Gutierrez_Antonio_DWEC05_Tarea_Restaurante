@@ -23,7 +23,7 @@ class Dish {
         if (image === "") {
             // Asignamos la imagen por defecto a la propiedad
             this.#image = "../../imagenes/imagenPorDefecto.png";
-        }else{
+        } else {
             // Si no esta vacia asignamos la imagen
             this.#image = image;
         }
@@ -37,7 +37,7 @@ class Dish {
     // Set para el nombre
     setName(name) {
         //Comprobacion de que el nombre no es undefined
-        if (name === undefined) {
+        if (name === "") {
             throw new NombreObligatorio();
         }
         this.#name = name;
@@ -67,7 +67,14 @@ class Dish {
 
     // Set para la imagen
     setImage(image) {
-        this.#image = image;
+        // Verificamos si la imagen esta vacia y le asignamos la imagen por defecto
+        if (image === "") {
+            // Asignamos la imagen por defecto a la propiedad
+            this.#image = "../../imagenes/imagenPorDefecto.png";
+        } else {
+            // Si no esta vacia asignamos la imagen
+            this.#image = image;
+        }
     }
     // Get para la imagen
     getImage() {
