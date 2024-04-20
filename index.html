@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--Lenguaje del documento-->
 <html lang="es">
-    <!--!-------------------- Cabecera del documento ------------------->
+    <!--! -------------------- Cabecera del documento ------------------->
     <head>
         <!--Codificacion de caracateres-->
         <meta charset="UTF-8" />
@@ -18,42 +18,50 @@
         <!--Titulo de la pestaña de la pagina-->
         <title>Restaurante de Antonio</title>
 
-        <!--?----------------------------Importacion de las hojas de estilos--------------------------------->
+        <!--? ----------Importacion de las hojas de estilos-------------->
         <link rel="stylesheet" href="/css/index.css" />
+
+        <!--? ---------Importacion de CSS de bootstrap------------------->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous"
+        />
     </head>
 
-    <!--!------------------- Cuerpo del documento ---------------------->
+    <!--! ------------------- Cuerpo del documento ---------------------->
 
-    <body>
-        <!--?----------------- Cabecera de la pagina-------------------->
+    <body id="body">
+        <!--? ----------------- Cabecera de la pagina-------------------->
         <header class="header" id="header">
-            <!--*--------------- Logotipo de la empresa----------------->
+            <!--* --------------- Logotipo de la empresa----------------->
             <div class="header--logo">
                 <img src="imagenes/imagenLogo.png" alt="Logotipo" />
             </div>
-            <!--*---------------- Barra de navegacion ------------------>
+            <!--* ---------------- Barra de navegacion ------------------>
             <div class="header--nav" id="header--nav">
                 <!-- Aqui ira los elementos de la barra de navegacion-->
             </div>
         </header>
-        <!--?----------------- Cuerpo principal de la pagina ----------->
+        <!--? ----------------- Cuerpo principal de la pagina ----------->
         <main class="main">
-            <!--*---------------- Listado de elementos------------------>
+            <!--* ---------------- Listado de elementos------------------>
             <div class="main--listado" id="main--listado">
                 <!--Aqui tendremos el listado lateral-->
             </div>
-            <!--*------------------ Contenido a mostrar------------------>
+            <!--* ------------------ Contenido a mostrar------------------>
             <div class="main--contenido" id="main--contenido">
                 <!-- Aqui ira todo el contenido principal de la pagina -->
             </div>
         </main>
 
-        <!--?------------- Cuerpo secundarion de la pagina -------------->
-        <aside class="aside"  id="aside">
+        <!--? ------------ Cuerpo secundarion de la pagina -------------->
+        <aside class="aside" id="aside">
             <!-- Aqui iran la imagenes de los platos-->
         </aside>
 
-        <!--?-----------------------Pie de pagina ---------------------->
+        <!--? -----------------------Pie de pagina ---------------------->
         <footer class="footer">
             <!--* Informacion de contacto-->
             <div class="footer--contacto">
@@ -72,7 +80,7 @@
             </div>
         </footer>
 
-        <!--!--------Importaciones de los scripts de la pagina---------->
+        <!--! --------Importaciones de los scripts de la pagina---------->
         <!--************************Clase Dish************************-->
         <!--Importacion del testeo de la clase Dish-->
         <!-- <script type="module" src="/js/testeo/testeoDish.js"></script> -->
@@ -103,7 +111,6 @@
         <!--Importacion del testeo de la clase-->
         <!--<script type="module" src="/js/testeo/testeoRestaurantsManager.js"></script>-->
 
-
         <!--****************************Manager***********************-->
         <!--Importacion del modulo de manager de la pagina-->
         <!--<script type="module" src="/js/manager/RestauranteModelo.js"></script>-->
@@ -112,6 +119,12 @@
         <!--<script type="module" src="/js/manager/restauranteApp.js"></script>-->
         <!--+ Modulo para el cambio de estados de la pagina-->
         <script type="module" src="/js/manager/restaurante.js"></script>
+        <!--+ Inportacion de de Javascript de bootstrap-->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"
+        ></script>
 
         <!--***********************Clase otrosTesteos*****************-->
         <!--Importacion del testeo de la clase-->

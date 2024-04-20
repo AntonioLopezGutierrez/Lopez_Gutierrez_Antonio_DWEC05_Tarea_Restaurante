@@ -1,28 +1,74 @@
 //!/////////////////////CLASE RESTAURANTECONTROLADOR/////////////////////
 "use strict";
-
+//?///////////////////////////IMPORTACIONES//////////////////////////////
 import { Coordinate } from "../clases/Coordinate.js";
 import { validarLatitud, validarLongitud } from "./validacionesFormularios.js";
+import { getCookie, setCookie, deleteCookie } from "../utiles/utilesCookies.js";
 
 //?///////////////////////////PROPIEDADES PRIVADA////////////////////////
 // Constante privada en el que almacenaremos el modelo
 const MODELO = Symbol("RestauranteModelo");
 // Constante privada en la que almacenaremos la vista
 const VISTA = Symbol("RestauranteVista");
+// Constante privada en la que almacenaremos la autentificacon
+const AUTENTIFICACION = Symbol("Autentificacion");
+// Constante privada en la que almacenaremos el usuario
+let USUARIO = Symbol("Usuario");
 
 class RestauranteControlador {
     //?//////////////////CONSTRUCTOR DE LA CLASE/////////////////////////
-    constructor(RestauranteModelo, RestauranteVista) {
+    constructor(RestauranteModelo, RestauranteVista, Autentificacion) {
         //* Asignacion de los valores a las propiedades
         // Asignamos el valor a la propiedad del modelo
         this[MODELO] = RestauranteModelo;
         // Asignamos el valor a la propiedad de la vista
         this[VISTA] = RestauranteVista;
+        // Asignamos el valor a la propiedad de la autentificacion
+        this[AUTENTIFICACION] = Autentificacion;
+        // Asignamos el valor inicial a la constante del usuario
+        this[USUARIO] = null;
 
         //* Llamada a los metodos que cargaran al inicio de la pagina
         this.onCarga();
+    }
 
-        //* Llamada a los metodos de la vista que dotaran de funcionalidad a los elementos
+    //?//////////////METODOS PARA LOS EVENTOS DEL USUARIO////////////////
+    //* Metodo que llama al metodo de carga de la vista
+    onCarga = () => {
+        //+ Obtencion de la cookie llamando a la funcion getCookie
+        // Si la cookie no ha sido acceptada por el usuario
+        if (getCookie("accetedCookieMessage") !== "true") {
+            // Llamamos al metodo de la vista que nos mostrara el mensaje hasta que sea acceptado
+            this[VISTA].mostradoCookieCargar();
+        }
+        //+ Obtenemos los datos del modelo
+        const categorias = this[MODELO].getCategories();
+        const platos = this[MODELO].getDishes();
+        const restaurantes = this[MODELO].getRestaurant();
+
+        //+ Comprobacion de si el usuario a sido logueado para el mostrdo de la barra de navegacion
+        // Si el usuario no ha sido logueado
+        if (getCookie("usuario") === "") {
+            // Llamada al metodo que carga la pagina con la opcion de la identificacion
+            this[VISTA].cargaInicioLoguin(categorias, platos, restaurantes);
+            // Llamada al manejador del boton de identificacin de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorFormularioLogin(this.manejadorFormularioLogin);
+        } else {
+            // Llamada al metodo que carga la pagina con la opcion de la gestion
+            this[VISTA].carga(categorias, platos, restaurantes);
+            // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorSelectBarraNavegacionGestion(
+                this.manejadorSelectBarraNavegacionGestion
+            );
+            // Llamada al manejador del boton de desconectar de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorDesconetarUsuario(this.manejadorDesconetarUsuario);
+            // Creamos el mensaje para mostrar que el login a sido exitoso
+            const stringMensaje = "Bienvenido usuario admin";
+            // Llamada al metodo de la vista que mostrara un mensaje de exito
+            this[VISTA].mostrarBienvenidaUsuario(stringMensaje);
+        }
+
+        //+ Llamada a los manejadores de la vista que dotaran de funcionalidad a los elementos
         // llamada al manejador del boton de inicio de la vista pasandole el manejador
         this[VISTA].manejadorInicio(this.manejadorInicio);
         // Llamada al manejador del boton de categorias de la vista pasandole el manejador
@@ -39,21 +85,6 @@ class RestauranteControlador {
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosLateral(this.manejadorCategoriasPlatosLateral);
-        // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
-        this[VISTA].manejadorSelectBarraNavegacionGestion(
-            this.manejadorSelectBarraNavegacionGestion
-        );
-    }
-
-    //?//////////////METODOS PARA LOS EVENTOS DEL USUARIO////////////////
-    //* Metodo que llama al metodo de carga de la vista
-    onCarga = () => {
-        //+ Obtenemos los datos del modelo
-        const categorias = this[MODELO].getCategories();
-        const platos = this[MODELO].getDishes();
-        const restaurantes = this[MODELO].getRestaurant();
-        //+ Llama al metodo de inicio de la vista con argumento los iteradores
-        this[VISTA].carga(categorias, platos, restaurantes);
     };
 
     //* Metodo que llama al metodo de inicio de la vista
@@ -62,9 +93,26 @@ class RestauranteControlador {
         const categorias = this[MODELO].getCategories();
         const platos = this[MODELO].getDishes();
         const restaurantes = this[MODELO].getRestaurant();
+
+        //+ Comprobacion de si el usuario a sido logueado para el mostrdo de la barra de navegacion
+        // Si el usuario no ha sido logueado
+        if (getCookie("usuario") === "") {
+            // Llamada al metodo que carga la pagina con la opcion de la identificacion
+            this[VISTA].cargaInicioLoguin(categorias, platos, restaurantes);
+            // Llamada al manejador del boton de identificacin de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorFormularioLogin(this.manejadorFormularioLogin);
+        } else {
+            // Llamada al metodo que carga la pagina con la opcion de la gestion
+            this[VISTA].inicio(categorias, platos, restaurantes);
+            // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorSelectBarraNavegacionGestion(
+                this.manejadorSelectBarraNavegacionGestion
+            );
+            // Llamada al manejador del boton de desconectar de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorDesconetarUsuario(this.manejadorDesconetarUsuario);
+        }
+
         //+ Cargamos todos los manejadores de la pagina de inicio
-        // Llama al metodo de inicio de la vista con argumento los iteradores
-        this[VISTA].inicio(categorias, platos, restaurantes);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // llamada al manejador del boton de inicio de la vista pasandole el manejador
@@ -83,10 +131,6 @@ class RestauranteControlador {
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosLateral(this.manejadorCategoriasPlatosLateral);
-        // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
-        this[VISTA].manejadorSelectBarraNavegacionGestion(
-            this.manejadorSelectBarraNavegacionGestion
-        );
     };
 
     //* Metodo que llama al metodo de mostradoCategorias de la vista
@@ -314,6 +358,43 @@ class RestauranteControlador {
 
     //!//////////////////////////////////////////////////////////////////
     //?///////////METODOS PARA LOS EVENTOS DE FORMULARIOS////////////////
+    //* Metodo que nos mostrara el formulario de login
+    onManejadorFormularioLogin = () => {
+        // LLamamos al metodo de la vista que nos mostrara el formulario de login
+        this[VISTA].formularioLogin();
+        // Llamamos al manejador del boton submit del formulario de login
+        this[VISTA].manejadorBotonSubmitFormularioLogin(this.manejadorBotonSubmitFormularioLogin);
+    };
+
+    //* Metodo para la validacion de las credenciales y creacion del usuario
+    onManejadorBotonSubmitFormularioLogin = (nombreUsuario, contraseñaUsuario) => {
+        // Comprobamos si el usuario es valido
+        if (this[AUTENTIFICACION].validarUsuario(nombreUsuario, contraseñaUsuario)) {
+            // Almacenamos el usuario en la constante
+            this[USUARIO] = this[AUTENTIFICACION].obtenerUsuario(nombreUsuario);
+            // Creamos una cookie para el usuario
+            setCookie("usuario", true, 1);
+            // LLamamos al metodo que recargara la pagina y comproara si el usuario es correcto
+            this.onCarga();
+        } else {
+            // Creamos un nuevo mensaje para el error
+            let stringError = "El usuario o la contraseña no son validos";
+            // Llamamos al metodo de la vista que mostrara el mensaje de error de autentificacion
+            this[VISTA].mostrarBienvenidaUsuario(stringError);
+        }
+    };
+    //* Metodo que desconecta al usuario borra la cookie y muestra la pagina de carga
+    onManejadorDesconetarUsuario = () => {
+        // Borramos la cookie del usuario llamando a la funcion de utilesCookies
+        deleteCookie();
+        // Creamos el mensaje para mostrar que el usuario se ha desconectado
+        const stringMensaje = "Usuario admin has sido desconectado";
+        // Llamada al metodo de la vista que mostrara un mensaje de exito
+        this[VISTA].mostrarBienvenidaUsuario(stringMensaje);
+        // LLamamos al metodo de carga para volver a poder identificar al usuario
+        this.onCarga();
+    };
+
     //* Metodo que nos mostrara los formulularios para la gestion
     onFormulariosGestion = (opcionSeleccionada) => {
         // Obtenemos la categorias del modelo
@@ -547,7 +628,7 @@ class RestauranteControlador {
         let platosCategorias = this[MODELO].getDishesInCategory(categoriaFiltrado[0]);
         // Llamada al metodo de la vista que muestra los platos de la categoria
         this[VISTA].categoriasMostrarPlatosDesasignado(platosCategorias);
-        
+
         // LLamamos al manejador de la vista para desasignar la categoria al plato
         this[VISTA].manejadorFormularioDesasignarPlatoCategorias(
             this.manejadorFormularioDesasignarPlatoCategorias
@@ -1079,7 +1160,25 @@ class RestauranteControlador {
 
     //!//////////////////////////////////////////////////////////////////
     //?//////////MANEJADORES DE EVENTOS PARA FORMULARIOS/////////////////
-    //* Manejador para la seleccion de laj opcion de los formularios desde la barra de navegacion
+    //* Manejador que nos mostrara el formulario de login para el usuario
+    manejadorFormularioLogin = () => {
+        // Llamamos al metodo se la misma clase que nos mostrara el formulario de login
+        this.onManejadorFormularioLogin();
+    };
+
+    //* Manejador que nos validara y creara el usuario y creacion de la cookie
+    manejadorBotonSubmitFormularioLogin = (nombreUsuario, contraseñaUsuario) => {
+        // Llamamos al metodo se la misma clase que nos validara y creara el usuario
+        this.onManejadorBotonSubmitFormularioLogin(nombreUsuario, contraseñaUsuario);
+    };
+    
+    //* Manejador que nos desconectara el usuario borrando la cookie y volviendo a cargar la pagina
+    manejadorDesconetarUsuario = () => {
+        // Llamamos al metodo se la misma clase que nos validara y creara el usuario
+        this.onManejadorDesconetarUsuario();
+    };
+
+    //* Manejador para la seleccion de la opcion de los formularios desde la barra de navegacion
     manejadorSelectBarraNavegacionGestion = (opcionSeleccionada) => {
         // Llamamos al metodo se la misma clase que nos mostrara los formularios
         this.onFormulariosGestion(opcionSeleccionada);

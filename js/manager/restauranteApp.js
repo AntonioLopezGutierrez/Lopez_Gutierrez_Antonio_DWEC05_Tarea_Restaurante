@@ -8,6 +8,8 @@ import { RestauranteModelo } from "../manager/RestauranteModelo.js";
 import { RestauranteVista } from "../manager/RestauranteVista.js";
 // Importacion del controlador
 import { RestauranteControlador } from "../manager/RestauranteControlador.js";
+// Importacion del la autentificacion
+import { Autentificacion } from "./Autentificacion.js";
 
 //*********Creacion del manager al que le introduciremos los datos*******
 let restauranteModelo = new RestauranteModelo();
@@ -176,7 +178,6 @@ restauranteModelo.assignCategoryToDish(categoria3, plato9, plato10, plato11, pla
 // Añadimos los platos de la categoria 4
 restauranteModelo.assignCategoryToDish(categoria4, plato13, plato14, plato15, plato16);
 
-
 //***********Creacion de alergenos y asignacion a las platos*************
 //+ Creacion de alergenos
 // Creamos el primer alergeno
@@ -190,7 +191,6 @@ let alergeno2 = restauranteModelo.createAllergen(
     "Frutos secos",
     "Son alergenos derivados de los frutos secos",
     "/imagenes/imagenesAlergenos/alergenoFrutos.png"
-
 );
 // Creamos el tercer alergeno
 let alergeno3 = restauranteModelo.createAllergen(
@@ -331,11 +331,16 @@ restauranteModelo.addRestaurant(restaurante3);
 //console.log(restauranteModelo.toString());
 
 //?/////////////////////INSTANCIACION DEL CONTROLADOR///////////////////
-// Instanciamos un controlador con los argumentos el modelo y la vista
+// Instanciamos un controlador con los argumentos el modelo y la vista y autentificacion
 let miControlador = new RestauranteControlador(
+    // Instanciamos el modelo
     restauranteModelo.getInstance(),
-    new RestauranteVista()
+    // Instanciamos la vista
+    new RestauranteVista(),
+    // Instanciamos la autenticacion
+    Autentificacion.inicio()
 );
+
 
 //?///////////////////////////EXPORTACIONES//////////////////////////////
 export { miControlador };

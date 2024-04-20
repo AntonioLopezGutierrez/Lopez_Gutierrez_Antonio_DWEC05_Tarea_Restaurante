@@ -5,6 +5,7 @@
 import {
     alergenosPlatos,
     barraNavegacion,
+    barraNavegacionLoginUsuario,
     descripcionPlatos,
     mostradoAlergenos,
     mostradoCategoriasInicio,
@@ -29,6 +30,7 @@ import {
     mostradoFomulariosMenuLateral,
     mostradoMensajeFormulariosConfirmacion,
     mostradoMensajeFormulariosError,
+    mostrarFormularioLogin,
     mostrarPlatosMenuDesasignacion,
     mostrarPlatosMenuOrdenacion,
     nuevoPlato,
@@ -36,13 +38,16 @@ import {
     platosCategoriasDesasignado,
 } from "./formularios.js";
 
+//* Importacion de los elementos para el mostrado de cookies
+import { mostradoCookieCargar } from "../manager/elementosCookies.js";
+
 //?//////////////////////////DECLARACION DE LA CLASE/////////////////////
 class RestauranteVista {
     //?//////////////////////CONSTRUCTOR DE LA CLASE/////////////////////
     //?//////////////////////////////////////////////////////////////////
     // En el constructor obtendremos los elementos del DOM
     constructor() {
-        //* Obtención de elementos existentes del DOM
+        //* Obtencion de elementos existentes del DOM
         // Obtencion de la barra de nabegacion con las opciones
         this.barraNavegacion = document.getElementById("header--nav");
         // Obtencion de la zona del main-contenido para mostrar el contenido
@@ -51,6 +56,8 @@ class RestauranteVista {
         this.mainContenidoListado = document.getElementById("main--listado");
         // Obtencion del elemento aside para el mostrado de los palatos
         this.aside = document.getElementById("aside");
+        // Obtencion del elemento body para el mostrdo de las cookies
+        this.body = document.getElementById("body");
         // Propiedad en la que almacenaremos las migas de pan
         this.migaDePanActual = "Estamos en la pagina: Inicio";
     }
@@ -83,6 +90,18 @@ class RestauranteVista {
     inicio(categorias, platos, restaurantes) {
         // Llamada a la funcion de elementos pagina principal que mostrara la barra de navegacion
         barraNavegacion(this.barraNavegacion, this.migaDePanActual, restaurantes);
+        // Llamada a la funcion de elementos pagina principal que mostrara las categorias en el lateral
+        mostradoMenuLateral(this.mainContenidoListado, categorias);
+        // Llamada a la funcion de elementos pagina principal que mostrara las categorias al inicio
+        mostradoCategoriasInicio(this.mainContenido, categorias);
+        // Llamada a la funcion de elementos pagina principal que mostrara las platos random
+        mostradosPlatosRandom(this.aside, platos);
+    }
+
+    //* Metodo que mostrara la barra de navegacion para la identificacion del usuario
+    cargaInicioLoguin(categorias, platos, restaurantes) {
+        // Llamada a la funcion de elementos pagina principal que mostrara la barra de navegacion
+        barraNavegacionLoginUsuario(this.barraNavegacion, this.migaDePanActual, restaurantes);
         // Llamada a la funcion de elementos pagina principal que mostrara las categorias en el lateral
         mostradoMenuLateral(this.mainContenidoListado, categorias);
         // Llamada a la funcion de elementos pagina principal que mostrara las categorias al inicio
@@ -181,9 +200,18 @@ class RestauranteVista {
         this.#actualizarMigasPan("Estamos en la pagina: MenuMostrarPlatos");
     }
 
-    //!//////////////////////////////////////////////////////////////////
     //?//METODOS QUE LLAMA EL CONTROLADOR PARA ELEMENTOS DEL FORMULARIO//
     //?//////////////////////////////////////////////////////////////////
+    //* Metodo que nos mostrara un formulario para el login del usuario
+    formularioLogin() {
+        // Llamada al metodo de actualizar migas de pan
+        this.#actualizarMigasPan("Estamos en la página: FormularioLogin");
+        // Llamada a la funcion de los formularios para el login
+        mostrarFormularioLogin(this.mainContenido);
+        // Borramos el menu lateral para el login del formulario
+        this.mainContenidoListado.innerHTML = "";
+    }
+
     //* Metodo que nos mostrara un formulario para crear los platos
     nuevoPlato(categorias, alergenos) {
         // Llamada al metodo de actualizar migas de pan
@@ -288,6 +316,20 @@ class RestauranteVista {
     actualizadoBarraNavegacionCreacionRestaurante(arrayRestaurantes) {
         // Llamada a la funcion de elementos pagina principal que mostrara la barra de navegacion
         barraNavegacion(this.barraNavegacion, this.migaDePanActual, arrayRestaurantes);
+    }
+
+    //?//METODOS QUE LLAMA EL CONTROLADOR PARA EL MOSTRADO DE COOKIES////
+    //?//////////////////////////////////////////////////////////////////
+    //* Metodo que mostrara la cookie de la pagina al cargar
+    mostradoCookieCargar() {
+        // LLamada a la funcion del las cookies que nos mostrara la cookie al cargar la pagina
+        mostradoCookieCargar();
+    }
+
+    // Método para mostrar una alerta de bienvenida al usuario
+    mostrarBienvenidaUsuario(stringMensaje) {
+        // Mostramos la alerta
+        alert(stringMensaje);
     }
 
     //?////////////////METODOS PARA EL MANEJO DE EVENTOS/////////////////
@@ -717,6 +759,52 @@ class RestauranteVista {
     //!//////////////////////////////////////////////////////////////////////
     //?///////////MANEJADORES DE EVENTOS PARA LOS FORMULARIOS////////////////
     //?//////////////////////////////////////////////////////////////////////
+    //* Metodo que ejecuta el manejador del controlador para mostrar el formulario ce loguin
+    manejadorFormularioLogin(manejadorFormularioLogin) {
+        // Obtenemos el elemento con el boton de identificacion del usuari0o
+        let botonIdentificacion = document.getElementById("identificarseBarra");
+        // Hacemos una escucha al evento click del boton de identificacion
+        botonIdentificacion.addEventListener("click", (event) => {
+            // Llamamos al manejador del controlador que nos mostrara el formulario
+            manejadorFormularioLogin(event.target.value);
+            // Llamada al metodo de actualizar migas de pan
+            this.#actualizarMigasPan("Estamos en la página: FormularioLogin");
+            // Apilamos una entrada en el historial con la accion formulariologin
+            history.pushState({ action: "formularioLogin" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+
+    //* Metodo que ejecuta el manejador del controlador para el boton submit del login
+    manejadorBotonSubmitFormularioLogin(manejadorBotonSubmitFormularioLogin) {
+        // Obtenemos el elemento del formulario de login
+        let formularioLogin = document.forms.formulariLoginUsuario;
+        // Hacemos una escucha al evento submit del envio del formulario de identificacion
+        formularioLogin.addEventListener("submit", (event) => {
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+            // Obtenemos los valores de nombre de usuario y contraseña del formulario
+            const nombreUsuario = formularioLogin.elements.inputNombreUsuario.value;
+            const contraseñaUsuario = formularioLogin.elements.inputContraseñaUsuario.value;
+            // Llamamos al manejador del controlador que nos valida el usuario y lo almacena
+            manejadorBotonSubmitFormularioLogin(nombreUsuario, contraseñaUsuario);
+        });
+    }
+
+    //* Metodo para ejecutar el manejador del controlador que desconecta al usuario
+    manejadorDesconetarUsuario(manejadorDesconetarUsuario) {
+        // Obtenemos el elemento
+        let botonDesconectar = document.getElementById("divDesconexion");
+        // Hacemos una escucha por si se produce un evento de clic
+        botonDesconectar.addEventListener("click", (event) => {
+            // Llamamos al metodo del manejador que le pasamos como argumentos
+            manejadorDesconetarUsuario(manejadorDesconetarUsuario);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+
     //* Metodo que ejecuta el manejador del controlador que nos mostrara los formularios
     manejadorSelectBarraNavegacionGestion(manejadorSelectBarraNavegacionGestion) {
         // Obtenemos el elemento select
@@ -1250,5 +1338,3 @@ class RestauranteVista {
 
 //?///////////////////////////EXPORTACIONES//////////////////////////////
 export { RestauranteVista };
-
-

@@ -155,6 +155,16 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     // Agregamos el option al select
     selectGestion.appendChild(opcionGestion6);
 
+    //* Elemento para la desconexion
+    // Creamos un nuevo elemento para los platos
+    let divDesconexion = document.createElement("div");
+    // Asignamos la clase al elemento
+    divDesconexion.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento de plato
+    divDesconexion.innerText = "Desconexion";
+    // Asignamos el id al elemento de platos
+    divDesconexion.id = "divDesconexion";
+
     //* Elemento migas de pan
     // Creamos un nuevo contendor
     let divMigasPan = document.createElement("div");
@@ -182,6 +192,143 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     divBarraNavegacion.appendChild(divRestaurantes);
     // Agregamos el elemento de gestion al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divGestion);
+    // Agregamos el elemento de desconexion al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divDesconexion);
+
+    //** Agregado de elementos a a la barra de navegacion
+    // Agregado del contenedor a la barra de navegacion
+    barraNavegacion.appendChild(divBarraNavegacion);
+    // Agregado del elemento migas de pan a la barra de navegacion
+    barraNavegacion.appendChild(divMigasPan);
+}
+
+//?//////FUNCION QUE MOSTRARA LA BARRA DE NAVEGACION DE LA PAGINA/////////
+function barraNavegacionLoginUsuario(barraNavegacion, migaDePanActual, restaurantes) {
+    barraNavegacion.innerHTML = "";
+    //* Div contenedor de todos los elementos
+    // Creamos un nuevo elemento div para almacenar los elementos de la barra
+    let divBarraNavegacion = document.createElement("div");
+    // Asignamos una clase al div principal
+    divBarraNavegacion.classList.add("divBarraNavegacion");
+
+    //* Elemento de inicio
+    // Creamos un nuevo elemento div para el inicio
+    let divInicio = document.createElement("div");
+    // Asignamos una clase al elemento
+    divInicio.classList.add("divBarraNavegacionElementos");
+    // Asignamos el texto al elemento de inicio
+    divInicio.innerText = "Inicio";
+    // Asignamos el id al elemento de inicio
+    divInicio.id = "inicio";
+
+    //* Elemento categorias
+    // Creamos un nuevo elemento div para las categorias
+    let divCategoria = document.createElement("div");
+    // Asignamos una nueva clase al elemento
+    divCategoria.classList.add("divBarraNavegacionElementos");
+    // Agregamos un texto al elemento categorias
+    divCategoria.innerText = "Categorías";
+    // Asignamos el id al elemento de la categoria
+    divCategoria.id = "categoriasBarra";
+
+    //* Elemento alergenos
+    // Creamos un nuevo elemento para los alergenos
+    let divAlergenos = document.createElement("div");
+    // Asignamos una clase al elemento
+    divAlergenos.classList.add("divBarraNavegacionElementos");
+    // Agregamos el texto de alergenos
+    divAlergenos.innerText = "Alergenos";
+    // Asignamos el id al elemento del alergeno
+    divAlergenos.id = "alergenosBarra";
+
+    //* Elemento menus
+    // Creamos un nuevo elemento para los menus
+    let divMenus = document.createElement("div");
+    // Asignamos la clase al elemento
+    divMenus.classList.add("divBarraNavegacionElementos");
+    // Asignamos el texto al elemento de menu
+    divMenus.innerText = "Menús";
+    // Asignamos el id al elemento del menu
+    divMenus.id = "menuBarra";
+
+    //* Elemento platos
+    // Creamos un nuevo elemento para los platos
+    let divPlatos = document.createElement("div");
+    // Asignamos la clase al elemento
+    divPlatos.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento de plato
+    divPlatos.innerText = "Platos";
+    // Asignamos el id al elemento de platos
+    divPlatos.id = "platosBarra";
+
+    //* Elemento Restaurantes
+    // Creamos un nuevo elemento para los restaurantes
+    let divRestaurantes = document.createElement("div");
+    // Creamos un nuevo elemento select
+    let selectRestaurante = document.createElement("select");
+    // Asignamos la clase al elemento option
+    selectRestaurante.classList.add("selectBarraNavegacionRestaurante");
+    // Asignamos un id a la select
+    selectRestaurante.id = "selectBarraNavegacionRestaurante";
+    // Agregamos la select al contenedor del restaurante
+    divRestaurantes.appendChild(selectRestaurante);
+    // Creamos un nuevo elemento option
+    let opcionRestaurantes = document.createElement("option");
+    // Asignamos el texto al elemento
+    opcionRestaurantes.innerText = "Restaurantes";
+    // Desactivamos la opcion inicial para que nos sea una opcion
+    opcionRestaurantes.disabled = true;
+    // Seleccionamos esta opcion por defecto
+    opcionRestaurantes.selected = true;
+    // Agregamos el option al select
+    selectRestaurante.appendChild(opcionRestaurantes);
+    // Iteramos sobre el array de restaurantes
+    for (const restaurante of restaurantes) {
+        // Creamos un nuevo elemento de option
+        let optionRestaurante = document.createElement("option");
+        // Agregamos el texto con el nombre del plato a la fila de la lista
+        optionRestaurante.innerText = restaurante.getName();
+        // Agregamos el contenedor al elemento de restaurante
+        selectRestaurante.appendChild(optionRestaurante);
+    }
+
+    //* Elemento para la identificacion del usuario
+    // Creamos un nuevo elemento div para la identificacion
+    let divIdentificacion = document.createElement("div");
+    // Asignamos la clase al elemento
+    divIdentificacion.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento de identificacion
+    divIdentificacion.innerText = "Identificarse";
+    // Asignamos el id al elemento de platos
+    divIdentificacion.id = "identificarseBarra";
+
+    //* Elemento migas de pan
+    // Creamos un nuevo contendor
+    let divMigasPan = document.createElement("div");
+    // Asignamos la clase al elemento
+    divMigasPan.classList.add("elementoMigasPanBarraNavegacion");
+    // Creamos un nuevo elemento de parrafo
+    let parrafoMigasPan = document.createElement("p");
+    // Asignamos el texto inicial al elemento de migas de pan
+    parrafoMigasPan.innerText = migaDePanActual;
+    // Agregamos el elemento a la barra de navegacion
+    divMigasPan.appendChild(parrafoMigasPan);
+
+    //* Agregado de la lista de elementos al contenedor barra de navegacion
+    // Agregamos el elemento de inicio al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divInicio);
+    // Agregamos el elemento de categorias al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divCategoria);
+    // Agregamos el elemento de alergenos al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divAlergenos);
+    // Agregamos el elemento de menus al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divMenus);
+    // Agregamos el elemento de platos al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divPlatos);
+    // Agregamos el elemento de restaurnates al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divRestaurantes);
+    // Agregamos el elemento de identificacion al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divIdentificacion);
 
     //** Agregado de elementos a a la barra de navegacion
     // Agregado del contenedor a la barra de navegacion
@@ -536,7 +683,6 @@ function restauranteDescripcion(mainContenido, restaurante) {
     mainContenido.appendChild(contenedorDescripcion);
 }
 
-
 //?///FUNCION PARA EL MUSTRADO DE LOS RESTAURANTES EN LA BARRA LATERAL////
 function mostradoMenuLateralRestaurantes(mainContenidoListado, restaurantes) {
     // Limpiamos el contenido del main contenido
@@ -545,7 +691,7 @@ function mostradoMenuLateralRestaurantes(mainContenidoListado, restaurantes) {
     let contenedor = document.createElement("div");
     // Añadimos un id al elemento de contenedor
     contenedor.id = "divRestaurantesDescripcionLateral";
-    // Iteramos sobre el iterador de restaurantes 
+    // Iteramos sobre el iterador de restaurantes
     for (const restaurante of restaurantes) {
         // Creamos un nuevo elemento de parrafo
         let parrafo = document.createElement("p");
@@ -561,7 +707,6 @@ function mostradoMenuLateralRestaurantes(mainContenidoListado, restaurantes) {
     // Agregamos el contenedor al main listado
     mainContenidoListado.appendChild(contenedor);
 }
-
 
 //?/////////FUNCION PARA MOSTRAR LA DESCRIPCION DE LOS PLATOS////////////
 function descripcionPlatos(mainContenido, plato) {
@@ -647,6 +792,7 @@ function imagenesPlatosAside(contenedor, platos) {
 //?///////////////////EXPORTACIONES DE LA CLASE//////////////////////////
 export {
     barraNavegacion,
+    barraNavegacionLoginUsuario,
     mostradoMenuLateral,
     mostradoCategoriasInicio,
     mostradosPlatosRandom,
@@ -660,5 +806,5 @@ export {
     restauranteDescripcion,
     descripcionPlatos,
     alergenosPlatos,
-    mostradoMenuLateralRestaurantes
+    mostradoMenuLateralRestaurantes,
 };

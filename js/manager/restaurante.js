@@ -65,11 +65,17 @@ const historyActions = {
     },
 
     //!//////////////////////////////////////////////////////////////////
-    //?////////////METODOS PARA EL LMOSTRADO DE FORMULARIOS//////////////
+    //?////////////METODOS PARA EL MOSTRADO DE FORMULARIOS//////////////
     //* Accion que nos mostrara los formularios para la gestion
     formulariosGestion() {
         // Llamada al metodo que muestra los fomularios
         miControlador.onFormulariosGestion();
+    },
+
+    //* Accion que nos mostrara el formulario para la identificacion del usuario
+    formularioLogin() {
+        // Llamada al metodo que muestra los fomularios
+        miControlador.onManejadorFormularioLogin();
     },
 };
 

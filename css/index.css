@@ -827,6 +827,25 @@ header {
     /* Establecemos el margen*/
     margin: 1em;
 }
+/*? Formulario para el registro del usuario*/
+.formulariLoginUsuario{
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.5em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 5em;
+    /* Establecemos el espacio de la fila*/
+    row-gap: 1em;
+}
 
 /*? Contenedor principal para la administracion de las categorias y los platos*/
 .contenedorAdministracionCategoriaPlatos {
@@ -1146,8 +1165,6 @@ header {
 
 /*? Parrafos del aside*/
 .aside span {
-    /* Establecemos el relleno*/
-    padding: 0.3em;
     /* Establecemos el color de fondo*/
     background-color: white;
     /* Establecemos el tamaño de la fuente*/
@@ -1157,7 +1174,7 @@ header {
     /* Establecemos el ancho*/
     width: 70%;
     /* Establecemos el alto*/
-    height: 1em;
+    height: 1.5em;
     /* Establecemos el color*/
     color: rgb(66, 66, 66);
     /* Establecemos el tamaño de la fuente*/
@@ -1166,7 +1183,9 @@ header {
     border-radius: 1em;
 }
 
-/*!-------------------------------footer-------------------------------*/
+
+
+/*! -------------------------------footer-------------------------------*/
 /**************************** Pie de pagina*****************************/
 /*? Contenedor principal del pie de pagina*/
 .footer {

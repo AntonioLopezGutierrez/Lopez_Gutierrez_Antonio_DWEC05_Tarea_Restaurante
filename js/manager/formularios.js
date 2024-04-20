@@ -1507,6 +1507,84 @@ function mostradoFomulariosMenuLateral(mainContenidoListado) {
     mainContenidoListado.appendChild(contenedor);
 }
 
+//?//////////FUNCION QUE NOS MOSTRARA EL FORMULARIO DE LOGIN/////////////
+function mostrarFormularioLogin(mainContenido) {
+    //+ Borramos el contenido del contenido principal
+    mainContenido.innerHTML = "";
+
+    //+ Creamos un nuevo elemento de formulario
+    let formulariLoginUsuario = document.createElement("form");
+    // Asisnamos el atributo name al elemento
+    formulariLoginUsuario.name = "formulariLoginUsuario";
+    // Asisnamos el atributo id al elemento form
+    formulariLoginUsuario.id = "formulariLoginUsuario";
+    // Asignamos la clase al formulario
+    formulariLoginUsuario.className = "formulariLoginUsuario";
+
+    //+ Creamos un elemento de titulo para el formulario de login
+    let tituloFormularioLogin = document.createElement("h2");
+    // Asignamos el texto al tiutulo del formulario
+    tituloFormularioLogin.innerText = "Formulario de identificacion de usuarios";
+
+    //+ Creamos un elemento parrafo para el nombre
+    let parrafoNombreUsuario = document.createElement("p");
+    // Asignamos el texto a la etiqueta
+    parrafoNombreUsuario.innerText = "Introduzca el nombre de usuario";
+
+    //+ Creamos un elemento input para el nombre
+    let inputNombreUsuario = document.createElement("input");
+    // Asignamos el atributo nombre al input
+    inputNombreUsuario.name = "inputNombreUsuario";
+    // Establecemos el tipo del input
+    inputNombreUsuario.type = "text";
+    // Asignamos la clase al elemento de texto
+    inputNombreUsuario.className = "inputTextFormulario";
+
+    //+ Creamos un elemento parrafo para la contraseña
+    let parrafoContraseñaUsuario = document.createElement("p");
+    // Asignamos el texto a la etiqueta
+    parrafoContraseñaUsuario.innerText = "Introduzca la contraseña de usuario";
+
+    //+ Creamos un elemento input para el nombre
+    let inputContraseñaUsuario = document.createElement("input");
+    // Asignamos el atributo nombre al input
+    inputContraseñaUsuario.name = "inputContraseñaUsuario";
+    // Establecemos el tipo del input
+    inputContraseñaUsuario.type = "password";
+    // Asignamos la clase al elemento de contraseña
+    inputContraseñaUsuario.className = "inputTextFormulario";
+
+    //+ Creamos un elemento boton para la identificacion del usuario
+    let botonIdentificarUsuario = document.createElement("button");
+    // Asignamos el texto al boton
+    botonIdentificarUsuario.innerHTML = "Identificar";
+    // Asignamos la clase al boton de enviar
+    botonIdentificarUsuario.className = "inputButtonFormularioEliminarPlatos";
+    // Agregamos el atributo name al boton
+    botonIdentificarUsuario.name = "botonIdentificarUsuario";
+    // Asignamos un id al boton
+    botonIdentificarUsuario.id = "botonIdentificarUsuario";
+    // Asignamos el tipo al boton
+    botonIdentificarUsuario.type = "submit";
+
+    //+ Agregamos los elementos al formulario
+    // Agregamos el parrafo del titulo al formulario
+    formulariLoginUsuario.appendChild(tituloFormularioLogin);
+    // Agregamos el parrafo del nombre al formulario
+    formulariLoginUsuario.appendChild(parrafoNombreUsuario);
+    // Agregamos el input del nombre al formulario
+    formulariLoginUsuario.appendChild(inputNombreUsuario);
+    // Agregamos el parrafo de la contraseña al formulario
+    formulariLoginUsuario.appendChild(parrafoContraseñaUsuario);
+    // Agregamos el input de la contraseña al formulario
+    formulariLoginUsuario.appendChild(inputContraseñaUsuario);
+    // Agregamos el boton al formulario
+    formulariLoginUsuario.appendChild(botonIdentificarUsuario);
+
+    //+ Agregamos el formulario al mainContenido
+    mainContenido.appendChild(formulariLoginUsuario);
+}
+
 //?//////////////////////EXPORTACION DE LAS FUNCIONES////////////////////
 export {
     eliminarPlato,
@@ -1521,4 +1599,5 @@ export {
     mostradoMensajeFormulariosConfirmacion,
     mostradoMensajeFormulariosError,
     mostradoFomulariosMenuLateral,
+    mostrarFormularioLogin,
 };
