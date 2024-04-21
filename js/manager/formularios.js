@@ -1503,6 +1503,17 @@ function mostradoFomulariosMenuLateral(mainContenidoListado) {
     // Agregamos el parrafo al contenedor
     contenedor.appendChild(parrafo5);
 
+    //* Creamos un nuevo elemento de parrafo para añadir los platos a favoritos
+    let parrafo6 = document.createElement("p");
+    // Asignamos una clase a la clase al elemento de parrafo
+    parrafo6.classList.add("pLateralFormularios");
+    // Agregamos el texto con el nombre deL formulario al elemento de parrafo
+    parrafo6.innerText = "Platos favoritos";
+    // Agregamos un atributo data con el nombre del formulario
+    parrafo6.setAttribute("data-plateralformulario", "Platos favoritos");
+    // Agregamos el parrafo al contenedor
+    contenedor.appendChild(parrafo6);
+
     //* Agregamos el contenedor al main listado
     mainContenidoListado.appendChild(contenedor);
 }
@@ -1584,6 +1595,83 @@ function mostrarFormularioLogin(mainContenido) {
     //+ Agregamos el formulario al mainContenido
     mainContenido.appendChild(formulariLoginUsuario);
 }
+//?///////////FUNCION QUE ASIGNARA LOS PLATOS A FAVORITOS////////////////
+function mostradoPlatosAsignacionFaviritos(mainContenido, platos) {
+    //+ Eliminamos el contenido del main contenido
+    mainContenido.innerHTML = "";
+
+    //+ Creamos un nuevo elemento de formulario
+    let formularioAsignacionPlatosFavoritos = document.createElement("form");
+    // Asisnamos el atributo name al elemento
+    formularioAsignacionPlatosFavoritos.name = "formularioAsignacionPlatosFavoritos";
+    // Asisnamos el atributo id al elemento form
+    formularioAsignacionPlatosFavoritos.id = "formularioAsignacionPlatosFavoritos";
+    // Asignamos la clase al formulario
+    formularioAsignacionPlatosFavoritos.className = "formularioAsignacionPlatosFavoritos";
+
+    //- Creamos un elemento de titulo para la seleccion de los platos
+    let tituloPlatosAsignacioFavoritos = document.createElement("h4");
+    // Asignamos el texto a la etiqueta
+    tituloPlatosAsignacioFavoritos.innerText = "Escoja el plato que quiere asignar a favoritos";
+
+    //- Creamos una tabla para mostrar los platos
+    let tablaPlatosAsignadoFavoritos = document.createElement("table");
+    // Le asignamos la clase a la tabla
+    tablaPlatosAsignadoFavoritos.className = "tablaAMenusAsignadoPlatos";
+    // Asignamos el atributo name a la tabla
+    tablaPlatosAsignadoFavoritos.name = "tablaPlatosAsignadoFavoritos";
+    // Recorremos el iterador de alergenos
+    for (const plato of platos) {
+        // Creamos una nueva fila para la tabla
+        let fila = document.createElement("tr");
+        // Creamos una celda para el checkbox
+        let celdaCheckbox = document.createElement("td");
+        // Creamos el checkbox
+        let checkbox = document.createElement("input");
+        // Asignamos el atributo type al elemento
+        checkbox.type = "checkbox";
+        // Asignamos el atributo name a los elementos
+        checkbox.name = "checkboxPlatoAsignadoFavoritos";
+        // Asignamos el valor al checkbox
+        checkbox.value = plato.platos.getName();
+        // Agregamos el checkbox a la celda
+        celdaCheckbox.appendChild(checkbox);
+        // Creamos una celda para el nombre de los platos
+        let celdaNombre = document.createElement("td");
+        // Creamos un texto con el nombre de los platos
+        let nombrePlato = document.createTextNode(plato.platos.getName());
+        // Agregamos el texto a la celda
+        celdaNombre.appendChild(nombrePlato);
+        // Agregamos el checkbox a la fila
+        fila.appendChild(celdaCheckbox);
+        // Agregamos el nombre de los platos a la fila
+        fila.appendChild(celdaNombre);
+        // Agregamos a la tabla la fila
+        tablaPlatosAsignadoFavoritos.appendChild(fila);
+    }
+
+    //- Creamos un elemento boton para asignar el plato
+    let botonAsignarPlatoFavoritos = document.createElement("button");
+    // Asignamos el texto al boton
+    botonAsignarPlatoFavoritos.innerHTML = "Asignar a favoritos";
+    // Asignamos un atributo name al boton
+    botonAsignarPlatoFavoritos.name = "botonAsignarPlatoFavoritos";
+    // Asignamos la clase al boton de enviar
+    botonAsignarPlatoFavoritos.className = "inputButtonFormularioEliminarPlatos";
+    // Asignamos el tipo al boton
+    botonAsignarPlatoFavoritos.type = "submit";
+
+    //+ Agregacion de elementos al formulario
+    // Agregamos el titulo al formulario
+    formularioAsignacionPlatosFavoritos.appendChild(tituloPlatosAsignacioFavoritos);
+    // Agregamos la tabla al formulario
+    formularioAsignacionPlatosFavoritos.appendChild(tablaPlatosAsignadoFavoritos);
+    // Agregamos el boton para el envio al formulario
+    formularioAsignacionPlatosFavoritos.appendChild(botonAsignarPlatoFavoritos);
+
+    //+ Agregamos el formulario al contenedor principal
+    mainContenido.appendChild(formularioAsignacionPlatosFavoritos);
+}
 
 //?//////////////////////EXPORTACION DE LAS FUNCIONES////////////////////
 export {
@@ -1600,4 +1688,5 @@ export {
     mostradoMensajeFormulariosError,
     mostradoFomulariosMenuLateral,
     mostrarFormularioLogin,
+    mostradoPlatosAsignacionFaviritos,
 };

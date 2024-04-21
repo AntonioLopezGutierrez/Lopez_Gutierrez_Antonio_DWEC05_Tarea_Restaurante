@@ -30,6 +30,7 @@ import {
     mostradoFomulariosMenuLateral,
     mostradoMensajeFormulariosConfirmacion,
     mostradoMensajeFormulariosError,
+    mostradoPlatosAsignacionFaviritos,
     mostrarFormularioLogin,
     mostrarPlatosMenuDesasignacion,
     mostrarPlatosMenuOrdenacion,
@@ -140,7 +141,7 @@ class RestauranteVista {
         this.#actualizarMigasPan("Estamos en la pagina: Menus");
     }
 
-    //* Metodo para para el mostrado de platos
+    //* Metodo para el mostrado de platos
     platos(platos) {
         // Llamada a la funcion de elementos pagina principal que mostrara los platos
         mostradoPlatos(this.mainContenido, platos);
@@ -148,6 +149,16 @@ class RestauranteVista {
         mostradoMenuLateralPlatos(this.mainContenidoListado, platos);
         // Actualizamos las migas de pan
         this.#actualizarMigasPan("Estamos en la pagina: Platos");
+    }
+
+    //*Metodo para el mostrado de platos en favoritos
+    platosFavoritos(platos) {
+        // Llamada a la funcion de elementos pagina principal que mostrara los platos
+        mostradoPlatos(this.mainContenido, platos);
+        // Llamada a la funcion de elementos pagina principal que mostrara los platos desde el menu lateral
+        mostradoMenuLateralPlatos(this.mainContenidoListado, platos);
+        // Actualizamos las migas de pan
+        this.#actualizarMigasPan("Estamos en la pagina: Favoritos");
     }
 
     //?//////METODOS QUE LLAMA CONTROLADOR DE ELEMENTOS DINAMICOS////////
@@ -294,6 +305,15 @@ class RestauranteVista {
         this.#actualizarMigasPan("Estamos en la página: FormulariosGestion");
         // LLamada a la funcion de los formularios para modificar los platos de la categoria
         platosCategoriasDesasignado(platosCategorias);
+    }
+    //* Metodo que mostrara los platos que tiene una categoria para el desadignado
+    asignacionPlatosFavoritos(platos) {
+        // Llamada al metodo de actualizar migas de pan
+        this.#actualizarMigasPan("Estamos en la página: FormulariosGestion");
+        // LLamada a la funcion de los formularios para la asignacion de platos a favoritos
+        mostradoPlatosAsignacionFaviritos(this.mainContenido, platos);
+        // Llamada a la funcion que nos mostrara los formularios del menu lateral
+        mostradoFomulariosMenuLateral(this.mainContenidoListado);
     }
 
     //* Metodo que mostrara un mensaje para la confirmacion de los usuarios
@@ -1333,6 +1353,48 @@ class RestauranteVista {
                 );
             });
         }
+    }
+
+    //* Manejador para el formulario para la asignacion de platos al menu
+    manejadorFormularioAsignarPlatoFavoritos(manejadorFormularioAsignarPlatoFavoritos) {
+        document.forms.formularioAsignacionPlatosFavoritos.elements[
+            "botonAsignarPlatoFavoritos"
+        ].addEventListener("click", function (event) {
+            //- Prevenimos el comportamiento por defecto
+            event.preventDefault();
+
+            //- Obtenemos los platos del checkbox marcado
+            let arrayCheckboxPlatos = this.form.elements["checkboxPlatoAsignadoFavoritos"];
+            // Creamos un array para almacenar los valores de los menus
+            let arrayPlatoSeleccionados = [];
+            // Recorremos los checkboxes
+            for (let checkbox of arrayCheckboxPlatos) {
+                // Si el checkbox esta marcado
+                if (checkbox.checked) {
+                    // Añadimos el valor al array
+                    arrayPlatoSeleccionados.push(checkbox.value);
+                }
+            }
+            //- Llamada al manejador del controlador para la asignacion del plato al menu
+            manejadorFormularioAsignarPlatoFavoritos(arrayPlatoSeleccionados);
+        });
+    }
+
+    //* Manejador para el formulario para la asignacion de platos al menu
+    manejadorObtenerPlatosFavoritos(manejadorObtenerPlatosFavoritos) {
+        // Obtenemos el boton de favoritos para el mostrado de los platos
+        let botonPlatosFavoritos = document.getElementById("divPlatosFavoritos");
+        // Hacemos una escucha al evento click del boton
+        botonPlatosFavoritos.addEventListener("click", (event) => {
+            // Llamamos al manejador del controlador que nos mostrara los platos favoritos
+            manejadorObtenerPlatosFavoritos();
+            // Llamada al metodo de actualizar migas de pan
+            this.#actualizarMigasPan("Estamos en la página: Favoritos");
+            // Apilamos una entrada en el historial con la accion favoritos
+            history.pushState({ action: "favoritos" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
     }
 }
 

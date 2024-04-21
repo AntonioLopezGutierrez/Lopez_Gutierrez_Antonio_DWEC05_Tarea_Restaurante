@@ -64,6 +64,12 @@ const historyActions = {
         miControlador.onRestauranteDescripcion();
     },
 
+    //* Accion que nos mostrara los platos que tenemos en favoritos
+    favoritos() {
+        // Llamada al metodo que muestra la descripcion del restaurante
+        miControlador.onManejadorObtenerPlatosFavoritos();
+    },
+
     //!//////////////////////////////////////////////////////////////////
     //?////////////METODOS PARA EL MOSTRADO DE FORMULARIOS//////////////
     //* Accion que nos mostrara los formularios para la gestion

@@ -1,0 +1,235 @@
+{
+    "categorias": [
+        {
+            "nombre": "Entrantes",
+            "descripcion": "Son pequeñas porciones para abrir el apetito",
+            "imagen": "/imagenes/imagenesCategorias/imagenEntrante.png"
+        },
+        {
+            "nombre": "Primeros",
+            "descripcion": "Es mas ligero que el plato principal",
+            "imagen": "/imagenes/imagenesCategorias/imagenPrimerosPlatos.png"
+        },
+        {
+            "nombre": "Segundos",
+            "descripcion": "Es el plato principal de la comida",
+            "imagen": "/imagenes/imagenesCategorias/imagenSegundosPlatos.png"
+        },
+        {
+            "nombre": "Postre",
+            "descripcion": "Es el ultimo plato de la comida",
+            "imagen": "/imagenes/imagenesCategorias/imagenPostres.png"
+        }
+    ],
+    "platos": [
+        {
+            "nombre": "Sepia",
+            "descripcion": "Es un plato de sepia a la plancha",
+            "ingredientes": ["Sepia, esparragos, peregil, aceite"],
+            "imagen": "/imagenes/imagenePlatos/imagenSepia.png",
+            "categoria": "Entrantes",
+            "alergenos" : "Pescado"
+        },
+
+        {
+            "nombre": "Salmon",
+            "descripcion": "Es un plato se salmon a la plancha",
+            "ingredientes": ["Salmon, cebolla, esparragos, sal, romero"],
+            "imagen": "/imagenes/imagenePlatos/imagenSalmon.png",
+            "categoria": "Primeros",
+            "alergenos":"Pescado"
+        },
+        {
+            "nombre": "Salmorejo",
+            "descripcion": "Es un plato de tipico Cordobes",
+            "ingredientes": ["Pimiento, tomate, cebolla, jamon, huevo"],
+            "imagen": "/imagenes/imagenePlatos/imagenSalmorejo.png",
+            "categoria": "Entrantes",
+            "alergenos": "Gluten"
+        },
+        {
+            "nombre": "Ensalada",
+            "descripcion": "Es un plato muy refrescante y bajo en calorias",
+            "ingredientes": ["Lechuga, tomate, maiz, nueces, atun"],
+            "imagen": "/imagenes/imagenePlatos/imagenEnsalada.png",
+            "categoria": "Entrantes",
+            "alergenos": "Verduras"
+        },
+        {
+            "nombre": "Pimientos",
+            "descripcion": "Pimientos del padron rellenos de merluza",
+            "ingredientes": ["Pimiento, sal, aceite, pan rallado, merluza"],
+            "imagen": "/imagenes/imagenePlatos/imagenPimientos.png",
+            "categoria": "Entrantes",
+            "alergenos": "Verduras"
+        },
+        {
+            "nombre": "Risotto",
+            "descripcion": "Es un plato italiano de arroz meloso",
+            "ingredientes": ["Arroz, gambas, queso parmesano, nata, cebolla"],
+            "imagen": "/imagenes/imagenePlatos/imagenRisotto.png",
+            "categoria": "Primeros",
+            "alergenos": "Lacteos"
+        },
+        {
+            "nombre": "Albondigas",
+            "descripcion": "Es un plato de albondigas de ternera con salsa de tomate",
+            "ingredientes": [
+                "Carne de ternera, tomate, cebolla, caldo de verdura, queso parmesano"
+            ],
+            "imagen": "/imagenes/imagenePlatos/imagenAlbondigas.png",
+            "categoria": "Primeros",
+            "alergenos": "Proteinas"
+        },
+        {
+            "nombre": "Tortilla",
+            "descripcion": "Plato tipico español",
+            "ingredientes": ["Huevo, patatas, aceite, sal"],
+            "imagen": "/imagenes/imagenePlatos/imagenTortilla.png",
+            "categoria": "Primeros",
+            "alergenos": "Lacteos"
+        },
+        {
+            "nombre": "Sushi",
+            "descripcion": "Laminas de pescado crudo con arroz cocido",
+            "ingredientes": ["Arroz, atun, salmon, merluza, algas"],
+            "imagen": "/imagenes/imagenePlatos/imagenSushi.png",
+            "categoria": "Segundos",
+            "alergenos": "Pescado"
+        },
+        {
+            "nombre": "Fajitas",
+            "descripcion": "Pechuga de pollo a la plancha con sofrito de verduras",
+            "ingredientes": ["Pollo, tomate, cebolla, pimiento, totitas de harina"],
+            "imagen": "/imagenes/imagenePlatos/imagenFajitas.png",
+            "categoria": "Segundos",
+            "alergenos": "Proteinas"
+        },
+        {
+            "nombre": "Ratatouille",
+            "descripcion": "Es un plato tipico frances de verduras",
+            "ingredientes": ["Berenjena, calabacin, tomate, hiervas Aromaticas"],
+            "imagen": "/imagenes/imagenePlatos/imagenRatatouille.png",
+            "categoria": "Segundos",
+            "alergenos": "Verduras"
+        },
+        {
+            "nombre": "Macarrones",
+            "descripcion": "Es un plato italiano de pasta",
+            "ingredientes": ["Macarrones, salsa de tomate, carne de ternera, queso, oregano"],
+            "imagen": "/imagenes/imagenePlatos/imagenMacarrones.png",
+            "categoria": "Segundos",
+            "alergenos": "Lacteos"
+        },
+        {
+            "nombre": "Bizcocho",
+            "descripcion": "Es un bizcocho de chocolate",
+            "ingredientes": ["Harina, huevos, lebadura, chocolate"],
+            "imagen": "/imagenes/imagenePlatos/imagenBizcocho.png",
+            "categoria": "Postre",
+            "alergenos": "Frutos secos"
+        },
+        {
+            "nombre": "Tarta",
+            "descripcion": "Es una tarta de frutas",
+            "ingredientes": ["Fresas, hojaldre, crema, uvas, ciruelas"],
+            "imagen": "/imagenes/imagenePlatos/imagenTarta.png",
+            "categoria": "Postre",
+            "alergenos": "Lacteos"
+        },
+        {
+            "nombre": "Flan",
+            "descripcion": "Es un flan de huevo con frambuesas",
+            "ingredientes": ["Huevos, azucar, frambuesa"],
+            "imagen": "/imagenes/imagenePlatos/imagenFlan.png",
+            "categoria": "Postre",
+            "alergenos": "Lacteos"
+        },
+        {
+            "nombre": "Frutas",
+            "descripcion": "Es un baquillo de de frutas silvestres",
+            "ingredientes": ["Fresas, ciruelas, frambuesas, moras"],
+            "imagen": "/imagenes/imagenePlatos/imagenFrutas.png",
+            "categoria": "Postre",
+            "alergenos": "Verduras"
+        }
+    ],
+    "alergenos": [
+        {
+            "nombre": "Lacteos",
+            "descripcion": "Son alergenos derivados de la leche de la vaca",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+        },
+        {
+            "nombre": "Frutos secos",
+            "descripcion": "Son alergenos derivados de los frutos secos",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoFrutos.png"
+        },
+        {
+            "nombre": "Pescado",
+            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+        },
+        {
+            "nombre": "Proteinas",
+            "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+        },
+        {
+            "nombre": "Gluten",
+            "descripcion": "Son alergenos derivados del trigo, cebada, centeno y deribados",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoGluten.png"
+        },
+        {
+            "nombre": "Verduras",
+            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+        }
+    ],
+    "menus": [
+        {
+            "nombre": "Menu degustacion",
+            "descripcion": "Menu elaborado con un degustacion de platos de la casa",
+            "platos": ["Sepia", "Salmorejo", "Pimientos", "Bizcocho"],
+            "imagen": "/imagenes/imagenesMenus/menuDegustacion.png"
+        },
+        {
+            "nombre": "Menu para bodas",
+            "descripcion": "Menus elaborado para bodas y eventos",
+            "platos": ["Salmon", "Ensalada", "Risotto", "Tarta"],
+            "imagen": "/imagenes/imagenesMenus/menuBodas.png"
+        },
+        {
+            "nombre": "Menu de semana",
+            "descripcion": "Menus para dias laborales y fines de semana",
+            "platos": ["Albondigas", "Sushi", "Ratatouille", "Flan"],
+            "imagen": "/imagenes/imagenesMenus/menuSemanal.png"
+        },
+        {
+            "nombre": "Menu ejecutivos",
+            "descripcion": "Menus para personal de oficinas o administrativo",
+            "platos": ["Tortilla", "Fajitas", "Macarrones", "Frutas"],
+            "imagen": "/imagenes/imagenesMenus/menuEjecutivo.png"
+        }
+    ],
+    "restaurantes": [
+        {
+            "nombre": "Meson Pepe",
+            "descripcion": "Restaurante especialista en carnes",
+            "latitud": 20,
+            "longitud": 15
+        },
+        {
+            "nombre": "Xin Chan",
+            "descripcion": "Restaurante especializado en comida china",
+            "latitud": 10,
+            "longitud": 45
+        },
+        {
+            "nombre": "El Tayo",
+            "descripcion": "Restaurante especializado en paellas y otros arroces",
+            "latitud": 20,
+            "longitud": 15
+        }
+    ]
+}

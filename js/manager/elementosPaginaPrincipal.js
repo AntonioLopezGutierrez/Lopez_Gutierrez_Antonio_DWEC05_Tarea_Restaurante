@@ -154,6 +154,23 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     opcionGestion6.innerText = "Categorias Platos";
     // Agregamos el option al select
     selectGestion.appendChild(opcionGestion6);
+    //+ Elemento option para añadir los platos favoritos
+    // Creamos un nuevo elemento option
+    let opcionGestion7 = document.createElement("option");
+    // Asignamos el texto al elemento
+    opcionGestion7.innerText = "Platos favoritos";
+    // Agregamos el option al select
+    selectGestion.appendChild(opcionGestion7);
+
+    //* Elemento que mostrara los platos favoritos
+    // Creamos un nuevo elemento para los platos
+    let divPlatosFavoritos = document.createElement("div");
+    // Asignamos la clase al elemento
+    divPlatosFavoritos.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento de plato
+    divPlatosFavoritos.innerText = "Favoritos";
+    // Asignamos el id al elemento de platos
+    divPlatosFavoritos.id = "divPlatosFavoritos";
 
     //* Elemento para la desconexion
     // Creamos un nuevo elemento para los platos
@@ -190,6 +207,8 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     divBarraNavegacion.appendChild(divPlatos);
     // Agregamos el elemento de restaurnates al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divRestaurantes);
+    // Agregamos el elemento de favoritos al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divPlatosFavoritos);
     // Agregamos el elemento de gestion al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divGestion);
     // Agregamos el elemento de desconexion al contenedor de la barra de navegacion

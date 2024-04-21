@@ -846,6 +846,25 @@ header {
     /* Establecemos el espacio de la fila*/
     row-gap: 1em;
 }
+/*? Formulario para la agregacion de platos a favoritos*/
+.formularioAsignacionPlatosFavoritos{
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1.5em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 5em;
+    /* Establecemos el espacio de la fila*/
+    row-gap: 1em;
+}
 
 /*? Contenedor principal para la administracion de las categorias y los platos*/
 .contenedorAdministracionCategoriaPlatos {

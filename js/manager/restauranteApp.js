@@ -1,4 +1,5 @@
 //!////////////////////////RESTAURANTE APP///////////////////////////////
+
 //?/////////////////////////IMPORTACIONES///////////////////////////////
 // Importacion del objeto coordenada
 import { Coordinate } from "../clases/Coordinate.js";
@@ -14,6 +15,7 @@ import { Autentificacion } from "./Autentificacion.js";
 //*********Creacion del manager al que le introduciremos los datos*******
 let restauranteModelo = new RestauranteModelo();
 
+/*
 //?////////////////INTRODUCIR LOS DATOS EN EL MODELO//////////////////////
 console.log("//////////////DATOS DE NUESTRA APLICACION////////////////");
 console.log("");
@@ -329,7 +331,7 @@ restauranteModelo.addRestaurant(restaurante3);
 
 //*****************Mostrado del manager por la consola*******************
 //console.log(restauranteModelo.toString());
-
+*/
 //?/////////////////////INSTANCIACION DEL CONTROLADOR///////////////////
 // Instanciamos un controlador con los argumentos el modelo y la vista y autentificacion
 let miControlador = new RestauranteControlador(

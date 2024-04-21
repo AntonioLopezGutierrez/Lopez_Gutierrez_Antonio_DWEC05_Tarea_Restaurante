@@ -1,9 +1,14 @@
 //!/////////////////////CLASE RESTAURANTECONTROLADOR/////////////////////
 "use strict";
 //?///////////////////////////IMPORTACIONES//////////////////////////////
+// Importacion de la clase Coordinate
 import { Coordinate } from "../clases/Coordinate.js";
+// Importacion del las func8iones para validar la latitud
 import { validarLatitud, validarLongitud } from "./validacionesFormularios.js";
+// Importacion de las funciones para el manejo de cookies
 import { getCookie, setCookie, deleteCookie } from "../utiles/utilesCookies.js";
+// Importacion de la funcion para la carga de datos
+import { cargaDatosModelo } from "../json/utilesJson.js";
 
 //?///////////////////////////PROPIEDADES PRIVADA////////////////////////
 // Constante privada en el que almacenaremos el modelo
@@ -33,8 +38,12 @@ class RestauranteControlador {
     }
 
     //?//////////////METODOS PARA LOS EVENTOS DEL USUARIO////////////////
-    //* Metodo que llama al metodo de carga de la vista
-    onCarga = () => {
+    //* Metodo asincrono que llama al metodo de carga de la vista
+    onCarga = async () => {
+        //+ llamada a la funcion de utilesJson para la carga de datos en el modelo
+        // Con await nos aseguramos de que el modelo esta cargado correctamente
+        await cargaDatosModelo(this[MODELO]);
+
         //+ Obtencion de la cookie llamando a la funcion getCookie
         // Si la cookie no ha sido acceptada por el usuario
         if (getCookie("accetedCookieMessage") !== "true") {
@@ -66,6 +75,8 @@ class RestauranteControlador {
             const stringMensaje = "Bienvenido usuario admin";
             // Llamada al metodo de la vista que mostrara un mensaje de exito
             this[VISTA].mostrarBienvenidaUsuario(stringMensaje);
+            // Llamada al manejador del boton de favoritos de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorObtenerPlatosFavoritos(this.manejadorObtenerPlatosFavoritos);
         }
 
         //+ Llamada a los manejadores de la vista que dotaran de funcionalidad a los elementos
@@ -110,6 +121,8 @@ class RestauranteControlador {
             );
             // Llamada al manejador del boton de desconectar de la vista a la que le pasaremos el manejador
             this[VISTA].manejadorDesconetarUsuario(this.manejadorDesconetarUsuario);
+            // Llamada al manejador del boton de favoritos de la vista a la que le pasaremos el manejador
+            this[VISTA].manejadorObtenerPlatosFavoritos(this.manejadorObtenerPlatosFavoritos);
         }
 
         //+ Cargamos todos los manejadores de la pagina de inicio
@@ -495,6 +508,18 @@ class RestauranteControlador {
                         this.manejadorFormularioAsignarPlatoCategorias
                     );
                     break;
+                case "Platos favoritos":
+                    // LLamada al metodo de la vista para mostrar un formulario para la asignacion de favoritos
+                    this[VISTA].asignacionPlatosFavoritos(platos);
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para asignar los platos a favoritos
+                    this[VISTA].manejadorFormularioAsignarPlatoFavoritos(
+                        this.manejadorFormularioAsignarPlatoFavoritos
+                    );
+                    break;
             }
         } else {
             // Obtenemos la opcion seleccionada del history que hemos almacenado al a0pilar la entrada
@@ -586,6 +611,18 @@ class RestauranteControlador {
                     // LLamamos al manejador de la vista para asignar la categoria al plato
                     this[VISTA].manejadorFormularioAsignarPlatoCategorias(
                         this.manejadorFormularioAsignarPlatoCategorias
+                    );
+                    break;
+                case "Platos favoritos":
+                    // LLamada al metodo de la vista para mostrar un formulario para la asignacion de favoritos
+                    this[VISTA].asignacionPlatosFavoritos(platos);
+                    // LLamamos al manejador de la vista para mostrar los formularios desde el lateral
+                    this[VISTA].manejadorFormularoiosGestionLateral(
+                        this.manejadorFormularoiosGestionLateral
+                    );
+                    // LLamamos al manejador de la vista para asignar los platos a favoritos
+                    this[VISTA].manejadorFormularioAsignarPlatoFavoritos(
+                        this.manejadorFormularioAsignarPlatoFavoritos
                     );
                     break;
             }
@@ -1022,6 +1059,7 @@ class RestauranteControlador {
             this[VISTA].mostradoMensajeFormulariosError(stringError);
         }
     };
+
     //* Metodo para la desasignacion de platos a las categorias desde el formulario
     onManejadorFormularioDesasignarPlatoCategorias = (categoriaNombre, platoNombre) => {
         // Comprobamos que el plato se ha seleccionado
@@ -1051,6 +1089,81 @@ class RestauranteControlador {
             let stringError = "El plato tiene que estar seleccionado";
             // Llamamos al metodo de la vista que mostrara el mensaje para el error de asignacion
             this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo para la asignacion de platos a favoritos
+    onManejadorFormularioAsignarPlatoFavoritos = (platosArray) => {
+        // Comprobamos que los platos se han seleccionado
+        if (platosArray.length > 0) {
+            //- Obtenemos los platos de favoritos si los hay
+            let platosExistente = localStorage.getItem("platos");
+
+            //- Convertimos el array de platos nuevos en un cojunto set
+            let platosNuevosSet = new Set(platosArray);
+
+            //- Comprobamos si ya hay datos en localStorage
+            if (platosExistente) {
+                // Convertimos los platos existentes de localStorage en un conjunto Set
+                let platosExistenteSet = new Set(platosExistente.split(","));
+
+                // Al unir los dos conjuntos de platos con set se eliminan los duplicados
+                platosNuevosSet = new Set([...platosExistenteSet, ...platosNuevosSet]);
+            }
+
+            //- Convertimos el conjunto de platos nuevamente en un array
+            let platosNuevosArray = Array.from(platosNuevosSet);
+
+            //- Guardamos el array de platos en localStorage en forma de string
+            localStorage.setItem("platos", platosNuevosArray.join(","));
+
+            //- Creamos el mensaje para la asignacion a favoritos exitosa
+            const stringMensaje = "Los platos se han añadido a favoritos correctamente";
+
+            //- Llamada al metodo de la vista que mostrara un mensaje para la asignacion de platos a favoritos
+            this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+        } else {
+            // Creamos un mensaje de error para si el plato no está seleccionado
+            let stringError = "El plato tiene que estar seleccionado";
+            // Llamamos al método de la vista que mostrará el mensaje para el error de asignación
+            this[VISTA].mostradoMensajeFormulariosError(stringError);
+        }
+    };
+
+    //* Metodo que nos mostrara los platos favoritos que tenemos almacenados
+    onManejadorObtenerPlatosFavoritos = () => {
+        // Recuperamos los platos favoritos de localStorage
+        const platosGuardados = localStorage.getItem("platos");
+        // Comprobamos si hay platos almacenados en localStorage
+        if (platosGuardados) {
+            //- Si hay platos almacenados en localStorage los obtenemos y almacenamos en un array
+            const platosArray = platosGuardados.split(",");
+
+            //- Creamos un nuevo array para almacenar los platos filtrados
+            let arrayPlatosFiltrado = [];
+
+            //- Recorremos el array con los nombres de los platos
+            platosArray.forEach((platoNombre) => {
+                let platosArray = [...this[MODELO].getDishes()];
+                // Filtramos los platos por el nombre del plato por parametors
+                let platoFiltrado = platosArray.filter(
+                    (plato) => plato.platos.getName() == platoNombre
+                );
+                // Agregamos el menu filtrado a nuestro array
+                arrayPlatosFiltrado.push(platoFiltrado[0]);
+            });
+
+            //- LLama al metodo de de la vista para el mostrado de los platos en favoritos
+            this[VISTA].platosFavoritos(arrayPlatosFiltrado);
+
+            //- Llamada al manejador que mostrara la descripcion de los platos desde favoritos
+            this[VISTA].manejadorPlatosDescripcion(this.manejadorPlatosDescripcion);
+
+            //- Llamada al manejador que mostrara la descripcion de los platos desde favoritos en el menu lateral
+            this[VISTA].manejadorPlatosDescripcionLateral(this.manejadorPlatosDescripcionLateral);
+        } else {
+            // Si no hay datos almacenados en localStorage, puedes manejarlo de acuerdo a tus necesidades
+            console.log("No hay platos guardados en localStorage");
         }
     };
 
@@ -1171,7 +1284,7 @@ class RestauranteControlador {
         // Llamamos al metodo se la misma clase que nos validara y creara el usuario
         this.onManejadorBotonSubmitFormularioLogin(nombreUsuario, contraseñaUsuario);
     };
-    
+
     //* Manejador que nos desconectara el usuario borrando la cookie y volviendo a cargar la pagina
     manejadorDesconetarUsuario = () => {
         // Llamamos al metodo se la misma clase que nos validara y creara el usuario
@@ -1315,6 +1428,18 @@ class RestauranteControlador {
     manejadorFormularioDesasignarPlatoCategorias = (categoriasNombre, platosNombre) => {
         // Llamamamos al metodo de la misma clase que desasignara los platos a las categorias
         this.onManejadorFormularioDesasignarPlatoCategorias(categoriasNombre, platosNombre);
+    };
+
+    //* Manejador que asigna los platos a favoritos
+    manejadorFormularioAsignarPlatoFavoritos = (platosArray) => {
+        // Llamamamos al metodo de la misma clase que desasignara los platos a las categorias
+        this.onManejadorFormularioAsignarPlatoFavoritos(platosArray);
+    };
+
+    //* Manejador que mostrara los platos favoritos
+    manejadorObtenerPlatosFavoritos = () => {
+        // Llamamamos al metodo de la misma clase que desasignara los platos a las categorias
+        this.onManejadorObtenerPlatosFavoritos();
     };
 }
 
