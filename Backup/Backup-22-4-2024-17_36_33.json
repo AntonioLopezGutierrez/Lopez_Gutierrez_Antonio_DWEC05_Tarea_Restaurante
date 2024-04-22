@@ -1,0 +1,750 @@
+{
+    "categorias": [
+        {
+            "nombre": "Entrantes",
+            "descripcion": "Son pequeñas porciones para abrir el apetito",
+            "imagen": "/imagenes/imagenesCategorias/imagenEntrante.png",
+            "platos": [
+                {
+                    "nombre": "Sepia",
+                    "descripcion": "Es un plato de sepia a la plancha",
+                    "imagen": "/imagenes/imagenePlatos/imagenSepia.png",
+                    "ingredientes": ["Sepia, esparragos, peregil, aceite"],
+                    "alergenos": [
+                        {
+                            "nombre": "Pescado",
+                            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Salmorejo",
+                    "descripcion": "Es un plato de tipico Cordobes",
+                    "imagen": "/imagenes/imagenePlatos/imagenSalmorejo.png",
+                    "ingredientes": ["Pimiento, tomate, cebolla, jamon, huevo"],
+                    "alergenos": [
+                        {
+                            "nombre": "Gluten",
+                            "descripcion": "Son alergenos derivados del trigo, cebada, centeno y deribados",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoGluten.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Ensalada",
+                    "descripcion": "Es un plato muy refrescante y bajo en calorias",
+                    "imagen": "/imagenes/imagenePlatos/imagenEnsalada.png",
+                    "ingredientes": ["Lechuga, tomate, maiz, nueces, atun"],
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Pimientos",
+                    "descripcion": "Pimientos del padron rellenos de merluza",
+                    "imagen": "/imagenes/imagenePlatos/imagenPimientos.png",
+                    "ingredientes": ["Pimiento, sal, aceite, pan rallado, merluza"],
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Primeros",
+            "descripcion": "Es mas ligero que el plato principal",
+            "imagen": "/imagenes/imagenesCategorias/imagenPrimerosPlatos.png",
+            "platos": [
+                {
+                    "nombre": "Salmon",
+                    "descripcion": "Es un plato se salmon a la plancha",
+                    "imagen": "/imagenes/imagenePlatos/imagenSalmon.png",
+                    "ingredientes": ["Salmon, cebolla, esparragos, sal, romero"],
+                    "alergenos": [
+                        {
+                            "nombre": "Pescado",
+                            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Risotto",
+                    "descripcion": "Es un plato italiano de arroz meloso",
+                    "imagen": "/imagenes/imagenePlatos/imagenRisotto.png",
+                    "ingredientes": ["Arroz, gambas, queso parmesano, nata, cebolla"],
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Albondigas",
+                    "descripcion": "Es un plato de albondigas de ternera con salsa de tomate",
+                    "imagen": "/imagenes/imagenePlatos/imagenAlbondigas.png",
+                    "ingredientes": [
+                        "Carne de ternera, tomate, cebolla, caldo de verdura, queso parmesano"
+                    ],
+                    "alergenos": [
+                        {
+                            "nombre": "Proteinas",
+                            "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tortilla",
+                    "descripcion": "Plato tipico español",
+                    "imagen": "/imagenes/imagenePlatos/imagenTortilla.png",
+                    "ingredientes": ["Huevo, patatas, aceite, sal"],
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Segundos",
+            "descripcion": "Es el plato principal de la comida",
+            "imagen": "/imagenes/imagenesCategorias/imagenSegundosPlatos.png",
+            "platos": [
+                {
+                    "nombre": "Sushi",
+                    "descripcion": "Laminas de pescado crudo con arroz cocido",
+                    "imagen": "/imagenes/imagenePlatos/imagenSushi.png",
+                    "ingredientes": ["Arroz, atun, salmon, merluza, algas"],
+                    "alergenos": [
+                        {
+                            "nombre": "Pescado",
+                            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Fajitas",
+                    "descripcion": "Pechuga de pollo a la plancha con sofrito de verduras",
+                    "imagen": "/imagenes/imagenePlatos/imagenFajitas.png",
+                    "ingredientes": ["Pollo, tomate, cebolla, pimiento, totitas de harina"],
+                    "alergenos": [
+                        {
+                            "nombre": "Proteinas",
+                            "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Ratatouille",
+                    "descripcion": "Es un plato tipico frances de verduras",
+                    "imagen": "/imagenes/imagenePlatos/imagenRatatouille.png",
+                    "ingredientes": ["Berenjena, calabacin, tomate, hiervas Aromaticas"],
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Macarrones",
+                    "descripcion": "Es un plato italiano de pasta",
+                    "imagen": "/imagenes/imagenePlatos/imagenMacarrones.png",
+                    "ingredientes": [
+                        "Macarrones, salsa de tomate, carne de ternera, queso, oregano"
+                    ],
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Postre",
+            "descripcion": "Es el ultimo plato de la comida",
+            "imagen": "/imagenes/imagenesCategorias/imagenPostres.png",
+            "platos": [
+                {
+                    "nombre": "Bizcocho",
+                    "descripcion": "Es un bizcocho de chocolate",
+                    "imagen": "/imagenes/imagenePlatos/imagenBizcocho.png",
+                    "ingredientes": ["Harina, huevos, lebadura, chocolate"],
+                    "alergenos": [
+                        {
+                            "nombre": "Frutos secos",
+                            "descripcion": "Son alergenos derivados de los frutos secos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoFrutos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tarta",
+                    "descripcion": "Es una tarta de frutas",
+                    "imagen": "/imagenes/imagenePlatos/imagenTarta.png",
+                    "ingredientes": ["Fresas, hojaldre, crema, uvas, ciruelas"],
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Flan",
+                    "descripcion": "Es un flan de huevo con frambuesas",
+                    "imagen": "/imagenes/imagenePlatos/imagenFlan.png",
+                    "ingredientes": ["Huevos, azucar, frambuesa"],
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Frutas",
+                    "descripcion": "Es un baquillo de de frutas silvestres",
+                    "imagen": "/imagenes/imagenePlatos/imagenFrutas.png",
+                    "ingredientes": ["Fresas, ciruelas, frambuesas, moras"],
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "menus": [
+        {
+            "nombre": "Menu degustacion",
+            "descripcion": "Menu elaborado con un degustacion de platos de la casa",
+            "imagen": "/imagenes/imagenesMenus/menuDegustacion.png",
+            "platos": [
+                {
+                    "nombre": "Sepia",
+                    "descripcion": "Es un plato de sepia a la plancha",
+                    "ingredientes": ["Sepia, esparragos, peregil, aceite"],
+                    "imagen": "/imagenes/imagenePlatos/imagenSepia.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Pescado",
+                            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Salmorejo",
+                    "descripcion": "Es un plato de tipico Cordobes",
+                    "ingredientes": ["Pimiento, tomate, cebolla, jamon, huevo"],
+                    "imagen": "/imagenes/imagenePlatos/imagenSalmorejo.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Gluten",
+                            "descripcion": "Son alergenos derivados del trigo, cebada, centeno y deribados",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoGluten.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Pimientos",
+                    "descripcion": "Pimientos del padron rellenos de merluza",
+                    "ingredientes": ["Pimiento, sal, aceite, pan rallado, merluza"],
+                    "imagen": "/imagenes/imagenePlatos/imagenPimientos.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Bizcocho",
+                    "descripcion": "Es un bizcocho de chocolate",
+                    "ingredientes": ["Harina, huevos, lebadura, chocolate"],
+                    "imagen": "/imagenes/imagenePlatos/imagenBizcocho.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Frutos secos",
+                            "descripcion": "Son alergenos derivados de los frutos secos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoFrutos.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Menu para bodas",
+            "descripcion": "Menus elaborado para bodas y eventos",
+            "imagen": "/imagenes/imagenesMenus/menuBodas.png",
+            "platos": [
+                {
+                    "nombre": "Salmon",
+                    "descripcion": "Es un plato se salmon a la plancha",
+                    "ingredientes": ["Salmon, cebolla, esparragos, sal, romero"],
+                    "imagen": "/imagenes/imagenePlatos/imagenSalmon.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Pescado",
+                            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Ensalada",
+                    "descripcion": "Es un plato muy refrescante y bajo en calorias",
+                    "ingredientes": ["Lechuga, tomate, maiz, nueces, atun"],
+                    "imagen": "/imagenes/imagenePlatos/imagenEnsalada.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Risotto",
+                    "descripcion": "Es un plato italiano de arroz meloso",
+                    "ingredientes": ["Arroz, gambas, queso parmesano, nata, cebolla"],
+                    "imagen": "/imagenes/imagenePlatos/imagenRisotto.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tarta",
+                    "descripcion": "Es una tarta de frutas",
+                    "ingredientes": ["Fresas, hojaldre, crema, uvas, ciruelas"],
+                    "imagen": "/imagenes/imagenePlatos/imagenTarta.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Menu de semana",
+            "descripcion": "Menus para dias laborales y fines de semana",
+            "imagen": "/imagenes/imagenesMenus/menuSemanal.png",
+            "platos": [
+                {
+                    "nombre": "Albondigas",
+                    "descripcion": "Es un plato de albondigas de ternera con salsa de tomate",
+                    "ingredientes": [
+                        "Carne de ternera, tomate, cebolla, caldo de verdura, queso parmesano"
+                    ],
+                    "imagen": "/imagenes/imagenePlatos/imagenAlbondigas.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Proteinas",
+                            "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Sushi",
+                    "descripcion": "Laminas de pescado crudo con arroz cocido",
+                    "ingredientes": ["Arroz, atun, salmon, merluza, algas"],
+                    "imagen": "/imagenes/imagenePlatos/imagenSushi.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Pescado",
+                            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Ratatouille",
+                    "descripcion": "Es un plato tipico frances de verduras",
+                    "ingredientes": ["Berenjena, calabacin, tomate, hiervas Aromaticas"],
+                    "imagen": "/imagenes/imagenePlatos/imagenRatatouille.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Flan",
+                    "descripcion": "Es un flan de huevo con frambuesas",
+                    "ingredientes": ["Huevos, azucar, frambuesa"],
+                    "imagen": "/imagenes/imagenePlatos/imagenFlan.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nombre": "Menu ejecutivos",
+            "descripcion": "Menus para personal de oficinas o administrativo",
+            "imagen": "/imagenes/imagenesMenus/menuEjecutivo.png",
+            "platos": [
+                {
+                    "nombre": "Tortilla",
+                    "descripcion": "Plato tipico español",
+                    "ingredientes": ["Huevo, patatas, aceite, sal"],
+                    "imagen": "/imagenes/imagenePlatos/imagenTortilla.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Fajitas",
+                    "descripcion": "Pechuga de pollo a la plancha con sofrito de verduras",
+                    "ingredientes": ["Pollo, tomate, cebolla, pimiento, totitas de harina"],
+                    "imagen": "/imagenes/imagenePlatos/imagenFajitas.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Proteinas",
+                            "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Macarrones",
+                    "descripcion": "Es un plato italiano de pasta",
+                    "ingredientes": [
+                        "Macarrones, salsa de tomate, carne de ternera, queso, oregano"
+                    ],
+                    "imagen": "/imagenes/imagenePlatos/imagenMacarrones.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Lacteos",
+                            "descripcion": "Son alergenos derivados de la leche de la vaca",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Frutas",
+                    "descripcion": "Es un baquillo de de frutas silvestres",
+                    "ingredientes": ["Fresas, ciruelas, frambuesas, moras"],
+                    "imagen": "/imagenes/imagenePlatos/imagenFrutas.png",
+                    "alergenos": [
+                        {
+                            "nombre": "Verduras",
+                            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "alergenos": [
+        {
+            "nombre": "Lacteos",
+            "descripcion": "Son alergenos derivados de la leche de la vaca",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+        },
+        {
+            "nombre": "Frutos secos",
+            "descripcion": "Son alergenos derivados de los frutos secos",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoFrutos.png"
+        },
+        {
+            "nombre": "Pescado",
+            "descripcion": "Son alergenos derivados de los pescados y mariscos",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+        },
+        {
+            "nombre": "Proteinas",
+            "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+        },
+        {
+            "nombre": "Gluten",
+            "descripcion": "Son alergenos derivados del trigo, cebada, centeno y deribados",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoGluten.png"
+        },
+        {
+            "nombre": "Verduras",
+            "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+            "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+        }
+    ],
+    "restaurantes": [
+        {
+            "nombre": "Meson Pepe",
+            "descripcion": "Restaurante especialista en carnes",
+            "latitud": 20,
+            "longitud": 15
+        },
+        {
+            "nombre": "Xin Chan",
+            "descripcion": "Restaurante especializado en comida china",
+            "latitud": 10,
+            "longitud": 45
+        },
+        {
+            "nombre": "El Tayo",
+            "descripcion": "Restaurante especializado en paellas y otros arroces",
+            "latitud": 20,
+            "longitud": 15
+        }
+    ],
+    "platos": [
+        {
+            "nombre": "Sepia",
+            "descripcion": "Es un plato de sepia a la plancha",
+            "imagen": "/imagenes/imagenePlatos/imagenSepia.png",
+            "ingredientes": ["Sepia, esparragos, peregil, aceite"],
+            "alergenos": [
+                {
+                    "nombre": "Pescado",
+                    "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Salmon",
+            "descripcion": "Es un plato se salmon a la plancha",
+            "imagen": "/imagenes/imagenePlatos/imagenSalmon.png",
+            "ingredientes": ["Salmon, cebolla, esparragos, sal, romero"],
+            "alergenos": [
+                {
+                    "nombre": "Pescado",
+                    "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Salmorejo",
+            "descripcion": "Es un plato de tipico Cordobes",
+            "imagen": "/imagenes/imagenePlatos/imagenSalmorejo.png",
+            "ingredientes": ["Pimiento, tomate, cebolla, jamon, huevo"],
+            "alergenos": [
+                {
+                    "nombre": "Gluten",
+                    "descripcion": "Son alergenos derivados del trigo, cebada, centeno y deribados",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoGluten.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Ensalada",
+            "descripcion": "Es un plato muy refrescante y bajo en calorias",
+            "imagen": "/imagenes/imagenePlatos/imagenEnsalada.png",
+            "ingredientes": ["Lechuga, tomate, maiz, nueces, atun"],
+            "alergenos": [
+                {
+                    "nombre": "Verduras",
+                    "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Pimientos",
+            "descripcion": "Pimientos del padron rellenos de merluza",
+            "imagen": "/imagenes/imagenePlatos/imagenPimientos.png",
+            "ingredientes": ["Pimiento, sal, aceite, pan rallado, merluza"],
+            "alergenos": [
+                {
+                    "nombre": "Verduras",
+                    "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Risotto",
+            "descripcion": "Es un plato italiano de arroz meloso",
+            "imagen": "/imagenes/imagenePlatos/imagenRisotto.png",
+            "ingredientes": ["Arroz, gambas, queso parmesano, nata, cebolla"],
+            "alergenos": [
+                {
+                    "nombre": "Lacteos",
+                    "descripcion": "Son alergenos derivados de la leche de la vaca",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Albondigas",
+            "descripcion": "Es un plato de albondigas de ternera con salsa de tomate",
+            "imagen": "/imagenes/imagenePlatos/imagenAlbondigas.png",
+            "ingredientes": [
+                "Carne de ternera, tomate, cebolla, caldo de verdura, queso parmesano"
+            ],
+            "alergenos": [
+                {
+                    "nombre": "Proteinas",
+                    "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Tortilla",
+            "descripcion": "Plato tipico español",
+            "imagen": "/imagenes/imagenePlatos/imagenTortilla.png",
+            "ingredientes": ["Huevo, patatas, aceite, sal"],
+            "alergenos": [
+                {
+                    "nombre": "Lacteos",
+                    "descripcion": "Son alergenos derivados de la leche de la vaca",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Sushi",
+            "descripcion": "Laminas de pescado crudo con arroz cocido",
+            "imagen": "/imagenes/imagenePlatos/imagenSushi.png",
+            "ingredientes": ["Arroz, atun, salmon, merluza, algas"],
+            "alergenos": [
+                {
+                    "nombre": "Pescado",
+                    "descripcion": "Son alergenos derivados de los pescados y mariscos",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoPescado.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Fajitas",
+            "descripcion": "Pechuga de pollo a la plancha con sofrito de verduras",
+            "imagen": "/imagenes/imagenePlatos/imagenFajitas.png",
+            "ingredientes": ["Pollo, tomate, cebolla, pimiento, totitas de harina"],
+            "alergenos": [
+                {
+                    "nombre": "Proteinas",
+                    "descripcion": "Son alergenos derivados de las proteinas de algunos productos",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoProteinas.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Ratatouille",
+            "descripcion": "Es un plato tipico frances de verduras",
+            "imagen": "/imagenes/imagenePlatos/imagenRatatouille.png",
+            "ingredientes": ["Berenjena, calabacin, tomate, hiervas Aromaticas"],
+            "alergenos": [
+                {
+                    "nombre": "Verduras",
+                    "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Macarrones",
+            "descripcion": "Es un plato italiano de pasta",
+            "imagen": "/imagenes/imagenePlatos/imagenMacarrones.png",
+            "ingredientes": ["Macarrones, salsa de tomate, carne de ternera, queso, oregano"],
+            "alergenos": [
+                {
+                    "nombre": "Lacteos",
+                    "descripcion": "Son alergenos derivados de la leche de la vaca",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Bizcocho",
+            "descripcion": "Es un bizcocho de chocolate",
+            "imagen": "/imagenes/imagenePlatos/imagenBizcocho.png",
+            "ingredientes": ["Harina, huevos, lebadura, chocolate"],
+            "alergenos": [
+                {
+                    "nombre": "Frutos secos",
+                    "descripcion": "Son alergenos derivados de los frutos secos",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoFrutos.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Tarta",
+            "descripcion": "Es una tarta de frutas",
+            "imagen": "/imagenes/imagenePlatos/imagenTarta.png",
+            "ingredientes": ["Fresas, hojaldre, crema, uvas, ciruelas"],
+            "alergenos": [
+                {
+                    "nombre": "Lacteos",
+                    "descripcion": "Son alergenos derivados de la leche de la vaca",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Flan",
+            "descripcion": "Es un flan de huevo con frambuesas",
+            "imagen": "/imagenes/imagenePlatos/imagenFlan.png",
+            "ingredientes": ["Huevos, azucar, frambuesa"],
+            "alergenos": [
+                {
+                    "nombre": "Lacteos",
+                    "descripcion": "Son alergenos derivados de la leche de la vaca",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoLacteos.png"
+                }
+            ]
+        },
+        {
+            "nombre": "Frutas",
+            "descripcion": "Es un baquillo de de frutas silvestres",
+            "imagen": "/imagenes/imagenePlatos/imagenFrutas.png",
+            "ingredientes": ["Fresas, ciruelas, frambuesas, moras"],
+            "alergenos": [
+                {
+                    "nombre": "Verduras",
+                    "descripcion": "Son alergenos derivados de las verduras como pueden ser las berejenas o calabacines",
+                    "imagen": "/imagenes/imagenesAlergenos/alergenoVerduras.png"
+                }
+            ]
+        }
+    ]
+}

@@ -161,6 +161,13 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     opcionGestion7.innerText = "Platos favoritos";
     // Agregamos el option al select
     selectGestion.appendChild(opcionGestion7);
+    //+ Elemento option para añadir los platos favoritos
+    // Creamos un nuevo elemento option
+    let opcionGestion8 = document.createElement("option");
+    // Asignamos el texto al elemento
+    opcionGestion8.innerText = "Backup";
+    // Agregamos el option al select
+    selectGestion.appendChild(opcionGestion8);
 
     //* Elemento que mostrara los platos favoritos
     // Creamos un nuevo elemento para los platos

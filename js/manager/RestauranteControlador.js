@@ -8,9 +8,9 @@ import { validarLatitud, validarLongitud } from "./validacionesFormularios.js";
 // Importacion de las funciones para el manejo de cookies
 import { getCookie, setCookie, deleteCookie } from "../utiles/utilesCookies.js";
 // Importacion de la funcion para la carga de datos
-import { cargaDatosModelo } from "../json/utilesJson.js";
+import { cargaDatosModelo, obtencioDatosModelo } from "../json/utilesJson.js";
 
-//?///////////////////////////PROPIEDADES PRIVADA////////////////////////
+//?////////////////////////PROPIEDADES PRIVADA///////////////////////////
 // Constante privada en el que almacenaremos el modelo
 const MODELO = Symbol("RestauranteModelo");
 // Constante privada en la que almacenaremos la vista
@@ -18,8 +18,11 @@ const VISTA = Symbol("RestauranteVista");
 // Constante privada en la que almacenaremos la autentificacon
 const AUTENTIFICACION = Symbol("Autentificacion");
 // Constante privada en la que almacenaremos el usuario
-let USUARIO = Symbol("Usuario");
+const USUARIO = Symbol("Usuario");
+// Variable que se encargara de comprobar si los datos han sido cargados
+let datosCargados = true;
 
+//?//////////////////////DECLARACION DE LA CLASE/////////////////////////
 class RestauranteControlador {
     //?//////////////////CONSTRUCTOR DE LA CLASE/////////////////////////
     constructor(RestauranteModelo, RestauranteVista, Autentificacion) {
@@ -40,9 +43,14 @@ class RestauranteControlador {
     //?//////////////METODOS PARA LOS EVENTOS DEL USUARIO////////////////
     //* Metodo asincrono que llama al metodo de carga de la vista
     onCarga = async () => {
-        //+ llamada a la funcion de utilesJson para la carga de datos en el modelo
+        //+ Comprobacion de que los datos del modelo solo s cargan una vez
+        if (datosCargados){
+        //- llamada a la funcion de utilesJson para la carga de datos en el modelo
         // Con await nos aseguramos de que el modelo esta cargado correctamente
         await cargaDatosModelo(this[MODELO]);
+        //- Asignacion de la variable a false para que no se vuelva a cargar
+        datosCargados = false;
+        }
 
         //+ Obtencion de la cookie llamando a la funcion getCookie
         // Si la cookie no ha sido acceptada por el usuario
@@ -65,6 +73,7 @@ class RestauranteControlador {
         } else {
             // Llamada al metodo que carga la pagina con la opcion de la gestion
             this[VISTA].carga(categorias, platos, restaurantes);
+
             // Llamada al manejador del boton de gestion de la vista a la que le pasaremos el manejador
             this[VISTA].manejadorSelectBarraNavegacionGestion(
                 this.manejadorSelectBarraNavegacionGestion
@@ -520,6 +529,21 @@ class RestauranteControlador {
                         this.manejadorFormularioAsignarPlatoFavoritos
                     );
                     break;
+                case "Backup":
+                    try {
+                        // Llamada a la funcion de utilesJson que nos hara la copia de seguridad
+                        obtencioDatosModelo(this[MODELO]);
+                        // Creamos el mensaje para la copia de seguridad exitosa
+                        const stringMensaje = "La copia de seguridad se ha hecho correctamente";
+                        // Llamada al metodo de la vista que mostrara un mensaje para la copia de seguridad
+                        this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+                        break;
+                    } catch (error) {
+                        // Obtenemos el mensaje de error de la excepcion
+                        let stringError = error.message;
+                        // Llamamos al metodo de la vista que mostrara el mensaje para para el error
+                        this[VISTA].mostradoMensajeFormulariosError(stringError);
+                    }
             }
         } else {
             // Obtenemos la opcion seleccionada del history que hemos almacenado al a0pilar la entrada
@@ -625,6 +649,21 @@ class RestauranteControlador {
                         this.manejadorFormularioAsignarPlatoFavoritos
                     );
                     break;
+                case "Backup":
+                    try {
+                        // Llamada a la funcion de utilesJson que nos hara la copia de seguridad
+                        obtencioDatosModelo(this[MODELO]);
+                        // Creamos el mensaje para la copia de seguridad exitosa
+                        const stringMensaje = "La copia de seguridad se ha hecho correctamente";
+                        // Llamada al metodo de la vista que mostrara un mensaje para la copia de seguridad
+                        this[VISTA].mostradoMensajeFormulariosConfirmacion(stringMensaje);
+                        break;
+                    } catch (error) {
+                        // Obtenemos el mensaje de error de la excepcion
+                        let stringError = error.message;
+                        // Llamamos al metodo de la vista que mostrara el mensaje para para el error
+                        this[VISTA].mostradoMensajeFormulariosError(stringError);
+                    }
             }
         }
     };
