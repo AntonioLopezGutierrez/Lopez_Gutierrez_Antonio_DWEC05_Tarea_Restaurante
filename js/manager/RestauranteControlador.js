@@ -1,14 +1,16 @@
 //!/////////////////////CLASE RESTAURANTECONTROLADOR/////////////////////
 "use strict";
 //?///////////////////////////IMPORTACIONES//////////////////////////////
-// Importacion de la clase Coordinate
-import { Coordinate } from "../clases/Coordinate.js";
-// Importacion del las func8iones para validar la latitud
-import { validarLatitud, validarLongitud } from "./validacionesFormularios.js";
-// Importacion de las funciones para el manejo de cookies
 import { getCookie, setCookie, deleteCookie } from "../utiles/utilesCookies.js";
 // Importacion de la funcion para la carga de datos
 import { cargaDatosModelo, obtencioDatosModelo } from "../json/utilesJson.js";
+// Importacion de las funciones para los mapas del restaurante
+import {
+    mostradoMapaDescripcion,
+    mostradoMapaFormulario,
+    mostrarCoordenadasGeocoder,
+    objetoCoordenadas,
+} from "../utiles/utilesMapaRestaurante.js";
 
 //?////////////////////////PROPIEDADES PRIVADA///////////////////////////
 // Constante privada en el que almacenaremos el modelo
@@ -44,12 +46,12 @@ class RestauranteControlador {
     //* Metodo asincrono que llama al metodo de carga de la vista
     onCarga = async () => {
         //+ Comprobacion de que los datos del modelo solo s cargan una vez
-        if (datosCargados){
-        //- llamada a la funcion de utilesJson para la carga de datos en el modelo
-        // Con await nos aseguramos de que el modelo esta cargado correctamente
-        await cargaDatosModelo(this[MODELO]);
-        //- Asignacion de la variable a false para que no se vuelva a cargar
-        datosCargados = false;
+        if (datosCargados) {
+            //- llamada a la funcion de utilesJson para la carga de datos en el modelo
+            // Con await nos aseguramos de que el modelo esta cargado correctamente
+            await cargaDatosModelo(this[MODELO]);
+            //- Asignacion de la variable a false para que no se vuelva a cargar
+            datosCargados = false;
         }
 
         //+ Obtencion de la cookie llamando a la funcion getCookie
@@ -105,6 +107,10 @@ class RestauranteControlador {
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosLateral(this.manejadorCategoriasPlatosLateral);
+        // Llamada al manejador del boton de geocoder de la vista pasandole el manejador
+        this[VISTA].manejadorGeocoder(this.manejadorGeocoder);
+        // Llamada al manejador del boton de ubicacion de la vista pasandole el manejador
+        this[VISTA].manejadorUbicacion(this.manejadorUbicacion);
     };
 
     //* Metodo que llama al metodo de inicio de la vista
@@ -153,6 +159,10 @@ class RestauranteControlador {
         this[VISTA].manejadorCategoriasPlatosInicio(this.manejadorCategoriasPlatosInicio);
         // Llamada al manejador del boton de categorias platos de la vista pasandole el manejador
         this[VISTA].manejadorCategoriasPlatosLateral(this.manejadorCategoriasPlatosLateral);
+        // Llamada al manejador del boton de geocoder de la vista pasandole el manejador
+        this[VISTA].manejadorGeocoder(this.manejadorGeocoder);
+        // Llamada al manejador del boton de ubicacion de la vista pasandole el manejador
+        this[VISTA].manejadorUbicacion(this.manejadorUbicacion);
     };
 
     //* Metodo que llama al metodo de mostradoCategorias de la vista
@@ -216,6 +226,8 @@ class RestauranteControlador {
             );
             // Llamada al metodo de la vista que muestra la descripcion de los restaurantes
             this[VISTA].restauranteDescripcion(restaurantesFiltrados, arrayRestaurantes);
+            // Llamada a la funcion de utilesMapaRestaurante que muestra el mapa con la ubicacion
+            mostradoMapaDescripcion(...restaurantesFiltrados);
             // Llamamos al manejador que mostrara la descripcion de los restaurantes desde el menu lateral
             this[VISTA].manejadorRestauranteDescripcionLateral(
                 this.manejadorRestauranteDescripcionLateral
@@ -237,6 +249,23 @@ class RestauranteControlador {
             );
         }
     };
+
+    //!/////////////////////////////////////////////////////
+    //* Metodo que muestra un formulario para el geocoder
+    onManejadorGeocoder() {
+        // Llamada al metodo de la vista que muestra el formulario del geocoder
+        this[VISTA].formularioGeocoder();
+        // LLamada a la funcion de utilesMapaRestaurante que mostrara las coordenadas del geocoder
+        mostrarCoordenadasGeocoder();
+    }
+
+    //* Metodo que muestra las ubicaciones de los restaurantes
+    onManejadorUbicacion() {
+        // Transformamos el iterador de restaurantes en un array
+        let arrayRestaurantes = [...this[MODELO].getRestaurant()];
+        // llamamos al metodo de la vista que muestra las ubicaciones de los restaurantes
+        this[VISTA].ubicacionRestaurantes(arrayRestaurantes);
+    }
 
     //* Metodo que muestra los  platos de una categoria
     onCategoriasPlatos(categoriaNombre) {
@@ -500,6 +529,9 @@ class RestauranteControlador {
                     this[VISTA].manejadorFormularioCrearRestaurante(
                         this.manejadorFormularioCrearRestaurante
                     );
+                    // LLamada a la funcion de uilesMapaRestaurante que nos mostrara el mapa
+                    mostradoMapaFormulario();
+
                     break;
                 case "Categorias Platos":
                     // LLamada al metodo de la vista para mostrar rl formulario para modificar los platos de la categoria
@@ -619,6 +651,8 @@ class RestauranteControlador {
                     this[VISTA].manejadorFormularioCrearRestaurante(
                         this.manejadorFormularioCrearRestaurante
                     );
+                    // LLamada a la funcion de uilesMapaRestaurante que nos mostrara el mapa y obtenemos las coordenadas
+                    objetoCoordenadas = mostradoMapaFormulario();
                     break;
                 case "Categorias Platos":
                     // LLamada al metodo de la vista para mostrar rl formulario para modificar los platos de la categoria
@@ -993,23 +1027,18 @@ class RestauranteControlador {
     };
 
     //* Metodo para la creacion del restaurante desde el formulario
-    onManejadorFormularioCrearRestaurante = (
-        nombreRestaurante,
-        descripcionRestaurante,
-        latitudRestaurante,
-        longitudRestaurante
-    ) => {
+    onManejadorFormularioCrearRestaurante = (nombreRestaurante, descripcionRestaurante) => {
         try {
-            //- Validamos la latitud y la longitud para que esten en los rangos permitidos
-            validarLatitud(latitudRestaurante);
-            validarLongitud(longitudRestaurante);
-            //- Creamos un objeto coordenadas para las coordenadas del restaurante
-            let coordenadas = new Coordinate(latitudRestaurante, longitudRestaurante);
+            //- Comprobamos que el objeto coordenadas tiene las coordenadas correctas
+            // Este objeto lo estamos importando del archivo utilesMapaRestaurante.js
+            if (objetoCoordenadas == null) {
+                throw new Error("Tiene que seleccionar en el mapa la localizacion del restaurante");
+            }
             //- Llamamos al metodo del modelo que nos creara el restaurante
             let nuevoRestaurante = this[MODELO].createRestaurant(
                 nombreRestaurante,
                 descripcionRestaurante,
-                coordenadas
+                objetoCoordenadas
             );
             //- Llamada al metodo del modelo que nos agregara el restaurante
             this[MODELO].addRestaurant(nuevoRestaurante);
@@ -1250,6 +1279,19 @@ class RestauranteControlador {
         this.onRestauranteDescripcion(restauranteNombre);
     };
 
+    //!//////////////////////////////////////////////
+    //* Manejador para el mostrado del geocoder
+    manejadorGeocoder = () => {
+        // Llamamos al metodo de esta clase onManejadorGeocoder
+        this.onManejadorGeocoder();
+    };
+
+    //* Manejador para el mostrado de la ubicacion
+    manejadorUbicacion = () => {
+        // Llamamos al metodo de esta clase onManejadorUbicacion
+        this.onManejadorUbicacion();
+    };
+
     //* Manejador para el mostrado de los platos de una categoria
     manejadorCategoriasPlatosInicio = (categoriaNombre) => {
         // Llamamos al metodo de esta clase on categorias platos
@@ -1444,16 +1486,20 @@ class RestauranteControlador {
     //* Manejador que creara el restaurante desde el formulario
     manejadorFormularioCrearRestaurante = (
         nombreRestaurante,
-        descripcionRestaurante,
+        descripcionRestaurante
+        /*
         latitudRestaurante,
         longitudRestaurante
+        */
     ) => {
         // Llamamamos al metodo de la misma clase que creara un restaurante
         this.onManejadorFormularioCrearRestaurante(
             nombreRestaurante,
-            descripcionRestaurante,
+            descripcionRestaurante
+            /*
             latitudRestaurante,
             longitudRestaurante
+            */
         );
     };
 

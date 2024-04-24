@@ -83,6 +83,17 @@ const historyActions = {
         // Llamada al metodo que muestra los fomularios
         miControlador.onManejadorFormularioLogin();
     },
+
+    //* Accion que nos mostrara el geocoder para que el usuario pueda buscar la direccion
+    geocoder() {
+        // Llamada al metodo que muestra el gocoder
+        miControlador.onManejadorGeocoder();
+    },
+    //* Accion que nos mostrara la ubicacion de todos los restaurantes
+    ubicacion() {
+        // Llamada al metodo que muestra el gocoder
+        miControlador.onManejadorUbicacion();
+    },
 };
 
 //?////ESCUCHA DEL EVENTO Y LLAMADA A LOS METODOS DEL OBJETO/////

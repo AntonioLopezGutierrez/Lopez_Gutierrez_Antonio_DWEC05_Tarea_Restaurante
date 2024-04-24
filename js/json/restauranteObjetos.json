@@ -216,20 +216,20 @@
         {
             "nombre": "Meson Pepe",
             "descripcion": "Restaurante especialista en carnes",
-            "latitud": 20,
-            "longitud": 15
+            "latitud": 38.9894359773471,
+            "longitud": -3.9294523000717168
         },
         {
             "nombre": "Xin Chan",
             "descripcion": "Restaurante especializado en comida china",
-            "latitud": 10,
-            "longitud": 45
+            "latitud": 38.98303124623996,
+            "longitud": -3.9273923635482793
         },
         {
             "nombre": "El Tayo",
             "descripcion": "Restaurante especializado en paellas y otros arroces",
-            "latitud": 20,
-            "longitud": 15
+            "latitud": 38.98409874166562,
+            "longitud": -3.9315122365951543
         }
     ]
 }

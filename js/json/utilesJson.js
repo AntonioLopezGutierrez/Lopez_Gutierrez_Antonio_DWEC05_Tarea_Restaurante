@@ -148,20 +148,23 @@ async function obtencioDatosModelo(modelo) {
         // Obtenemos los platos del modelo
         platos: platosTransformados,
     };
-
+    // Creamos un objeto formData
     const formData = new FormData();
+    // Agregamos el objeto literal al formData con el nombre jsonObj que recibira el isset del servidor
     formData.append("jsonObj", JSON.stringify(datosModelo));
 
     try {
+        // Hacemos la peticion al archivo del servidor con el metodo post y el formData
         const response = await fetch("http://127.0.0.1/backup.php", {
             method: "POST",
             body: formData,
         });
-
+        // Obtenemos la respuesta del servidor
         const responseDataText = await response.text();
-
+        // Mostramos la respuesta del servidor en la consola
         console.log("Respuesta del servidor:", responseDataText);
     } catch (error) {
+        // Mostramos el error en la consola
         console.error("Se produjo un error:", error.message);
     }
 }

@@ -179,6 +179,26 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     // Asignamos el id al elemento de platos
     divPlatosFavoritos.id = "divPlatosFavoritos";
 
+    //* Elemento que mostrara el geocoder
+    // Creamos un nuevo elemento para el gocoder
+    let divGeocoder = document.createElement("div");
+    // Asignamos la clase al elemento
+    divGeocoder.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento geocoder
+    divGeocoder.innerText = "Geocoder";
+    // Asignamos el id al elemento de geocoder
+    divGeocoder.id = "divGeocoder";
+
+    //* Elemento que mostrara las ubicaciones
+    // Creamos un nuevo elemento para la ubicacion
+    let divUbicaciones = document.createElement("div");
+    // Asignamos la clase al elemento
+    divUbicaciones.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento ubicacion
+    divUbicaciones.innerText = "Ubicaciones";
+    // Asignamos el id al elemento de ubicacion
+    divUbicaciones.id = "divUbicaciones";
+
     //* Elemento para la desconexion
     // Creamos un nuevo elemento para los platos
     let divDesconexion = document.createElement("div");
@@ -214,6 +234,10 @@ function barraNavegacion(barraNavegacion, migaDePanActual, restaurantes) {
     divBarraNavegacion.appendChild(divPlatos);
     // Agregamos el elemento de restaurnates al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divRestaurantes);
+    // Agregamos el elemento de ubicaciones al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divUbicaciones);
+    // Agregamos el elemento de geocoder al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divGeocoder);
     // Agregamos el elemento de favoritos al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divPlatosFavoritos);
     // Agregamos el elemento de gestion al contenedor de la barra de navegacion
@@ -318,6 +342,26 @@ function barraNavegacionLoginUsuario(barraNavegacion, migaDePanActual, restauran
         selectRestaurante.appendChild(optionRestaurante);
     }
 
+    //* Elemento que mostrara las ubicaciones
+    // Creamos un nuevo elemento para el gocoder
+    let divUbicaciones = document.createElement("div");
+    // Asignamos la clase al elemento
+    divUbicaciones.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento ubicacion
+    divUbicaciones.innerText = "Ubicaciones";
+    // Asignamos el id al elemento de ubicacion
+    divUbicaciones.id = "divUbicaciones";
+
+    //* Elemento que mostrara el geocoder
+    // Creamos un nuevo elemento para el gocoder
+    let divGeocoder = document.createElement("div");
+    // Asignamos la clase al elemento
+    divGeocoder.classList.add("divBarraNavegacionElementos");
+    // Asignamos un texto al elemento geocoder
+    divGeocoder.innerText = "Geocoder";
+    // Asignamos el id al elemento de geocoder
+    divGeocoder.id = "divGeocoder";
+
     //* Elemento para la identificacion del usuario
     // Creamos un nuevo elemento div para la identificacion
     let divIdentificacion = document.createElement("div");
@@ -353,6 +397,10 @@ function barraNavegacionLoginUsuario(barraNavegacion, migaDePanActual, restauran
     divBarraNavegacion.appendChild(divPlatos);
     // Agregamos el elemento de restaurnates al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divRestaurantes);
+    // Agregamos el elemento de ubicaciones al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divUbicaciones);
+    // Agregamos el elemento de geocoder al contenedor de la barra de navegacion
+    divBarraNavegacion.appendChild(divGeocoder);
     // Agregamos el elemento de identificacion al contenedor de la barra de navegacion
     divBarraNavegacion.appendChild(divIdentificacion);
 
@@ -698,13 +746,12 @@ function restauranteDescripcion(mainContenido, restaurante) {
         "La descripcion del restaurante es: " + restaurante[0].getDescription();
     // Agregamos el parrafo al contenedor
     contenedorDescripcion.appendChild(descripcionRestaurante);
-    // Creamos un nuevo elemento de parrafo
-    let localizacionRestaurante = document.createElement("p");
-    // Agregamos el texto con la localizacion del restaurante
-    localizacionRestaurante.innerText =
-        "La localizacion del restaurante es: " + restaurante[0].getLocation();
-    // Agregamos el parrafo al contenedor
-    contenedorDescripcion.appendChild(localizacionRestaurante);
+    // Creamos un nuevo contenedor para el mostrado del mapa del restaurante con la posicion
+    let contenedorMapaDescripcion = document.createElement("div");
+    // Asignamos un identificador al contenedor
+    contenedorMapaDescripcion.id = "contenedorMapaDescripcion";
+    // Agregamos el contenedor al contenedor
+    contenedorDescripcion.appendChild(contenedorMapaDescripcion);
     // Agregamos el contenedor al main del contenido
     mainContenido.appendChild(contenedorDescripcion);
 }

@@ -77,9 +77,9 @@ header {
 /*? Elementos de menu de la barra de navegacion*/
 .divBarraNavegacionElementos {
     /* Establecemos el relleno*/
-    padding: 0.6em;
+    padding: 0.48em;
     /* Establecemos el ancho*/
-    width: 7.5em;
+    width: 7.4em;
     /* Alineamos el texto al centro*/
     text-align: center;
     /* Establecemos el puntero para que cambien como enlace*/
@@ -651,6 +651,10 @@ header {
     color: white;
     /* Establecemos el tamaño del la fuente*/
     font-size: 1.5em;
+    /* Establecemos los huecos de la fila*/
+    row-gap: 1em;
+    /* Establecemos los margenes*/
+    margin: 2em;
 }
 
 /*! -------------------------Estilos formularios------------------------*/
@@ -669,7 +673,7 @@ header {
     /* Establecemos el color del primer plano*/
     color: white;
     /* Establecemos el margen*/
-    margin: 1em;
+    margin: 3em;
 }
 
 /*? Formulario para la eliminacion de platos*/
@@ -787,7 +791,7 @@ header {
     /* Establecemos el color del primer plano*/
     color: white;
     /* Establecemos el margen*/
-    margin: 1em;
+    margin: auto;
 }
 
 /*? Formulario para eliminar la categoria*/
@@ -825,10 +829,75 @@ header {
     /* Establecemos el color del primer plano*/
     color: white;
     /* Establecemos el margen*/
-    margin: 1em;
+    margin: 3em;
 }
+
+/*? Contenedor para mostrar el mapa para la creacion del restaurante*/
+#map {
+    /* Establecemos la altura del contenedor*/
+    height: 50em;
+    /* Establecemos la anchura del contenedor*/
+    width: 70%;
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Establecemos el sobreado*/
+    box-shadow: 2px 2px 1em rgba(66, 66, 66, 0.5);
+}
+
+/*? Contenedor para mostrar el mapa en la descripcion del restaurante*/
+#contenedorMapaDescripcion {
+    /* Establecemos la altura del contenedor*/
+    height: 45em;
+    /* Establecemos la anchura del contenedor*/
+    width: 50%;
+    /* Establecemos el estilo del borde*/
+    border-style: groove;
+    /* Establecemos el ancho del borde*/
+    border-width: 0.7em;
+    /* Establecemos el sobreado*/
+    box-shadow: 2px 2px 1em rgba(66, 66, 66, 0.5);
+}
+
+/*? Contenedor principal para mostrar el mapa con todos los restaurantes*/
+#contenedorPrincipalMapaRestaurantes {
+    /* Establecemos el contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elementos*/
+    flex-direction: column;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Alineamos el contenido al centro*/
+    align-items: center;
+    /* Establecemos el ancho del contenedor*/
+    width: 100%;
+    /* Establecemos los espacios de las filas*/
+    row-gap: 1em;
+    /* Establecemos el magen*/
+    margin: 2em;
+}
+
+/*? Contenedor que mostrara el mapa con todos los restaurantes*/
+#contenedorMapaRestaurantes {
+    /* Establecemos la altura del contenedor*/
+    height: 45em;
+    /* Establecemos la anchura del contenedor*/
+    width: 65%;
+}
+
+/* Estilos para el contenido del pop-up */
+.popup-content {
+    /* Establecemos el ancho*/
+    width: 2em;
+    /* Establecemos la altura*/
+    height: auto;
+    /* Establecemos el relleno del elemento*/
+    padding: 1em;
+}
+
 /*? Formulario para el registro del usuario*/
-.formulariLoginUsuario{
+.formulariLoginUsuario {
     /* Establecemos un contenedor flexible*/
     display: flex;
     /* Establecemos la direccion de los elemento*/
@@ -847,7 +916,7 @@ header {
     row-gap: 1em;
 }
 /*? Formulario para la agregacion de platos a favoritos*/
-.formularioAsignacionPlatosFavoritos{
+.formularioAsignacionPlatosFavoritos {
     /* Establecemos un contenedor flexible*/
     display: flex;
     /* Establecemos la direccion de los elemento*/
@@ -934,6 +1003,68 @@ header {
     color: white;
     /* Establecemos el margen*/
     margin: 1em;
+}
+/*? Formulario que muestra el geocoder*/
+.formularioGeocoder {
+    /* Establecemos un contenedor flexible*/
+    display: flex;
+    /* Establecemos la direccion de los elemento*/
+    flex-direction: column;
+    /* Alineamos el texto al centro*/
+    text-align: center;
+    /* Establecemos el tamaño de la fuente*/
+    font-size: 1em;
+    /* Asisnamos los elementos al centro*/
+    align-items: center;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el margen*/
+    margin: 1em;
+    /* Establecemos los espacios*/
+    row-gap: 1em;
+}
+/*? Contenedor en el que vamos a almacenar el mapa con las coordenadas*/
+.contenedorGeocoderMapa {
+    /* Establecemos la altura del contenedor*/
+    height: 50em;
+    /* Establecemos la anchura del contenedor*/
+    width: 70%;
+}
+
+/*? Contenedor en el que vamos a mostrar las direcciones de la busqueda*/
+.contenedorListaDirecciones {
+    /* Establecemos el borde del contenedor*/
+    border: 0.3em solid #dee2e6;
+    /* Establecemos el estilo de la lista*/
+    list-style: none;
+}
+/*? Enlaces con la direccionde del goocoder paramostrar la localizacion*/
+.enlaceDireccion {
+    /* Establecemos un contenedor flexiblez*/
+    display: flex;
+    /* Justificamos el contenido*/
+    justify-content: center;
+    /* Establecemos el relleno de los elementos*/
+    padding: 0.5em;
+    /* Establecemos la decoracion de los enlaces*/
+    text-decoration: none;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+    /* Establecemos el borde de los elementos*/
+    border: 0.2em solid white;
+}
+/*? contenedor que mostrara el mensaje de error si no puede establecer conexion con el servidor de mapas*/
+.errorDiv {
+    /* Establecemos el relleno de los elementos*/
+    padding: 0.5em;
+    /* Establecemos el color del primer plano*/
+    color: white;
+    /* Establecemos el color de fondo*/
+    background-color: rgb(66, 66, 66);
+    /* Establecemos el borde de los elementos*/
+    border: 0.3em solid white;
 }
 
 /*! --------------------Estilos elementos formularios--------------------*/
@@ -1042,7 +1173,7 @@ header {
     /* Establemos la altura*/
     height: 3em;
     /* Establecemos la anchura*/
-    width: 35em;
+    width: 97%;
 }
 
 /*? Input de tipo texarea para formularios de administracion de categorias*/
@@ -1050,7 +1181,7 @@ header {
     /* Establemos la altura*/
     height: 3em;
     /* Establecemos la anchura*/
-    width: 35em;
+    width: 97%;
 }
 
 /*? Input de tipo boton para el envio de formulario en la categoria*/
@@ -1201,8 +1332,6 @@ header {
     /* Establecemos el borde redondo*/
     border-radius: 1em;
 }
-
-
 
 /*! -------------------------------footer-------------------------------*/
 /**************************** Pie de pagina*****************************/

@@ -27,6 +27,7 @@ import {
     administrarPlatos,
     categoriasPlatosAsignado,
     eliminarPlato,
+    formularioGeocoder,
     mostradoFomulariosMenuLateral,
     mostradoMensajeFormulariosConfirmacion,
     mostradoMensajeFormulariosError,
@@ -41,6 +42,7 @@ import {
 
 //* Importacion de los elementos para el mostrado de cookies
 import { mostradoCookieCargar } from "../manager/elementosCookies.js";
+import { mostrarUbicacionRestaurantes } from "../utiles/utilesMapaRestaurante.js";
 
 //?//////////////////////////DECLARACION DE LA CLASE/////////////////////
 class RestauranteVista {
@@ -171,6 +173,22 @@ class RestauranteVista {
         mostradoMenuLateralRestaurantes(this.mainContenidoListado, restaurantes);
         // Actualizamos las migas de pan
         this.#actualizarMigasPan("Estamos en la pagina: DescripcionRestaurante");
+    }
+    //!/////////////////////////////////////////////////////
+    //* Metodo que nos mostrara el formulario del geocoder
+    formularioGeocoder() {
+        // Llamada a la funcion de formularios que nos mostrara el formulario del geocoder
+        formularioGeocoder(this.mainContenido);
+        // Actualizamos las migas de pan
+        this.#actualizarMigasPan("Estamos en la pagina: Geocoder");
+    }
+
+    //* Metodo que nos mostrara la ubicacion de los restaurantes
+    ubicacionRestaurantes(arrayRestaurantes) {
+        // LLamada a la funcion de utilesMapaRestaurante que mostrara las coordenadas de los restaurantes
+        mostrarUbicacionRestaurantes(this.mainContenido, arrayRestaurantes);
+        // Actualizamos las migas de pan
+        this.#actualizarMigasPan("Estamos en la pagina: Ubicacion");
     }
 
     //* Metodo que muestra los platos que tiene una categoria
@@ -498,6 +516,41 @@ class RestauranteVista {
                 event.preventDefault();
             });
         }
+    }
+
+    //!//////////////////////////////////////////////////////////
+    //* Metodo para ejecutar el manejador del controlador que mostrara el geocoder
+    manejadorGeocoder(manejadorGeocoder) {
+        // Obtenemos el elemento
+        let botonGeocoder = document.getElementById("divGeocoder");
+        // Hacemos una escucha por si se produce un evento de clic
+        botonGeocoder.addEventListener("click", (event) => {
+            // Llamamos al metodo del manejador que le pasamos como argumentos
+            manejadorGeocoder();
+            // Llamada al metodo de actualizar migas de pan
+            this.#actualizarMigasPan("Estamos en la pagina: Geocoder");
+            // Apilamos una entrada en el historial con la accion geocoder
+            history.pushState({ action: "geocoder" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
+    }
+
+    //* Metodo para ejecutar el manejador del controlador que mostrara todos los restaurantes
+    manejadorUbicacion(manejadorUbicacion) {
+        // Obtenemos el elemento
+        let botonUbicaciones = document.getElementById("divUbicaciones");
+        // Hacemos una escucha por si se produce un evento de clic
+        botonUbicaciones.addEventListener("click", (event) => {
+            // Llamamos al metodo del manejador que le pasamos como argumentos
+            manejadorUbicacion();
+            // Llamada al metodo de actualizar migas de pan
+            this.#actualizarMigasPan("Estamos en la pagina: Ubicacion");
+            // Apilamos una entrada en el historial con la accion geocoder
+            history.pushState({ action: "ubicacion" }, "", null);
+            // Prevenimos el comportamiento predeterminado
+            event.preventDefault();
+        });
     }
 
     //* Metodo que ejecuta el manejador del controlador que mostrara los platos de una categoria
@@ -1246,19 +1299,21 @@ class RestauranteVista {
 
             //- Obtenemos la descripcion del restaurante por el atributo name del elemento
             let descripcionRestaurante = this.form.descripcionRestauranteCrear.value;
-
+            /*
             //- Obtenemos la latitud del restaurante por el atributo name del elemento
             let latitudRestaurante = this.form.latitudRestauranteCrear.value;
 
             //- Obtenemos la longitud del restaurante por el atributo name del elemento
             let longitudRestaurante = this.form.longitudRestauranteCrear.value;
-
+            */
             //+ Llamada al manejador del controlador para la creacion del restaurante
             manejadorFormularioCrearRestaurante(
                 nombreRestaurante,
-                descripcionRestaurante,
+                descripcionRestaurante
+                /*
                 latitudRestaurante,
                 longitudRestaurante
+                */
             );
         });
     }

@@ -213,7 +213,7 @@ function nuevoPlato(mainContenido, categorias, alergenos) {
 
 //?/////FUNCION QUE MOSTRARA EL FORMULARIO PARA ELIMINAR LOS PLATOS//////
 function eliminarPlato(mainContenido, platos) {
-    // Borramos el contenido del main contenido
+    //+ Borramos el contenido del main contenido
     mainContenido.innerHTML = "";
 
     //+ Creamos un nuevo elemento de formulario
@@ -1019,6 +1019,7 @@ function nuevoRestaurante(mainContenido) {
     // Establecemos la longitud maxima del input
     inputDescripcionRestaurante.maxLength = 200;
 
+    /*
     //+ Creamos un elemento parrafo para la latitud
     let parrafoLatitudRestaurante = document.createElement("p");
     // Asignamos el texto a la etiqueta
@@ -1055,6 +1056,17 @@ function nuevoRestaurante(mainContenido) {
     inputLongitudRestaurante.min = 0;
     // Establecemos el numero maximo del input
     inputLongitudRestaurante.max = 100;
+*/
+    //+ Creamos un elemento parrafo para la longitud
+    let parrafoContenedorRestaurante = document.createElement("p");
+    // Asignamos el texto a la etiqueta
+    parrafoContenedorRestaurante.innerText =
+        "Seleccione en el mapa la localizacion del restaurante";
+
+    //+ Creamos un elemento div para almacenar el mapa
+    let divMapaRestaurante = document.createElement("div");
+    // Asignamos el atributo id al contenedor
+    divMapaRestaurante.id = "map";
 
     //+ Creamos un elemento boton para el boton de eliminar la categoria
     let botonCrearRestaurante = document.createElement("button");
@@ -1076,6 +1088,12 @@ function nuevoRestaurante(mainContenido) {
     formulariCrearRestaurante.appendChild(parrafoDescripcionRestaurante);
     // Añadimos el text area para la descripcion
     formulariCrearRestaurante.appendChild(inputDescripcionRestaurante);
+    // Añadimos el parrafo para la creacion del restaurante
+    formulariCrearRestaurante.appendChild(parrafoContenedorRestaurante);
+    // Añadimos el contenedor del mapa al formulario
+    formulariCrearRestaurante.appendChild(divMapaRestaurante);
+
+    /*
     // Añadimos el parrafo para la latitud
     formulariCrearRestaurante.appendChild(parrafoLatitudRestaurante);
     // Añadimos el number para la latitud
@@ -1084,6 +1102,7 @@ function nuevoRestaurante(mainContenido) {
     formulariCrearRestaurante.appendChild(parrafoLongitudRestaurante);
     // Añadimos el number para la latitud
     formulariCrearRestaurante.appendChild(inputLongitudRestaurante);
+    */
     // Añadimos el boton de drear restaurante
     formulariCrearRestaurante.appendChild(botonCrearRestaurante);
 
@@ -1091,7 +1110,7 @@ function nuevoRestaurante(mainContenido) {
     mainContenido.appendChild(formulariCrearRestaurante);
 }
 
-//?METODO QUE MOSTRARA UN FORMULARIO PARA LA ADMINISTRACION DE LAS CATEGORIAS A LOS PLATOS//
+//? FUNCION QUE MOSTRARA UN FORMULARIO PARA LA ADMINISTRACION DE LAS CATEGORIAS A LOS PLATOS//
 function categoriasPlatosAsignado(mainContenido, platos, categorias) {
     // Borramos el contenido del main principal
     mainContenido.innerHTML = "";
@@ -1673,6 +1692,86 @@ function mostradoPlatosAsignacionFaviritos(mainContenido, platos) {
     mainContenido.appendChild(formularioAsignacionPlatosFavoritos);
 }
 
+//?//////////FUNCION QUE MOSTRARA EL FORMULARIO DEL GEOCODER/////////////
+function formularioGeocoder(mainContenido) {
+    //+ Eliminamos el contenido del main contenido
+    mainContenido.innerHTML = "";
+
+    //+ Creamos un nuevo elemento de formulario
+    let formularioGeocoder = document.createElement("form");
+    // Asisnamos el atributo name al elemento
+    formularioGeocoder.name = "formularioGeocoder";
+    // Asisnamos el atributo id al elemento form
+    formularioGeocoder.id = "formularioGeocoder";
+    // Asignamos la clase al formulario
+    formularioGeocoder.className = "formularioGeocoder";
+
+    //+ Creamos un elemento de titulo para el geocoder
+    let tituloGeocoder = document.createElement("h4");
+    // Asignamos el texto a la etiqueta
+    tituloGeocoder.innerText = "Geocoder para mostrar las coordenadas de la direccion";
+
+    //+ Creamos un nuevo elemento de parrafo para el input de la direccion
+    let parrafoDireccion = document.createElement("p");
+    // Asignamos el texto a la etiqueta
+    parrafoDireccion.innerText = "Introduzca la direccion para obtener las coordenadas";
+
+    //+ Creamos un nuevo elemento de input para la direccion
+    let inputDireccionGeocoder = document.createElement("input");
+    // Asignamos el atributo name al elemento
+    inputDireccionGeocoder.name = "inputDireccionGeocoder";
+    // Asignamos el atributo id al elemento
+    inputDireccionGeocoder.id = "inputDireccionGeocoder";
+    // Asignamos el placeholder al boton
+    inputDireccionGeocoder.placeholder = "Introduzca la dirección a buscar";
+    // Asignamos la clase al elemento de contraseña
+    inputDireccionGeocoder.className = "inputTextFormulario";
+
+    //+ Creamos un elemento boton para asignar el plato
+    let botonBuscarDireccion = document.createElement("button");
+    // Asignamos el texto al boton
+    botonBuscarDireccion.innerHTML = "Buscar";
+    // Asignamos un atributo name al boton
+    botonBuscarDireccion.name = "botonBuscarDireccion";
+    // Asignamos la clase al boton de enviar
+    botonBuscarDireccion.className = "inputButtonFormularioEliminarPlatos";
+    // Asignamos el atributo id al boton
+    botonBuscarDireccion.id = "botonBuscarDireccion";
+    // Asignamos el tipo al boton
+    botonBuscarDireccion.type = "submit";
+
+    //+ Creamos un elemento div para la direccion del geocoder
+    let contenedorGeocoderDireccion = document.createElement("div");
+    // Asignamos el id al elemento contenedor
+    contenedorGeocoderDireccion.id = "contenedorGeocoderDireccion";
+    // Asignamos la clase al elemento contenedor
+    contenedorGeocoderDireccion.className = "contenedorGeocoderDireccion";
+    
+    //+ Creamos un elemento div para el mapa del geocoder
+    let contenedorGeocoderMapa = document.createElement("div");
+    // Asignamos el id al elemento contenedor
+    contenedorGeocoderMapa.id = "contenedorGeocoderMapa";
+    // Asignamos la clase al elemento contenedor
+    contenedorGeocoderMapa.className = "contenedorGeocoderMapa";
+
+    //+ Agregamos los elementos al formulario
+    // Agregamos el titulo del formulario
+    formularioGeocoder.appendChild(tituloGeocoder);
+    // Agregamos el parrafo del input
+    formularioGeocoder.appendChild(parrafoDireccion);
+    // Agregamos el input de la direccion
+    formularioGeocoder.appendChild(inputDireccionGeocoder);
+    // Agregamos el boton para la busqueda
+    formularioGeocoder.appendChild(botonBuscarDireccion);
+    // Agregamos el contenedor de la direccion
+    formularioGeocoder.appendChild(contenedorGeocoderDireccion);
+    // Agregamos el contenedor del mapa
+    formularioGeocoder.appendChild(contenedorGeocoderMapa);
+
+    //+ Agregamos el formulario al mainContenido
+    mainContenido.appendChild(formularioGeocoder);
+}
+
 //?//////////////////////EXPORTACION DE LAS FUNCIONES////////////////////
 export {
     eliminarPlato,
@@ -1689,4 +1788,5 @@ export {
     mostradoFomulariosMenuLateral,
     mostrarFormularioLogin,
     mostradoPlatosAsignacionFaviritos,
+    formularioGeocoder,
 };
